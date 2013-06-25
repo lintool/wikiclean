@@ -73,8 +73,7 @@ public class WikiCleanerTest {
 
   @Test
   public void testId12() throws Exception {
-    String raw = FileUtils.readFileToString(
-        new File("src/test/java/org/wikiclean/enwiki-20120104-id12.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"));
     String content = WikiCleaner.clean(raw);
 
     // Make sure we've removed the inter-wiki links.
@@ -109,8 +108,7 @@ public class WikiCleanerTest {
 
   @Test
   public void testId39() throws Exception {
-    String raw = FileUtils.readFileToString(
-        new File("src/test/java/org/wikiclean/enwiki-20120104-id39.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id39.xml"));
     String content = WikiCleaner.clean(raw);
     //System.out.println(content);
 
@@ -129,8 +127,7 @@ public class WikiCleanerTest {
 
   @Test
   public void testId290() throws Exception {
-    String raw = FileUtils.readFileToString(
-        new File("src/test/java/org/wikiclean/enwiki-20120104-id290.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id290.xml"));
     String content = WikiCleaner.clean(raw);
     //System.out.println(content);
 
@@ -140,8 +137,7 @@ public class WikiCleanerTest {
 
   @Test
   public void testId303() throws Exception {
-    String raw = FileUtils.readFileToString(
-        new File("src/test/java/org/wikiclean/enwiki-20120104-id303.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id303.xml"));
     String content = WikiCleaner.clean(raw);
     //System.out.println(content);
 
