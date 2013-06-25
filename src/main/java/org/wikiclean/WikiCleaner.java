@@ -2,7 +2,7 @@ package org.wikiclean;
 
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 
 public class WikiCleaner {
 
@@ -20,12 +20,34 @@ public class WikiCleaner {
     content = removeCategoryLinks(content);
     content = removeLinks(content);
     content = removeEmptyParentheticals(content);
+    content = removeMath(content);
+    content = removeTables(content);
 
     // For some reason, some HTML entities are doubly encoded.
-    content = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(content));
+    content = StringEscapeUtils.unescapeHtml(StringEscapeUtils.unescapeHtml(content));
     content = compressMultipleNewlines(content);
+    content = removeHtmlTags(content);
 
     return content.trim();
+  }
+
+  private static final Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
+
+  private static String removeHtmlTags(String s) {
+    return HTML_TAGS.matcher(s).replaceAll("");
+  }
+
+  private static final Pattern TABLE = Pattern.compile("\\{\\|.*?\\|\\}", Pattern.DOTALL);
+
+  private static String removeTables(String s) {
+    return TABLE.matcher(s).replaceAll("");
+  }
+
+  private static final Pattern MATH = Pattern.compile("&lt;math&gt;.*?&lt;/math&gt",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+
+  private static String removeMath(String s) {
+    return MATH.matcher(s).replaceAll("");
   }
 
   private static final Pattern EMPTY_PARENS = Pattern.compile(" \\(\\)");
@@ -76,10 +98,11 @@ public class WikiCleaner {
     return LINKS2.matcher(LINKS1.matcher(s).replaceAll("$1")).replaceAll("");
   }
 
-  private static final Pattern HEADINGS = Pattern.compile("=+\\s*([^=]+)\\s*=+");
+  private static final Pattern HEADINGS = Pattern.compile("=+ ?([^=]+)=+");
 
   private static String removeHeadings(String s) {
-    return HEADINGS.matcher(s).replaceAll("$1");
+    // Make sure there's an extra newline after headings.
+    return HEADINGS.matcher(s).replaceAll("$1\n");
   }
 
   private static final Pattern EMPHASIS = Pattern.compile("('''|'')");
@@ -209,10 +232,12 @@ public class WikiCleaner {
     return s;
   }
 
+  private static final Pattern BR = Pattern.compile("&lt;br */&gt;");
   private static final Pattern REF1 = Pattern.compile("&lt;ref[^/]+/&gt;", Pattern.DOTALL);
   private static final Pattern REF2 = Pattern.compile("&lt;ref.*?&lt;/ref&gt;", Pattern.DOTALL);
 
-  private static String removeRefs(String s) {
+  public static String removeRefs(String s) {
+    s = BR.matcher(s).replaceAll("");     // See test case for why we do this.
     s = REF1.matcher(s).replaceAll("");
     s = REF2.matcher(s).replaceAll("");
     return s;
