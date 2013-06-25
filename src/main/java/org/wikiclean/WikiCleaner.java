@@ -6,6 +6,42 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 public class WikiCleaner {
 
+  /**
+   * Start delimiter of the title, which is &lt;<code>title</code>&gt;.
+   */
+  protected static final String XML_START_TAG_TITLE = "<title>";
+
+  /**
+   * End delimiter of the title, which is &lt;<code>/title</code>&gt;.
+   */
+  protected static final String XML_END_TAG_TITLE = "</title>";
+
+  public static final String getTitle(String s) {
+    int start = s.indexOf(XML_START_TAG_TITLE);
+    int end = s.indexOf(XML_END_TAG_TITLE, start);
+    if (start < 0 || end < 0) {
+      return "";
+    }
+    return StringEscapeUtils.unescapeHtml(s.substring(start + 7, end));
+  }
+  
+  /**
+   * Start delimiter of the id, which is &lt;<code>id</code>&gt;.
+   */
+  protected static final String XML_START_TAG_ID = "<id>";
+
+  /**
+   * End delimiter of the id, which is &lt;<code>/id</code>&gt;.
+   */
+  protected static final String XML_END_TAG_ID = "</id>";
+
+  public static final String getId(String s) {
+    // parse out the document id
+    int start = s.indexOf(XML_START_TAG_ID);
+    int end = s.indexOf(XML_END_TAG_ID);
+    return (start == -1 || end == -1 || start > end) ? "0" : s.substring(start + 4, end);
+  }
+
   public static final String clean(String page) {
     String content = getWikiMarkup(page);
 

@@ -154,6 +154,15 @@ public class WikiCleanerTest {
     assertEquals(50179, content.length(), 100);
   }
 
+  // Should look into this page
+  // Title = ASCII
+  //    Id = 586
+
+  // Title = Animation
+  // Id = 593
+//  Title = Animal Farm
+//      Id = 620
+
   public static junit.framework.Test suite() {
     return new JUnit4TestAdapter(WikiCleanerTest.class);
   }
