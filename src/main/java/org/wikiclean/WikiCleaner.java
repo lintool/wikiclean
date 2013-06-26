@@ -47,9 +47,9 @@ public class WikiCleaner {
 
     content = removeRefs(content);
     content = removeInterWikiLinks(content);
-    content = removeImageCaptions(content);
+    content = ImageCaptionsRemover.remove(content);
+    content = DoubleBracesRemover.remove(content);
     content = removeHtmlComments(content);
-    content = removeDoubleBraces(content);
     content = removeEmphasis(content);
     content = removeFooter(content);
     content = removeHeadings(content);
@@ -57,12 +57,14 @@ public class WikiCleaner {
     content = removeLinks(content);
     content = removeEmptyParentheticals(content);
     content = removeMath(content);
-    content = removeTables(content);
+    content = TableRemover.remove(content);
 
     // For some reason, some HTML entities are doubly encoded.
     content = StringEscapeUtils.unescapeHtml(StringEscapeUtils.unescapeHtml(content));
-    content = compressMultipleNewlines(content);
     content = removeHtmlTags(content);
+
+    // Finally, fold multiple newlines.
+    content = compressMultipleNewlines(content);
 
     return content.trim();
   }
@@ -71,12 +73,6 @@ public class WikiCleaner {
 
   private static String removeHtmlTags(String s) {
     return HTML_TAGS.matcher(s).replaceAll("");
-  }
-
-  private static final Pattern TABLE = Pattern.compile("\\{\\|.*?\\|\\}", Pattern.DOTALL);
-
-  private static String removeTables(String s) {
-    return TABLE.matcher(s).replaceAll("");
   }
 
   private static final Pattern MATH = Pattern.compile("&lt;math&gt;.*?&lt;/math&gt",
@@ -134,7 +130,7 @@ public class WikiCleaner {
     return LINKS2.matcher(LINKS1.matcher(s).replaceAll("$1")).replaceAll("");
   }
 
-  private static final Pattern HEADINGS = Pattern.compile("=+ ?([^=]+)=+");
+  private static final Pattern HEADINGS = Pattern.compile("=+\\s?(.*?)=+");
 
   private static String removeHeadings(String s) {
     // Make sure there's an extra newline after headings.
@@ -154,119 +150,7 @@ public class WikiCleaner {
     return HTML_COMMENT.matcher(s).replaceAll("");
   }
 
-  private static final int DEFAULT_NO_BRACE = 0;
-  private static final int STATE_1CLOSE_BRACE = 1;
-  private static final int STATE_1OPEN_BRACE = 2;
-  
-  public static String removeDoubleBraces(String s) {
-    int i = s.indexOf("{{");
-    while (i != -1) {
-      int state = DEFAULT_NO_BRACE;
-      int level = 1;
-      int cur = i + 2;
 
-      while (cur < s.length()) {
-        if (state == STATE_1OPEN_BRACE && s.charAt(cur) == '{') {
-          level++;
-          state = DEFAULT_NO_BRACE;
-        }
-        // If there's only one close, move back to default state.
-        if (state == STATE_1OPEN_BRACE) {
-          state = DEFAULT_NO_BRACE;
-        }
-        if (s.charAt(cur) == '{') {
-          state = STATE_1OPEN_BRACE;
-        }
-
-        if (state == STATE_1CLOSE_BRACE && s.charAt(cur) == '}') {
-          level--;
-          if (level == 0) {
-            break;
-          }
-          state = DEFAULT_NO_BRACE;
-        } else {
-          // If there's only one close, move back to default state.
-          if (state == STATE_1CLOSE_BRACE) {
-            state = DEFAULT_NO_BRACE;
-          }
-          if (s.charAt(cur) == '}') {
-            state = STATE_1CLOSE_BRACE;
-          }
-        }
-        cur++;
-      }
-
-      if (cur == s.length()) {
-        return s.substring(0, i);
-      }
-
-      s = s.substring(0, i) + s.substring(cur+1, s.length());
-      i = s.indexOf("{{", i);
-    }
-
-    return s;
-  }
-
-  private static final int DEFAULT_NO_BRACKET = 0;
-  private static final int STATE_1CLOSE_BRACKET = 1;
-  private static final int STATE_1OPEN_BRACKET = 2;
-  
-  public static String removeImageCaptions(String s) {
-    String[] labels = { "[[File:", "[[Image:" };
-    for ( String label : labels) {
-      s = removeImageCaptionsLabel(s, label);
-    }
-    return s;
-  }
-
-  public static String removeImageCaptionsLabel(String s, String label) {
-    int i = s.indexOf(label);
-    while (i != -1) {
-      int state = DEFAULT_NO_BRACKET;
-      int level = 1;
-      int cur = i + label.length();
-
-      while (cur < s.length()) {
-        if (state == STATE_1OPEN_BRACKET && s.charAt(cur) == '[') {
-          level++;
-          state = DEFAULT_NO_BRACKET;
-        }
-        // If there's only one close, move back to default state.
-        if (state == STATE_1OPEN_BRACKET ) {
-          state = DEFAULT_NO_BRACKET;
-        }
-        if (s.charAt(cur) == '[') {
-          state = STATE_1OPEN_BRACKET;
-        }
-
-        if (state == STATE_1CLOSE_BRACKET && s.charAt(cur) == ']') {
-          level--;
-          if (level == 0) {
-            break;
-          }
-          state = DEFAULT_NO_BRACKET;
-        } else {
-          // If there's only one close, move back to default state.
-          if (state == STATE_1CLOSE_BRACKET) {
-            state = DEFAULT_NO_BRACKET;
-          }
-          if (s.charAt(cur) == ']') {
-            state = STATE_1CLOSE_BRACKET;
-          }
-        }
-        cur++;
-      }
-
-      if (cur == s.length()) {
-        return s.substring(0, i);
-      }
-
-      s = s.substring(0, i) + s.substring(cur+1, s.length());
-      i = s.indexOf(label, i);
-    }
-
-    return s;
-  }
 
   private static final Pattern BR = Pattern.compile("&lt;br */&gt;");
   private static final Pattern REF1 = Pattern.compile("&lt;ref[^/]+/&gt;", Pattern.DOTALL);
@@ -309,5 +193,181 @@ public class WikiCleaner {
     }
 
     return s.substring(textStart + 27, textEnd);
+  }
+
+  protected static final class ImageCaptionsRemover {
+    private static final int DEFAULT_NO_BRACKET = 0;
+    private static final int STATE_1CLOSE_BRACKET = 1;
+    private static final int STATE_1OPEN_BRACKET = 2;
+
+    protected static String remove(String s) {
+      String[] labels = { "[[File:", "[[Image:" };
+      for (String label : labels) {
+        s = removeLabel(s, label);
+      }
+      return s;
+    }
+
+    // This method encodes a finite state machine to handle links in caption, which result in
+    // nested [[ ... [[foo]] ... ]] constructs.
+    protected static String removeLabel(String s, String label) {
+      int i = s.indexOf(label);
+      while (i != -1) {
+        int state = DEFAULT_NO_BRACKET;
+        int level = 1;
+        int cur = i + label.length();
+
+        while (cur < s.length()) {
+          if (state == STATE_1OPEN_BRACKET && s.charAt(cur) == '[') {
+            level++;
+            state = DEFAULT_NO_BRACKET;
+          }
+          // If there's only one close, move back to default state.
+          if (state == STATE_1OPEN_BRACKET) {
+            state = DEFAULT_NO_BRACKET;
+          }
+          if (s.charAt(cur) == '[') {
+            state = STATE_1OPEN_BRACKET;
+          }
+
+          if (state == STATE_1CLOSE_BRACKET && s.charAt(cur) == ']') {
+            level--;
+            if (level == 0) {
+              break;
+            }
+            state = DEFAULT_NO_BRACKET;
+          } else {
+            // If there's only one close, move back to default state.
+            if (state == STATE_1CLOSE_BRACKET) {
+              state = DEFAULT_NO_BRACKET;
+            }
+            if (s.charAt(cur) == ']') {
+              state = STATE_1CLOSE_BRACKET;
+            }
+          }
+          cur++;
+        }
+
+        if (cur == s.length()) {
+          return s.substring(0, i);
+        }
+
+        s = s.substring(0, i) + s.substring(cur + 1, s.length());
+        i = s.indexOf(label, i);
+      }
+
+      return s;
+    }
+  }
+
+  protected static final class DoubleBracesRemover {
+    private static final int DEFAULT_NO_BRACE = 0;
+    private static final int STATE_1CLOSE_BRACE = 1;
+    private static final int STATE_1OPEN_BRACE = 2;
+
+    // This method encodes a finite state machine to handle nested double braces (e.g., in infoboxes).
+    protected static String remove(String s) {
+      int i = s.indexOf("{{");
+      while (i != -1) {
+        int state = DEFAULT_NO_BRACE;
+        int level = 1;
+        int cur = i + 2;
+
+        while (cur < s.length()) {
+          if (state == STATE_1OPEN_BRACE && s.charAt(cur) == '{') {
+            level++;
+            state = DEFAULT_NO_BRACE;
+          }
+          // If there's only one close, move back to default state.
+          if (state == STATE_1OPEN_BRACE) {
+            state = DEFAULT_NO_BRACE;
+          }
+          if (s.charAt(cur) == '{') {
+            state = STATE_1OPEN_BRACE;
+          }
+
+          if (state == STATE_1CLOSE_BRACE && s.charAt(cur) == '}') {
+            level--;
+            if (level == 0) {
+              break;
+            }
+            state = DEFAULT_NO_BRACE;
+          } else {
+            // If there's only one close, move back to default state.
+            if (state == STATE_1CLOSE_BRACE) {
+              state = DEFAULT_NO_BRACE;
+            }
+            if (s.charAt(cur) == '}') {
+              state = STATE_1CLOSE_BRACE;
+            }
+          }
+          cur++;
+        }
+
+        if (cur == s.length()) {
+          return s.substring(0, i);
+        }
+
+        s = s.substring(0, i) + s.substring(cur + 1, s.length());
+        i = s.indexOf("{{", i);
+      }
+
+      return s;
+    }
+  }
+
+  protected static final class TableRemover {
+    private static final int DEFAULT = 0;
+    private static final int STATE_PIPE = 1;
+    private static final int STATE_1OPEN_BRACE = 2;
+
+    protected static String remove(String s) {
+      int i = s.indexOf("{|");
+      while (i != -1) {
+        int state = DEFAULT;
+        int level = 1;
+        int cur = i + 2;
+
+        while (cur < s.length()) {
+          if (state == STATE_1OPEN_BRACE && s.charAt(cur) == '|') {
+            level++;
+            state = DEFAULT;
+          }
+          // If there's only one close, move back to default state.
+          if (state == STATE_1OPEN_BRACE) {
+            state = DEFAULT;
+          }
+          if (s.charAt(cur) == '{') {
+            state = STATE_1OPEN_BRACE;
+          }
+
+          if (state == STATE_PIPE && s.charAt(cur) == '}') {
+            level--;
+            if (level == 0) {
+              break;
+            }
+            state = DEFAULT;
+          } else {
+            // If there's a pipe but no close brace, move back to default state.
+            if (state == STATE_PIPE) {
+              state = DEFAULT;
+            }
+            if (s.charAt(cur) == '|') {
+              state = STATE_PIPE;
+            }
+          }
+          cur++;
+        }
+
+        if (cur == s.length()) {
+          return s.substring(0, i);
+        }
+
+        s = s.substring(0, i) + s.substring(cur + 1, s.length());
+        i = s.indexOf("{|", i);
+      }
+
+      return s;
+    }
   }
 }

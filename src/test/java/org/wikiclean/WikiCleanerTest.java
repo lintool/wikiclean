@@ -19,62 +19,90 @@ public class WikiCleanerTest {
     assertEquals("Mutualism has been retrospectively characterised as ideologically situated between individualist and collectivist forms of anarchism. Proudhon first characterised his goal as a &quot;third form of society, the synthesis of communism and property.&quot;",
         WikiCleaner.removeRefs(s));
   }
+
   @Test
   public void testRemoveImageCaption() throws Exception {
-    assertEquals("abc", WikiCleaner.removeImageCaptions("[[File: blah blah]]abc"));
-    assertEquals("abc", WikiCleaner.removeImageCaptions("abc[[File: blah blah]]"));
-    assertEquals("", WikiCleaner.removeImageCaptions("[[File: blah blah]]"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: blah blah]]def"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: [ ] [ ] [ [ ] ]]def"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: blah [[nesting]] blah]]def"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: blah [[nesting [[ ]] ]] blah]]def"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: blah [[nesting]] [[blah]]]]def"));
+    assertEquals("abc", WikiCleaner.ImageCaptionsRemover.remove("[[File: blah blah]]abc"));
+    assertEquals("abc", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah blah]]"));
+    assertEquals("", WikiCleaner.ImageCaptionsRemover.remove("[[File: blah blah]]"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah blah]]def"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: [ ] [ ] [ [ ] ]]def"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah [[nesting]] blah]]def"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah [[nesting [[ ]] ]] blah]]def"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah [[nesting]] [[blah]]]]def"));
 
-    assertEquals("", WikiCleaner.removeImageCaptions("[[File: blah[[[[]]]] blah]]"));
+    assertEquals("", WikiCleaner.ImageCaptionsRemover.remove("[[File: blah[[[[]]]] blah]]"));
 
     // Unbalanced, removes everything until the end.
-    assertEquals("abc", WikiCleaner.removeImageCaptions("abc[[File: blah [[nesting blah]]def"));
+    assertEquals("abc", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah [[nesting blah]]def"));
 
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: here]][[File: blah blah]]def"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: here]]d[[File: blah blah]]ef"));
-    assertEquals("", WikiCleaner.removeImageCaptions("[[File: here]][[File: blah blah]]"));
-    assertEquals("abcdef", WikiCleaner.removeImageCaptions("abc[[File: [[ blah ]] here]][[File: blah blah]]def"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: here]][[File: blah blah]]def"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: here]]d[[File: blah blah]]ef"));
+    assertEquals("", WikiCleaner.ImageCaptionsRemover.remove("[[File: here]][[File: blah blah]]"));
+    assertEquals("abcdef", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: [[ blah ]] here]][[File: blah blah]]def"));
 
     // Sprinkle in non-ASCII characters to make sure everything still works.
-    assertEquals("abc政府def", WikiCleaner.removeImageCaptions("abc[[File: 政府 blah [[nesting]] blah政府]]政府def"));
-    assertEquals("abc政府def", WikiCleaner.removeImageCaptions("abc[[File: blah [[nesting [[政府]] [政府[ ]x] ]] blah]]政府def"));
+    assertEquals("abc政府def", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: 政府 blah [[nesting]] blah政府]]政府def"));
+    assertEquals("abc政府def", WikiCleaner.ImageCaptionsRemover.remove("abc[[File: blah [[nesting [[政府]] [政府[ ]x] ]] blah]]政府def"));
   }
 
   @Test
-  public void testDoubleBraces() throws Exception {
-    assertEquals("abc", WikiCleaner.removeDoubleBraces("{{blah blah}}abc"));
-    assertEquals("abc", WikiCleaner.removeDoubleBraces("abc{{blah blah}}"));
-    assertEquals("", WikiCleaner.removeDoubleBraces("{{blah blah}}"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{blah blah}}def"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{{ } { } { } }}def"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{blah {{nesting}} blah}}def"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{blah {{nesting {{ }} }} blah}}def"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{blah {{nesting}} {{blah}}}}def"));
+  public void testRemoveDoubleBraces() throws Exception {
+    assertEquals("abc", WikiCleaner.DoubleBracesRemover.remove("{{blah blah}}abc"));
+    assertEquals("abc", WikiCleaner.DoubleBracesRemover.remove("abc{{blah blah}}"));
+    assertEquals("", WikiCleaner.DoubleBracesRemover.remove("{{blah blah}}"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{blah blah}}def"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{{ } { } { } }}def"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{blah {{nesting}} blah}}def"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{blah {{nesting {{ }} }} blah}}def"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{blah {{nesting}} {{blah}}}}def"));
 
-    assertEquals("", WikiCleaner.removeDoubleBraces("{{blah{{{{}}}} blah}}"));
+    assertEquals("", WikiCleaner.DoubleBracesRemover.remove("{{blah{{{{}}}} blah}}"));
 
     // Unbalanced, removes everything until the end.
-    assertEquals("abc", WikiCleaner.removeDoubleBraces("abc{{blah {{nesting blah}}def"));
+    assertEquals("abc", WikiCleaner.DoubleBracesRemover.remove("abc{{blah {{nesting blah}}def"));
 
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{here}}{{blah blah}}def"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{here}}d{{blah blah}}ef"));
-    assertEquals("", WikiCleaner.removeDoubleBraces("{{here}}{{blah blah}}"));
-    assertEquals("abcdef", WikiCleaner.removeDoubleBraces("abc{{{{ blah }} here}}{{blah blah}}def"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{here}}{{blah blah}}def"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{here}}d{{blah blah}}ef"));
+    assertEquals("", WikiCleaner.DoubleBracesRemover.remove("{{here}}{{blah blah}}"));
+    assertEquals("abcdef", WikiCleaner.DoubleBracesRemover.remove("abc{{{{ blah }} here}}{{blah blah}}def"));
 
     // Sprinkle in non-ASCII characters to make sure everything still works.
-    assertEquals("abc政府def", WikiCleaner.removeDoubleBraces("abc{{政府 blah {{nesting}} blah政府}}政府def"));
-    assertEquals("abc政府def", WikiCleaner.removeDoubleBraces("abc{{blah {{nesting {{政府}} [政府[ ]x] }} blah}}政府def"));
+    assertEquals("abc政府def", WikiCleaner.DoubleBracesRemover.remove("abc{{政府 blah {{nesting}} blah政府}}政府def"));
+    assertEquals("abc政府def", WikiCleaner.DoubleBracesRemover.remove("abc{{blah {{nesting {{政府}} [政府[ ]x] }} blah}}政府def"));
+  }
+
+  @Test
+  public void testRemoveTables() throws Exception {
+    assertEquals("abc", WikiCleaner.TableRemover.remove("{|blah blah|}abc"));
+    assertEquals("abc", WikiCleaner.TableRemover.remove("abc{|blah blah|}"));
+    assertEquals("", WikiCleaner.TableRemover.remove("{|blah blah|}"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|blah blah|}def"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|| | | | | | |}def"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|blah {|nesting|} blah|}def"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|blah {|nesting {| | | |} |} blah|}def"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|blah {|nesting|} {|blah|}|}def"));
+
+    assertEquals("", WikiCleaner.TableRemover.remove("{|blah{|{||}|} blah|}"));
+
+    // Unbalanced, removes everything until the end.
+    assertEquals("abc", WikiCleaner.TableRemover.remove("abc{|blah {|nesting blah|}def"));
+
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|here|}{|blah blah|}def"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|here|}d{|blah blah|}ef"));
+    assertEquals("", WikiCleaner.TableRemover.remove("{|here|}{|blah blah|}"));
+    assertEquals("abcdef", WikiCleaner.TableRemover.remove("abc{|{| blah |} here|}{|blah blah|}def"));
+
+    // Sprinkle in non-ASCII characters to make sure everything still works.
+    assertEquals("abc政府def", WikiCleaner.TableRemover.remove("abc{|政府 blah {|nesting|} blah政府|}政府def"));
+    assertEquals("abc政府def", WikiCleaner.TableRemover.remove("abc{|blah {|nesting {|政府|} [政府[ ]x] |} blah|}政府def"));
   }
 
   @Test
   public void testId12() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"));
     String content = WikiCleaner.clean(raw);
+    //System.out.println(content);
 
     // Make sure we've removed the inter-wiki links.
     assertFalse(content.contains("[[af:Anargisme]]"));
@@ -99,11 +127,9 @@ public class WikiCleanerTest {
     // Make sure we've removed category links.
     assertFalse(content.contains("Category:Political culture"));
 
-    //System.out.println(content);
-
     assertTrue(content.contains("Anarchism is generally defined as the political philosophy which holds the state to be undesirable, unnecessary, and harmful, or alternatively as opposing authority and hierarchical organization in the conduct of human relations. Proponents of anarchism, known as \"anarchists\", advocate stateless societies based on non-hierarchical voluntary associations.\n"));
     assertTrue(content.contains("There are many types and traditions of anarchism, not all of which are mutually exclusive. Anarchist schools of thought can differ fundamentally, supporting anything from extreme individualism to complete collectivism."));
-    assertEquals(49652, content.length(), 100);
+    assertEquals(49652, content.length(), content.length()/100);
   }
 
   @Test
@@ -122,7 +148,7 @@ public class WikiCleanerTest {
     assertFalse(content.contains("<blockquote>"));
     assertFalse(content.contains("</blockquote>"));
 
-    assertEquals(12360, content.length(), 100);
+    assertEquals(12359, content.length(), content.length()/100);
   }
 
   @Test
@@ -132,7 +158,7 @@ public class WikiCleanerTest {
     //System.out.println(content);
 
     assertTrue(content.contains("A  (named a, plural aes) is the first letter and a vowel in the basic modern Latin alphabet. "));
-    assertEquals(4462, content.length(), 100);
+    assertEquals(4462, content.length(), content.length()/100);
   }
 
   @Test
@@ -141,27 +167,36 @@ public class WikiCleanerTest {
     String content = WikiCleaner.clean(raw);
     //System.out.println(content);
 
-    // Known issue: This isn't handled properly:
+    // TODO: Known issue: This isn't handled properly:
     // A {{convert|5|mi|km|0|adj=on}}-wide meteorite impact crater
 
     // Make sure heading isn't mangled.
     assertFalse(content.contains("BankingAlabama"));
+    assertTrue(content.contains("Ports\n\nAlabama has one seaport"));
 
     // Make sure tables are removed.
     assertFalse(content.contains("{|"));
     assertFalse(content.contains("|}"));
 
-    assertEquals(50179, content.length(), 100);
+    assertEquals(50186, content.length(), content.length()/100);
   }
 
-  // Should look into this page
-  // Title = ASCII
-  //    Id = 586
+  @Test
+  public void testId586() throws Exception {
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id586.xml"));
+    String content = WikiCleaner.clean(raw);
+    //System.out.println(content);
 
-  // Title = Animation
-  // Id = 593
-//  Title = Animal Farm
-//      Id = 620
+    // This article has nested tables, make sure they are properly handled.
+    assertFalse(content.contains("|}"));
+    assertFalse(content.contains("{|"));
+
+    // Make sure headings are properly spaced.
+    assertTrue(content.contains("Order\n\nASCII-code order"));
+    assertTrue(content.contains("Unicode\n\nUnicode and the ISO/IEC"));
+
+    assertEquals(23356, content.length(), content.length()/100);
+  }
 
   public static junit.framework.Test suite() {
     return new JUnit4TestAdapter(WikiCleanerTest.class);
