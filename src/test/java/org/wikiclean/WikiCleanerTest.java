@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.regex.Pattern;
 
 import junit.framework.JUnit4TestAdapter;
 
@@ -12,6 +13,14 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 public class WikiCleanerTest {
+
+  @Test
+  public void testSimpleConversionPatterns() {
+    Pattern CONVERSION = Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\|.*?\\}\\}");
+
+    System.out.println(CONVERSION.matcher("Alabama is the thirtieth-largest state in the United States with {{convert|52419|sqmi|km2|abbr=out|sp=us}} of total area:")
+        .replaceAll("$1 $2"));
+  }
 
   @Test
   public void testScrewyRefs() {
@@ -167,9 +176,17 @@ public class WikiCleanerTest {
     String content = WikiCleaner.clean(raw);
     //System.out.println(content);
 
-    // TODO: Known issue: This isn't handled properly:
+    // Unit conversion is very bare-bones:
+    // Alabama is the thirtieth-largest state in the United States with {{convert|52419|sqmi|km2|abbr=out|sp=us}} of total area:
+    // -->
+    // Alabama is the thirtieth-largest state in the United States with 52419 sqmi of total area:
+    //
     // A {{convert|5|mi|km|0|adj=on}}-wide meteorite impact crater
-
+    // -->
+    // A 5 mi-wide meteorite impact crater
+    assertTrue(content.contains("Alabama is the thirtieth-largest state in the United States with 52419 sqmi of total area:"));
+    assertTrue(content.contains("A 5 mi-wide meteorite impact crater"));
+      
     // Make sure heading isn't mangled.
     assertFalse(content.contains("BankingAlabama"));
     assertTrue(content.contains("Ports\n\nAlabama has one seaport"));
@@ -178,7 +195,7 @@ public class WikiCleanerTest {
     assertFalse(content.contains("{|"));
     assertFalse(content.contains("|}"));
 
-    assertEquals(50186, content.length(), content.length()/100);
+    assertEquals(50259, content.length(), content.length()/100);
   }
 
   @Test

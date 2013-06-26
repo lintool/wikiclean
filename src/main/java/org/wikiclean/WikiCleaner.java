@@ -47,6 +47,7 @@ public class WikiCleaner {
 
     content = removeRefs(content);
     content = removeInterWikiLinks(content);
+    content = fixUnitConversion(content);
     content = ImageCaptionsRemover.remove(content);
     content = DoubleBracesRemover.remove(content);
     content = removeHtmlComments(content);
@@ -67,6 +68,14 @@ public class WikiCleaner {
     content = compressMultipleNewlines(content);
 
     return content.trim();
+  }
+
+  private static final Pattern UNIT_CONVERSION1 = Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\}\\}");
+  private static final Pattern UNIT_CONVERSION2 = Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\|[^}]+\\}\\}");
+
+  private static String fixUnitConversion(String s) {
+    String t = UNIT_CONVERSION1.matcher(s).replaceAll("$1 $2");
+    return UNIT_CONVERSION2.matcher(t).replaceAll("$1 $2");
   }
 
   private static final Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
