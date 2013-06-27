@@ -1,3 +1,10 @@
+Version 0.2
+==============
+June 27, 2013
+
++ Added documentation.
++ Refactored WikiClean into a builder pattern.
+
 Version 0.1
 ==============
 June 26, 2013
