@@ -1,10 +1,47 @@
+/**
+ * WikiClean
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.wikiclean;
 
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-public class WikiCleaner {
+public class WikiClean {
+  boolean withTitle;
+  boolean withFooter;
+
+  // Use the builder to construct.
+  protected WikiClean() {}
+
+  protected void setWithTitle(boolean flag) {
+    this.withTitle = flag;
+  }
+
+  public boolean getWithTitle() {
+    return withTitle;
+  }
+
+  protected void setWithFooter(boolean flag) {
+    this.withFooter = flag;
+  }
+
+  public boolean getWithFooter() {
+    return withFooter;
+  }
 
   /**
    * Start delimiter of the title, which is &lt;<code>title</code>&gt;.
@@ -42,9 +79,13 @@ public class WikiCleaner {
     return (start == -1 || end == -1 || start > end) ? "0" : s.substring(start + 4, end);
   }
 
-  public static final String clean(String page) {
+  public String clean(String page) {
     String content = getWikiMarkup(page);
 
+    if (!withFooter) {
+      content = removeFooter(content);
+    }
+    
     content = removeRefs(content);
     content = removeInterWikiLinks(content);
     content = fixUnitConversion(content);
@@ -52,7 +93,6 @@ public class WikiCleaner {
     content = DoubleBracesRemover.remove(content);
     content = removeHtmlComments(content);
     content = removeEmphasis(content);
-    content = removeFooter(content);
     content = removeHeadings(content);
     content = removeCategoryLinks(content);
     content = removeLinks(content);
@@ -66,6 +106,10 @@ public class WikiCleaner {
 
     // Finally, fold multiple newlines.
     content = compressMultipleNewlines(content);
+
+    if (withTitle) {
+      return getTitle(page) + "\n\n" + content.trim();
+    }
 
     return content.trim();
   }
