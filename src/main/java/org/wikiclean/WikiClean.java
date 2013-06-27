@@ -4,7 +4,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
-public class WikiCleaner {
+public class WikiClean {
+  // Use the builder to construct.
+  protected WikiClean() {}
 
   /**
    * Start delimiter of the title, which is &lt;<code>title</code>&gt;.
@@ -42,7 +44,7 @@ public class WikiCleaner {
     return (start == -1 || end == -1 || start > end) ? "0" : s.substring(start + 4, end);
   }
 
-  public static final String clean(String page) {
+  public String clean(String page) {
     String content = getWikiMarkup(page);
 
     content = removeRefs(content);

@@ -87,13 +87,14 @@ public class WikipediaDumpBz2InputStream {
 
     String path = cmdline.getOptionValue(INPUT_OPTION);
     PrintStream out = new PrintStream(System.out, true, "UTF-8");
+    WikiClean cleaner = new WikiCleanBuilder().build();
 
     WikipediaDumpBz2InputStream stream = new WikipediaDumpBz2InputStream(path);
     String page;
     while ((page = stream.readNext()) != null) {
-      out.println("Title = " + WikiCleaner.getTitle(page));
-      out.println("Id = " + WikiCleaner.getId(page));
-      out.println(WikiCleaner.clean(page) + "\n\n#################################\n");
+      out.println("Title = " + WikiClean.getTitle(page));
+      out.println("Id = " + WikiClean.getId(page));
+      out.println(cleaner.clean(page) + "\n\n#################################\n");
     }
     out.close();
   }
