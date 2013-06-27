@@ -21,8 +21,27 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringEscapeUtils;
 
 public class WikiClean {
+  boolean withTitle;
+  boolean withFooter;
+
   // Use the builder to construct.
   protected WikiClean() {}
+
+  protected void setWithTitle(boolean flag) {
+    this.withTitle = flag;
+  }
+
+  public boolean getWithTitle() {
+    return withTitle;
+  }
+
+  protected void setWithFooter(boolean flag) {
+    this.withFooter = flag;
+  }
+
+  public boolean getWithFooter() {
+    return withFooter;
+  }
 
   /**
    * Start delimiter of the title, which is &lt;<code>title</code>&gt;.
@@ -63,6 +82,10 @@ public class WikiClean {
   public String clean(String page) {
     String content = getWikiMarkup(page);
 
+    if (!withFooter) {
+      content = removeFooter(content);
+    }
+    
     content = removeRefs(content);
     content = removeInterWikiLinks(content);
     content = fixUnitConversion(content);
@@ -70,7 +93,6 @@ public class WikiClean {
     content = DoubleBracesRemover.remove(content);
     content = removeHtmlComments(content);
     content = removeEmphasis(content);
-    content = removeFooter(content);
     content = removeHeadings(content);
     content = removeCategoryLinks(content);
     content = removeLinks(content);
@@ -84,6 +106,10 @@ public class WikiClean {
 
     // Finally, fold multiple newlines.
     content = compressMultipleNewlines(content);
+
+    if (withTitle) {
+      return getTitle(page) + "\n\n" + content.trim();
+    }
 
     return content.trim();
   }

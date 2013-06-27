@@ -17,10 +17,26 @@
 package org.wikiclean;
 
 public class WikiCleanBuilder {
+  private boolean withTitle = false;
+  private boolean withFooter = false;
 
   public WikiCleanBuilder() {}
 
+  public WikiCleanBuilder withTitle(boolean flag) {
+    this.withTitle = flag;
+    return this;
+  }
+
+  public WikiCleanBuilder withFooter(boolean flag) {
+    this.withFooter = flag;
+    return this;
+  }
+
   public WikiClean build() {
-    return new WikiClean();
+    WikiClean clean = new WikiClean();
+    clean.setWithTitle(withTitle);
+    clean.setWithFooter(withFooter);
+    
+    return clean;
   }
 }

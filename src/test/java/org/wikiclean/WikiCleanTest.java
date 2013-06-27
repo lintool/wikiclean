@@ -227,6 +227,81 @@ public class WikiCleanTest {
     assertEquals(23356, content.length(), content.length()/100);
   }
 
+  @Test
+  public void testBuilderOptions() throws Exception {
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"));
+    WikiClean cleaner;
+    String content;
+
+    // Keep the footer.
+    cleaner = new WikiCleanBuilder().withFooter(true).build();
+    content = cleaner.clean(raw);
+
+    assertTrue(content.contains("See also"));
+    assertTrue(content.contains("Reference"));
+    assertTrue(content.contains("Further reading"));
+    assertTrue(content.contains("External links"));
+
+    assertEquals(true, cleaner.getWithFooter());
+    assertEquals(false, cleaner.getWithTitle());
+
+    // Explicitly not keep the footer.
+    cleaner = new WikiCleanBuilder().withFooter(false).build();
+    content = cleaner.clean(raw);
+
+    assertFalse(content.contains("See also"));
+    assertFalse(content.contains("Reference"));
+    assertFalse(content.contains("Further reading"));
+    assertFalse(content.contains("External links"));
+
+    assertEquals(false, cleaner.getWithFooter());
+    assertEquals(false, cleaner.getWithTitle());
+
+    // Print the title.
+    cleaner = new WikiCleanBuilder().withTitle(true).build();
+    content = cleaner.clean(raw);
+
+    assertTrue(content.contains("Anarchism\n\nAnarchism is generally"));
+
+    assertEquals(false, cleaner.getWithFooter());
+    assertEquals(true, cleaner.getWithTitle());
+
+    // Explicitly not print the title.
+    cleaner = new WikiCleanBuilder().withTitle(false).build();
+    content = cleaner.clean(raw);
+
+    assertFalse(content.contains("Anarchism\n\nAnarchism is generally"));
+
+    assertEquals(false, cleaner.getWithFooter());
+    assertEquals(false, cleaner.getWithTitle());
+
+    // Keep the footer and title.
+    cleaner = new WikiCleanBuilder().withTitle(true).withFooter(true).build();
+    content = cleaner.clean(raw);
+
+    assertTrue(content.contains("See also"));
+    assertTrue(content.contains("Reference"));
+    assertTrue(content.contains("Further reading"));
+    assertTrue(content.contains("External links"));
+    assertTrue(content.contains("Anarchism\n\nAnarchism is generally"));
+
+    assertEquals(true, cleaner.getWithFooter());
+    assertEquals(true, cleaner.getWithTitle());
+
+    // Should be same as the default.
+    cleaner = new WikiCleanBuilder().withTitle(false).withFooter(false).build();
+    content = cleaner.clean(raw);
+
+    assertFalse(content.contains("See also"));
+    assertFalse(content.contains("Reference"));
+    assertFalse(content.contains("Further reading"));
+    assertFalse(content.contains("External links"));
+    assertFalse(content.contains("Anarchism\n\nAnarchism is generally"));
+
+    assertEquals(false, cleaner.getWithFooter());
+    assertEquals(false, cleaner.getWithTitle());
+  }
+
   public static junit.framework.Test suite() {
     return new JUnit4TestAdapter(WikiCleanTest.class);
   }
