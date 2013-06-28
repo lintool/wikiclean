@@ -31,7 +31,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.tools.bzip2.CBZip2InputStream;
 
-public class WikipediaDumpBz2InputStream {
+public class WikipediaBz2DumpInputStream {
   private static int DEFAULT_STRINGBUFFER_CAPACITY = 1024;
 
   private BufferedReader br;
@@ -43,7 +43,7 @@ public class WikipediaDumpBz2InputStream {
    * @param file path to dump file
    * @throws IOException
    */
-  public WikipediaDumpBz2InputStream(String file) throws IOException {
+  public WikipediaBz2DumpInputStream(String file) throws IOException {
     br = null;
     fis = new FileInputStream(file);
     byte[] ignoreBytes = new byte[2];
@@ -84,7 +84,7 @@ public class WikipediaDumpBz2InputStream {
   public static void main(String[] args) throws Exception {
     Options options = new Options();
     options.addOption(OptionBuilder.withArgName("path").hasArg()
-        .withDescription("gzipped XML dump file").create(INPUT_OPTION));
+        .withDescription("bz2 Wikipedia XML dump file").create(INPUT_OPTION));
 
     CommandLine cmdline = null;
     CommandLineParser parser = new GnuParser();
@@ -97,7 +97,7 @@ public class WikipediaDumpBz2InputStream {
 
     if (!cmdline.hasOption(INPUT_OPTION)) {
       HelpFormatter formatter = new HelpFormatter();
-      formatter.printHelp(WikipediaDumpBz2InputStream.class.getCanonicalName(), options);
+      formatter.printHelp(WikipediaBz2DumpInputStream.class.getCanonicalName(), options);
       System.exit(-1);
     }
 
@@ -105,9 +105,13 @@ public class WikipediaDumpBz2InputStream {
     PrintStream out = new PrintStream(System.out, true, "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
 
-    WikipediaDumpBz2InputStream stream = new WikipediaDumpBz2InputStream(path);
+    WikipediaBz2DumpInputStream stream = new WikipediaBz2DumpInputStream(path);
     String page;
     while ((page = stream.readNext()) != null) {
+      if ( page.contains("<ns>") && !page.contains("<ns>0</ns>")) {
+        continue;
+      }
+
       out.println("Title = " + WikiClean.getTitle(page));
       out.println("Id = " + WikiClean.getId(page));
       out.println(cleaner.clean(page) + "\n\n#################################\n");

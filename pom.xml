@@ -40,7 +40,7 @@
         <configuration>
           <programs>
             <program>
-              <mainClass>org.wikiclean.WikipediaDumpBz2InputStream</mainClass>
+              <mainClass>org.wikiclean.WikipediaBz2DumpInputStream</mainClass>
               <name>wikidump</name>
             </program>
           </programs>
