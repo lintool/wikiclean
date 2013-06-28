@@ -16,9 +16,12 @@
 
 package org.wikiclean;
 
+import org.wikiclean.WikiClean.WikiLanguage;
+
 public class WikiCleanBuilder {
   private boolean withTitle = false;
   private boolean withFooter = false;
+  private WikiLanguage lang = WikiLanguage.EN;
 
   public WikiCleanBuilder() {}
 
@@ -32,10 +35,16 @@ public class WikiCleanBuilder {
     return this;
   }
 
+  public WikiCleanBuilder withLanguage(WikiLanguage lang) {
+    this.lang = lang;
+    return this;
+  }
+
   public WikiClean build() {
     WikiClean clean = new WikiClean();
     clean.setWithTitle(withTitle);
     clean.setWithFooter(withFooter);
+    clean.setLanguage(lang);
     
     return clean;
   }

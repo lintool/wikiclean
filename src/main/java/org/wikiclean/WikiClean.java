@@ -21,8 +21,11 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringEscapeUtils;
 
 public class WikiClean {
-  boolean withTitle;
-  boolean withFooter;
+  public static enum WikiLanguage { EN, DE, ZH };
+
+  private boolean withTitle;
+  private boolean withFooter;
+  private WikiLanguage lang;
 
   // Use the builder to construct.
   protected WikiClean() {}
@@ -41,6 +44,14 @@ public class WikiClean {
 
   public boolean getWithFooter() {
     return withFooter;
+  }
+
+  protected void setLanguage(WikiLanguage lang) {
+    this.lang = lang;
+  }
+
+  public WikiLanguage getLanguage() {
+    return this.lang;
   }
 
   private static final String XML_START_TAG_TITLE = "<title>";
@@ -160,31 +171,59 @@ public class WikiClean {
     return MULTIPLE_NEWLINES.matcher(s).replaceAll("\n\n");
   }
 
-  private static final Pattern SEE_ALSO = Pattern.compile("==\\s*See also\\s*==.*",
+  private static final Pattern FOOTER_EN1 = Pattern.compile("==\\s*See also\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_EN2 = Pattern.compile("==\\s*References\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_EN3 = Pattern.compile("==\\s*Further reading\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_EN4 = Pattern.compile("==\\s*External Links\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-  private static final Pattern REFERENCES = Pattern.compile("==\\s*References\\s*==.*",
+  private static final Pattern FOOTER_DE1 = Pattern.compile("==\\s*Referenzen\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-
-  private static final Pattern FURTHER_READING = Pattern.compile("==\\s*Further reading\\s*==.*",
+  private static final Pattern FOOTER_DE2 = Pattern.compile("==\\s*Weblinks\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-
-  private static final Pattern EXTERNAL_LINKS = Pattern.compile("==\\s*External Links\\s*==.*",
+  private static final Pattern FOOTER_DE3 = Pattern.compile("==\\s*Literatur\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_DE4 = Pattern.compile("==\\s*Einzelnachweise\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_DE5 = Pattern.compile("==\\s*Siehe auch\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_DE6 = Pattern.compile("==\\s*Quellen\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
   protected String removeFooter(String s) {
-    s = SEE_ALSO.matcher(s).replaceAll("");
-    s = REFERENCES.matcher(s).replaceAll("");
-    s = FURTHER_READING.matcher(s).replaceAll("");
-    s = EXTERNAL_LINKS.matcher(s).replaceAll("");
-
+    if (lang.equals(WikiLanguage.EN)) {
+      s = FOOTER_EN1.matcher(s).replaceAll("");
+      s = FOOTER_EN2.matcher(s).replaceAll("");
+      s = FOOTER_EN3.matcher(s).replaceAll("");
+      s = FOOTER_EN4.matcher(s).replaceAll("");
+    } else if (lang.equals(WikiLanguage.DE)) {
+      s = FOOTER_DE1.matcher(s).replaceAll("");
+      s = FOOTER_DE2.matcher(s).replaceAll("");
+      s = FOOTER_DE3.matcher(s).replaceAll("");
+      s = FOOTER_DE4.matcher(s).replaceAll("");
+      s = FOOTER_DE5.matcher(s).replaceAll("");
+      s = FOOTER_DE6.matcher(s).replaceAll("");
+    }
+    
     return s;
   }
 
-  private static final Pattern CATEGORY_LINKS = Pattern.compile("\\[\\[Category:([^\\]]+)\\]\\]");
+  private static final Pattern CATEGORY_LINKS_EN = Pattern.compile("\\[\\[Category:([^\\]]+)\\]\\]");
+  private static final Pattern CATEGORY_LINKS_DE = Pattern.compile("\\[\\[Kategorie:([^\\]]+)\\]\\]");
 
   protected String removeCategoryLinks(String s) {
-    return CATEGORY_LINKS.matcher(s).replaceAll("");
+    if ( lang.equals(WikiLanguage.EN)) {
+      return CATEGORY_LINKS_EN.matcher(s).replaceAll("");
+    }
+
+    if ( lang.equals(WikiLanguage.DE)) {
+      return CATEGORY_LINKS_DE.matcher(s).replaceAll("");
+    }
+
+    return s;
   }
 
   private static final Pattern LINKS1 = Pattern.compile("\\[\\[[^\\]]+\\|([^\\]]+)\\]\\]");
@@ -239,7 +278,9 @@ public class WikiClean {
     private static final int STATE_1OPEN_BRACKET = 2;
 
     protected static String remove(String s) {
-      String[] labels = { "[[File:", "[[Image:" };
+      String[] labels = { "[[File:", "[[Image:",
+          "[[Datei" // We see this in de wikipedia.
+          };
       for (String label : labels) {
         s = removeLabel(s, label);
       }

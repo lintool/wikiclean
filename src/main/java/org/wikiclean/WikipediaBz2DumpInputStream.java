@@ -30,6 +30,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.tools.bzip2.CBZip2InputStream;
+import org.wikiclean.WikiClean.WikiLanguage;
 
 public class WikipediaBz2DumpInputStream {
   private static int DEFAULT_STRINGBUFFER_CAPACITY = 1024;
@@ -79,12 +80,15 @@ public class WikipediaBz2DumpInputStream {
   }
 
   private static final String INPUT_OPTION = "input";
+  private static final String LANGUAGE_OPTION = "lang";
 
   @SuppressWarnings("static-access")
   public static void main(String[] args) throws Exception {
     Options options = new Options();
     options.addOption(OptionBuilder.withArgName("path").hasArg()
         .withDescription("bz2 Wikipedia XML dump file").create(INPUT_OPTION));
+    options.addOption(OptionBuilder.withArgName("lang").hasArg()
+        .withDescription("two-letter language code").create(LANGUAGE_OPTION));
 
     CommandLine cmdline = null;
     CommandLineParser parser = new GnuParser();
@@ -101,9 +105,16 @@ public class WikipediaBz2DumpInputStream {
       System.exit(-1);
     }
 
+    WikiLanguage lang = WikiLanguage.EN;
+    if (cmdline.hasOption(LANGUAGE_OPTION)) {
+      if (cmdline.getOptionValue(LANGUAGE_OPTION).equalsIgnoreCase("de")) {
+        lang = WikiLanguage.DE;
+      }
+    }
+
     String path = cmdline.getOptionValue(INPUT_OPTION);
     PrintStream out = new PrintStream(System.out, true, "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiCleanBuilder().withLanguage(lang).build();
 
     WikipediaBz2DumpInputStream stream = new WikipediaBz2DumpInputStream(path);
     String page;
