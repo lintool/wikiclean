@@ -43,15 +43,8 @@ public class WikiClean {
     return withFooter;
   }
 
-  /**
-   * Start delimiter of the title, which is &lt;<code>title</code>&gt;.
-   */
-  protected static final String XML_START_TAG_TITLE = "<title>";
-
-  /**
-   * End delimiter of the title, which is &lt;<code>/title</code>&gt;.
-   */
-  protected static final String XML_END_TAG_TITLE = "</title>";
+  private static final String XML_START_TAG_TITLE = "<title>";
+  private static final String XML_END_TAG_TITLE = "</title>";
 
   public static final String getTitle(String s) {
     int start = s.indexOf(XML_START_TAG_TITLE);
@@ -62,21 +55,30 @@ public class WikiClean {
     return StringEscapeUtils.unescapeHtml(s.substring(start + 7, end));
   }
   
-  /**
-   * Start delimiter of the id, which is &lt;<code>id</code>&gt;.
-   */
-  protected static final String XML_START_TAG_ID = "<id>";
-
-  /**
-   * End delimiter of the id, which is &lt;<code>/id</code>&gt;.
-   */
-  protected static final String XML_END_TAG_ID = "</id>";
+  private static final String XML_START_TAG_ID = "<id>";
+  private static final String XML_END_TAG_ID = "</id>";
 
   public static final String getId(String s) {
     // parse out the document id
     int start = s.indexOf(XML_START_TAG_ID);
     int end = s.indexOf(XML_END_TAG_ID);
     return (start == -1 || end == -1 || start > end) ? "0" : s.substring(start + 4, end);
+  }
+
+  private static final String XML_START_TAG_TEXT = "<text xml:space=\"preserve\"";
+  private static final String XML_END_TAG_TEXT = "</text>";
+
+  public static String getWikiMarkup(String s) {
+    // parse out actual text of article
+    int textStart = s.indexOf(XML_START_TAG_TEXT);
+    int textEnd = s.indexOf(XML_END_TAG_TEXT, textStart);
+
+    if (textStart == -1 || textStart + 27 > textEnd) {
+      // Returning empty string is preferable to returning null to prevent NPE.
+      return "";
+    }
+
+    return s.substring(textStart + 27, textEnd);
   }
 
   public String clean(String page) {
@@ -98,6 +100,8 @@ public class WikiClean {
     content = removeLinks(content);
     content = removeEmptyParentheticals(content);
     content = removeMath(content);
+    content = removeGallery(content);
+
     content = TableRemover.remove(content);
 
     // For some reason, some HTML entities are doubly encoded.
@@ -117,27 +121,34 @@ public class WikiClean {
   private static final Pattern UNIT_CONVERSION1 = Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\}\\}");
   private static final Pattern UNIT_CONVERSION2 = Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\|[^}]+\\}\\}");
 
-  private static String fixUnitConversion(String s) {
+  protected String fixUnitConversion(String s) {
     String t = UNIT_CONVERSION1.matcher(s).replaceAll("$1 $2");
     return UNIT_CONVERSION2.matcher(t).replaceAll("$1 $2");
   }
 
   private static final Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
 
-  private static String removeHtmlTags(String s) {
+  protected String removeHtmlTags(String s) {
     return HTML_TAGS.matcher(s).replaceAll("");
+  }
+
+  private static final Pattern GALLERY = Pattern.compile("&lt;gallery&gt;.*?&lt;/gallery&gt;",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+
+  protected String removeGallery(String s) {
+    return GALLERY.matcher(s).replaceAll("");
   }
 
   private static final Pattern MATH = Pattern.compile("&lt;math&gt;.*?&lt;/math&gt",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-  private static String removeMath(String s) {
+  protected String removeMath(String s) {
     return MATH.matcher(s).replaceAll("");
   }
 
   private static final Pattern EMPTY_PARENS = Pattern.compile(" \\(\\)");
 
-  private static String removeEmptyParentheticals(String s) {
+  protected String removeEmptyParentheticals(String s) {
     // Take care of things like: id 36
     // '''Albedo''' ({{IPAc-en|icon|æ|l|ˈ|b|iː|d|oʊ}}), or ''reflection coefficient'' ...
     return EMPTY_PARENS.matcher(s).replaceAll("");
@@ -145,7 +156,7 @@ public class WikiClean {
   
   private static final Pattern MULTIPLE_NEWLINES = Pattern.compile("[\\n\\r][\\n\\r]+");
 
-  private static String compressMultipleNewlines(String s) {
+  protected String compressMultipleNewlines(String s) {
     return MULTIPLE_NEWLINES.matcher(s).replaceAll("\n\n");
   }
 
@@ -161,7 +172,7 @@ public class WikiClean {
   private static final Pattern EXTERNAL_LINKS = Pattern.compile("==\\s*External Links\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-  private static String removeFooter(String s) {
+  protected String removeFooter(String s) {
     s = SEE_ALSO.matcher(s).replaceAll("");
     s = REFERENCES.matcher(s).replaceAll("");
     s = FURTHER_READING.matcher(s).replaceAll("");
@@ -172,44 +183,42 @@ public class WikiClean {
 
   private static final Pattern CATEGORY_LINKS = Pattern.compile("\\[\\[Category:([^\\]]+)\\]\\]");
 
-  private static String removeCategoryLinks(String s) {
+  protected String removeCategoryLinks(String s) {
     return CATEGORY_LINKS.matcher(s).replaceAll("");
   }
 
   private static final Pattern LINKS1 = Pattern.compile("\\[\\[[^\\]]+\\|([^\\]]+)\\]\\]");
   private static final Pattern LINKS2 = Pattern.compile("(\\[\\[|\\]\\])");
 
-  private static String removeLinks(String s) {
+  protected String removeLinks(String s) {
     return LINKS2.matcher(LINKS1.matcher(s).replaceAll("$1")).replaceAll("");
   }
 
   private static final Pattern HEADINGS = Pattern.compile("=+\\s?(.*?)=+");
 
-  private static String removeHeadings(String s) {
+  protected String removeHeadings(String s) {
     // Make sure there's an extra newline after headings.
     return HEADINGS.matcher(s).replaceAll("$1\n");
   }
 
   private static final Pattern EMPHASIS = Pattern.compile("('''|'')");
 
-  private static String removeEmphasis(String s) {
+  protected String removeEmphasis(String s) {
     return EMPHASIS.matcher(s).replaceAll("");
   }
 
   private static final Pattern HTML_COMMENT = Pattern.compile("(<|&lt;|&#60;)!--.*?--(>|&gt;|&#62;)",
       Pattern.DOTALL);
 
-  private static String removeHtmlComments(String s) {
+  protected String removeHtmlComments(String s) {
     return HTML_COMMENT.matcher(s).replaceAll("");
   }
-
-
 
   private static final Pattern BR = Pattern.compile("&lt;br */&gt;");
   private static final Pattern REF1 = Pattern.compile("&lt;ref[^/]+/&gt;", Pattern.DOTALL);
   private static final Pattern REF2 = Pattern.compile("&lt;ref.*?&lt;/ref&gt;", Pattern.DOTALL);
 
-  public static String removeRefs(String s) {
+  protected String removeRefs(String s) {
     s = BR.matcher(s).replaceAll("");     // See test case for why we do this.
     s = REF1.matcher(s).replaceAll("");
     s = REF2.matcher(s).replaceAll("");
@@ -220,32 +229,8 @@ public class WikiClean {
   // inter-wikilinks. The distinguishing characteristic is the lack of pipe (|).
   private static final Pattern INTER_WIKI_LINKS = Pattern.compile("\\[\\[[a-z\\-]+:[^|\\]]+\\]\\]");
 
-  private static String removeInterWikiLinks(String s) {
+  protected String removeInterWikiLinks(String s) {
     return INTER_WIKI_LINKS.matcher(s).replaceAll(" ");
-  }
-
-  /**
-   * Start delimiter of the text, which is &lt;<code>text xml:space="preserve"</code>&gt;. 
-   * Note: No close bracket because text element can have multiple attributes.
-   */
-  protected static final String XML_START_TAG_TEXT = "<text xml:space=\"preserve\"";
-
-  /**
-   * End delimiter of the text, which is &lt;<code>/text</code>&gt;.
-   */
-  protected static final String XML_END_TAG_TEXT = "</text>";
-
-  public static String getWikiMarkup(String s) {
-    // parse out actual text of article
-    int textStart = s.indexOf(XML_START_TAG_TEXT);
-    int textEnd = s.indexOf(XML_END_TAG_TEXT, textStart);
-
-    if (textStart == -1 || textStart + 27 > textEnd) {
-      // Returning empty string is preferable to returning null to prevent NPE.
-      return "";
-    }
-
-    return s.substring(textStart + 27, textEnd);
   }
 
   protected static final class ImageCaptionsRemover {

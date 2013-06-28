@@ -32,8 +32,10 @@ public class WikiCleanTest {
   @Test
   public void testScrewyRefs() {
     String s = "Mutualism has been retrospectively characterised as ideologically situated between individualist and collectivist forms of anarchism.&lt;ref&gt;Avrich, Paul. ''Anarchist Voices: An Oral History of Anarchism in America'', Princeton University Press 1996 ISBN 0-691-04494-5, p.6&lt;br /&gt;''Blackwell Encyclopaedia of Political Thought'', Blackwell Publishing 1991 ISBN 0-631-17944-5, p. 11.&lt;/ref&gt; Proudhon first characterised his goal as a &quot;third form of society, the synthesis of communism and property.&quot;&lt;ref&gt;Pierre-Joseph Proudhon. ''What Is Property?'' Princeton, MA: Benjamin R. Tucker, 1876. p. 281.&lt;/ref&gt;";
+
+    WikiClean cleaner = new WikiCleanBuilder().build();
     assertEquals("Mutualism has been retrospectively characterised as ideologically situated between individualist and collectivist forms of anarchism. Proudhon first characterised his goal as a &quot;third form of society, the synthesis of communism and property.&quot;",
-        WikiClean.removeRefs(s));
+        cleaner.removeRefs(s));
   }
 
   @Test
@@ -225,6 +227,20 @@ public class WikiCleanTest {
     assertTrue(content.contains("Unicode\n\nUnicode and the ISO/IEC"));
 
     assertEquals(23356, content.length(), content.length()/100);
+  }
+
+  @Test
+  public void testId655() throws Exception {
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id655.xml"));
+    WikiClean cleaner = new WikiCleanBuilder().build();
+    String content = cleaner.clean(raw);
+    //System.out.println(content);
+
+    // This article has a <gallery>, make sure it is properly handled.
+    assertFalse(content.contains("File:Gregor Reisch, Margarita Philosophica"));
+    assertFalse(content.contains("File:Rekenaar 1553.jpg"));
+
+    assertEquals(17109, content.length(), content.length()/100);
   }
 
   @Test
