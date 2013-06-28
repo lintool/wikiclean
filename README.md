@@ -28,11 +28,21 @@ The builder allows you to specify a few options:
 * `withTitle` to specify whether to prepend the article title in the plain text.
 * `withFooter` to specify whether to keep the sections "See also", "Reference", "Further reading", and "External links".
 
-By default, both options are set to false, so the above builder is equivalent to:
+By default, both options are set to false.
+
+Also, use `withLangauge` to set the language. Currently, only two are supported:
+
+* `WikiLanguage.EN`: English (default)
+* `WikiLanguage.DE`: German
+
+Contributions for providing additional language support welcome!
+
+Putting everything together, the default builder is equivalent to:
 
 ```
 WikiClean cleaner =
     new WikiCleanBuilder()
+        .withLanguage(WikiLanguage.EN)
         .withTitle(false)
         .withFooter(false).build();
 String content = cleaner.clean(raw);
