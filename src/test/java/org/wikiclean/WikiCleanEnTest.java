@@ -31,7 +31,7 @@ public class WikiCleanEnTest {
 
   @Test
   public void testId12() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"), "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
@@ -61,18 +61,21 @@ public class WikiCleanEnTest {
 
     assertTrue(content.contains("Anarchism is generally defined as the political philosophy which holds the state to be undesirable, unnecessary, and harmful, or alternatively as opposing authority and hierarchical organization in the conduct of human relations. Proponents of anarchism, known as \"anarchists\", advocate stateless societies based on non-hierarchical voluntary associations.\n"));
     assertTrue(content.contains("There are many types and traditions of anarchism, not all of which are mutually exclusive. Anarchist schools of thought can differ fundamentally, supporting anything from extreme individualism to complete collectivism."));
-    assertEquals(49652, content.length(), content.length()/100);
+    assertEquals(49655, content.length());
   }
 
   @Test
   public void testId39() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id39.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id39.xml"), "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
     // Make sure that math is removed.
     assertFalse(content.contains("<math>"));
+
+    // Make sure indentation in handled.
+    assertFalse(content.contains("\n:"));
 
     // Check to see that the parenthetical has been removed.
     assertTrue(content.contains("Albedo, or reflection coefficient, is the diffuse reflectivity or reflecting power of a surface. "));
@@ -81,23 +84,25 @@ public class WikiCleanEnTest {
     assertFalse(content.contains("<blockquote>"));
     assertFalse(content.contains("</blockquote>"));
 
-    assertEquals(12359, content.length(), content.length()/100);
+    assertEquals(12347, content.length());
   }
 
   @Test
   public void testId290() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id290.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id290.xml"), "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
-    assertTrue(content.contains("A  (named a, plural aes) is the first letter and a vowel in the basic modern Latin alphabet. "));
-    assertEquals(4462, content.length(), content.length()/100);
+    // Make sure the IPA is properly cleaned.
+    assertTrue(content.contains("A (named a, plural aes) is the first letter and a vowel in the basic modern Latin alphabet. "));
+
+    assertEquals(4465, content.length());
   }
 
   @Test
   public void testId303() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id303.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id303.xml"), "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
@@ -121,12 +126,12 @@ public class WikiCleanEnTest {
     assertFalse(content.contains("{|"));
     assertFalse(content.contains("|}"));
 
-    assertEquals(50259, content.length(), content.length()/100);
+    assertEquals(50259, content.length());
   }
 
   @Test
   public void testId586() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id586.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id586.xml"), "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
@@ -139,12 +144,12 @@ public class WikiCleanEnTest {
     assertTrue(content.contains("Order\n\nASCII-code order"));
     assertTrue(content.contains("Unicode\n\nUnicode and the ISO/IEC"));
 
-    assertEquals(23356, content.length(), content.length()/100);
+    assertEquals(23353, content.length());
   }
 
   @Test
   public void testId655() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id655.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id655.xml"), "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
@@ -153,7 +158,20 @@ public class WikiCleanEnTest {
     assertFalse(content.contains("File:Gregor Reisch, Margarita Philosophica"));
     assertFalse(content.contains("File:Rekenaar 1553.jpg"));
 
-    assertEquals(17109, content.length(), content.length()/100);
+    assertEquals(17109, content.length());
+  }
+
+  @Test
+  public void testId718() throws Exception {
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id1718.xml"), "UTF-8");
+    WikiClean cleaner = new WikiCleanBuilder().build();
+    String content = cleaner.clean(raw);
+    //System.out.println(content);
+
+    // Make sure NOTOC is properly removed.
+    assertFalse(content.contains("__NOTOC__"));
+
+    assertEquals(1851, content.length());
   }
 
   public static junit.framework.Test suite() {

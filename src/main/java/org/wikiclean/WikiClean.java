@@ -57,7 +57,7 @@ public class WikiClean {
   private static final String XML_START_TAG_TITLE = "<title>";
   private static final String XML_END_TAG_TITLE = "</title>";
 
-  public static final String getTitle(String s) {
+  public final String getTitle(String s) {
     int start = s.indexOf(XML_START_TAG_TITLE);
     int end = s.indexOf(XML_END_TAG_TITLE, start);
     if (start < 0 || end < 0) {
@@ -69,7 +69,7 @@ public class WikiClean {
   private static final String XML_START_TAG_ID = "<id>";
   private static final String XML_END_TAG_ID = "</id>";
 
-  public static final String getId(String s) {
+  public final String getId(String s) {
     // parse out the document id
     int start = s.indexOf(XML_START_TAG_ID);
     int end = s.indexOf(XML_END_TAG_ID);
@@ -79,7 +79,7 @@ public class WikiClean {
   private static final String XML_START_TAG_TEXT = "<text xml:space=\"preserve\"";
   private static final String XML_END_TAG_TEXT = "</text>";
 
-  public static String getWikiMarkup(String s) {
+  public String getWikiMarkup(String s) {
     // parse out actual text of article
     int textStart = s.indexOf(XML_START_TAG_TEXT);
     int textEnd = s.indexOf(XML_END_TAG_TEXT, textStart);
@@ -98,9 +98,10 @@ public class WikiClean {
     if (!withFooter) {
       content = removeFooter(content);
     }
-    
+
     content = removeRefs(content);
     content = removeInterWikiLinks(content);
+    content = removeParentheticals(content);
     content = fixUnitConversion(content);
     content = ImageCaptionsRemover.remove(content);
     content = DoubleBracesRemover.remove(content);
@@ -109,9 +110,10 @@ public class WikiClean {
     content = removeHeadings(content);
     content = removeCategoryLinks(content);
     content = removeLinks(content);
-    content = removeEmptyParentheticals(content);
     content = removeMath(content);
     content = removeGallery(content);
+    content = removeNoToc(content);
+    content = removeIndentation(content);
 
     content = TableRemover.remove(content);
 
@@ -150,19 +152,41 @@ public class WikiClean {
     return GALLERY.matcher(s).replaceAll("");
   }
 
-  private static final Pattern MATH = Pattern.compile("&lt;math&gt;.*?&lt;/math&gt",
+  private static final Pattern NO_TOC = Pattern.compile("__NOTOC__");
+
+  protected String removeNoToc(String s) {
+    return NO_TOC.matcher(s).replaceAll("");
+  }
+
+  private static final Pattern INDENTATION = Pattern.compile("[\\n\\r]:\\s*");
+
+  protected String removeIndentation(String s) {
+    return INDENTATION.matcher(s).replaceAll("\n");
+  }
+
+  private static final Pattern MATH = Pattern.compile("&lt;math&gt;.*?&lt;/math&gt;",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
   protected String removeMath(String s) {
     return MATH.matcher(s).replaceAll("");
   }
 
-  private static final Pattern EMPTY_PARENS = Pattern.compile(" \\(\\)");
+  // IPA parenthetical may be enclosed either with parentheses or brackets (de articles).
+  private static final Pattern IPA1 = Pattern.compile(" (\\(|\\[)\\{\\{IPA[^\\}]+\\}\\}(\\)|\\])");
+  private static final Pattern IPA2 = Pattern.compile(" \\{\\{IPA[^\\}]+\\}\\}");
 
-  protected String removeEmptyParentheticals(String s) {
+  protected String removeParentheticals(String s) {
     // Take care of things like: id 36
     // '''Albedo''' ({{IPAc-en|icon|æ|l|ˈ|b|iː|d|oʊ}}), or ''reflection coefficient'' ...
-    return EMPTY_PARENS.matcher(s).replaceAll("");
+    //
+    // Note that we shouldn't just leave to the double-curly remover, since that would leave
+    // the dangling empty parens.
+    s = IPA1.matcher(s).replaceAll("");
+
+    // Straight-up IPA, with no parenthetical.
+    s = IPA2.matcher(s).replaceAll("");
+
+    return s;
   }
   
   private static final Pattern MULTIPLE_NEWLINES = Pattern.compile("[\\n\\r][\\n\\r]+");

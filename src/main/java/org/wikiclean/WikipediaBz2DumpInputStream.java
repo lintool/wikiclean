@@ -123,8 +123,8 @@ public class WikipediaBz2DumpInputStream {
         continue;
       }
 
-      out.println("Title = " + WikiClean.getTitle(page));
-      out.println("Id = " + WikiClean.getId(page));
+      out.println("Title = " + cleaner.getTitle(page));
+      out.println("Id = " + cleaner.getId(page));
       out.println(cleaner.clean(page) + "\n\n#################################\n");
     }
     out.close();
