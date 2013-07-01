@@ -3,7 +3,7 @@
   <groupId>org.wikiclean</groupId>
   <artifactId>wikiclean</artifactId>
   <packaging>jar</packaging>
-  <version>0.3</version>
+  <version>0.4-SNAPSHOT</version>
   <name>wikiclean</name>
   <description>Wikipedia markup to plain text converter</description>
   <url>http://wikiclean.org</url>
