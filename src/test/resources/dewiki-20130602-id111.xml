@@ -1,0 +1,98 @@
+  <page>
+    <title>Ampere</title>
+    <ns>0</ns>
+    <id>111</id>
+    <revision>
+      <id>118550998</id>
+      <parentid>118272995</parentid>
+      <timestamp>2013-05-16T00:21:10Z</timestamp>
+      <contributor>
+        <ip>37.201.137.149</ip>
+      </contributor>
+      <comment>Doppeltes Leerzeichen vereinfacht</comment>
+      <text xml:space="preserve">{{Begriffsklärungshinweis}}
+{{Infobox Einheit
+| Norm= [[Internationales Einheitensystem|SI-Einheit]]
+| Name = Ampere
+| Symbol= &lt;math&gt;\mathrm{A}&lt;/math&gt;
+| SI= [[SI-Basiseinheit]]
+| Dimension= [[Stromstärke]]
+| Dim= &lt;math&gt;\mathsf{I}&lt;/math&gt;
+| PhysicalSize= [[Stromstärke]], [[magnetische Spannung]] (Durchflutung)
+| Size= &lt;math&gt;I&lt;/math&gt;
+| NamedAfter= [[André-Marie Ampère]]
+| DerivedFrom=
+| SeeAlso=
+| cgs=
+| esE= A ≙ 10 ·[[Lichtgeschwindigkeit|c]]/ (m·s&lt;sup&gt;-1&lt;/sup&gt;) [[Franklin (Einheit)|ESU]]/s&lt;br /&gt; = 2,997&amp;nbsp;924&amp;nbsp;58 ·10&lt;sup&gt;9&lt;/sup&gt; [[Franklin (Einheit)|ESU]]/s&lt;br /&gt; = 2,997&amp;nbsp;924&amp;nbsp;58 ·10&lt;sup&gt;9&lt;/sup&gt; cm&lt;sup&gt;1,5&lt;/sup&gt;·g&lt;sup&gt;0,5&lt;/sup&gt;·s&lt;sup&gt;-2&lt;/sup&gt;
+| emE= A ≙ 10&lt;sup&gt;-1&lt;/sup&gt; cm&lt;sup&gt;0,5&lt;/sup&gt;·g&lt;sup&gt;0,5&lt;/sup&gt;·s&lt;sup&gt;-1&lt;/sup&gt;
+}}
+Das '''Ampere''' [{{IPA|amˈpɛɐ̯}}] mit [[Einheitenzeichen]] &lt;math&gt;\mathrm{A}&lt;/math&gt;, benannt nach dem französischen Physiker [[André-Marie Ampère]], ist die [[Internationales Einheitensystem|SI-Basiseinheit]] der elektrischen [[Stromstärke]] und zugleich SI-Einheit der [[Physikalische Größe#Größen- und Einheitensysteme|abgeleiteten Größe]] „[[Durchflutung|magnetische Durchflutung]]“. Obwohl man den Nachnamen des Namensgebers „Ampère“ ''mit''&amp;nbsp;[[accent grave]] schreibt, wird die [[Internationales Einheitensystem|SI-Einheit]] im deutschen und englischen Sprachraum üblicherweise ''ohne'' [[Akzent (Schrift)|Akzent]], also „Ampere“, geschrieben.
+
+Mit der Definition des Ampere im SI-Einheitensystem ist zugleich die [[Magnetische Feldkonstante|magnetische Feldkonstante]] μ&lt;sub&gt;0&lt;/sub&gt; festgelegt, die auch als (magnetische) ''Permeabilität des Vakuums'' bezeichnet wird. 
+
+== Geschichte der Definition ==
+{{Siehe auch|Elektromagnetische Maßeinheiten}}
+Würde man die Stromstärke mit einer [[Basisgröße|abgeleiteten Einheit]] messen, wie das etwa beim [[CGS-Einheitensystem#Elektromagnetische_Einheiten_in_verschiedenen_CGS-Systemen|CGS-Einheitensystem]] geschieht, so ließen sich die elektrischen Größen durch die Basiseinheiten nur mit nicht ganzzahligen Exponenten ausdrücken. Um das zu vermeiden, wurde schon 1939 die Einheit der Stromstärke als weitere [[Basiseinheit]] vorgeschlagen. 
+
+=== Historische Definition im Deutschen Reich ===
+Im Gesetz betreffend die elektrischen Maßeinheiten vom 1. Juni 1898 wurde 1 Ampere als die Stärke desjenigen Stromes definiert, der aus einer [[Silbernitrat]]-[[Lösung (Chemie)|Lösung]] mittels [[Elektrolyse]] in einer Sekunde 1,118&amp;nbsp;[[Gramm|mg]] [[Silber]] abscheidet. Das so definierte Ampere ist später als '''internationales Ampere''' bezeichnet worden; das mit den restlichen Basiseinheiten kompatible dagegen als '''absolutes Ampere'''.&lt;ref&gt;{{Literatur
+ | Autor=Ernst Schmidt
+ | Titel=Stand unserer Kenntnis der grundlegenden Einheiten und Konstanten der Physik und Technik
+ | Sammelwerk=Naturwissenschaften
+ | Band=34
+ | Nummer=3
+ | Jahr=1947
+ | Seiten=93
+ | DOI=10.1007/BF00663124
+ | ISSN=1432-1904
+}}&lt;/ref&gt;
+
+=== Aktuelle Definition ===
+[[Datei:Ampere-def.svg|miniatur|Veranschaulichung der Ampere-Definition. Die blau eingezeichneten Kräfte haben jeweils den Betrag 2·10&lt;sup&gt;−7&lt;/sup&gt; N.]]
+Seit 1948 wird das Ampere wie folgt definiert:
+
+: 1 A ist die Stärke des zeitlich konstanten [[Elektrischer Strom|elektrischen Stromes]], der im [[Vakuum]] zwischen zwei [[Parallel (Geometrie)|parallelen]], unendlich langen, geraden Leitern mit vernachlässigbar kleinem, kreisförmigem Querschnitt und dem Abstand von 1 m zwischen diesen Leitern eine Kraft von 2·10&lt;sup&gt;−7&lt;/sup&gt; [[Newton (Einheit)|Newton]] pro [[Meter]] Leiterlänge hervorrufen würde.&lt;ref&gt;{{Literatur | Titel=Das Internationale Einheitensystem (SI) | TitelErg=Deutsche Übersetzung der BIPM-Broschüre „Le Système international d‘unités/The International System of Units (8e edition, 2006)“ | Sammelwerk=PTB-Mitteilungen | Band=117 | Nummer=2 | Jahr=2007 | Kapitel= | Übersetzer=Cecile Charvieux |Seiten=156 | Online=[http://www.ptb.de/cms/fileadmin/internet/publikationen/mitteilungen/2007/PTB-Mitteilungen_2007_Heft_2.pdf Online Version (PDF-Datei, 1,4&amp;nbsp;MB)]}}&lt;/ref&gt;
+
+Ein Ampere entspricht einem [[Fluss (Physik)|Fluss]] von 1 [[Coulomb]] pro [[Sekunde]] durch den Leiterquerschnitt:
+
+: 1 Ampere = 1 Coulomb&amp;nbsp;pro&amp;nbsp;Sekunde
+:&lt;math&gt;1 \,\mathrm A = 1 \frac  {\mathrm C}{\mathrm s} = 1 \,\mathrm C \cdot \mathrm s^{-1}&lt;/math&gt;
+
+Dies bedeutet einen Durchsatz von 6,24151·10&lt;sup&gt;18&lt;/sup&gt; (etwa 6&amp;nbsp;[[Trillion]]en) [[Elektron]]en pro Sekunde.
+
+:1 Ampere = 1 [[Watt (Einheit)|Watt]]&amp;nbsp;pro&amp;nbsp;[[Volt]]
+:&lt;math&gt;1 \, \mathrm A = 1 \frac {\mathrm W}{ \mathrm V} = 1 \,\mathrm W \cdot \mathrm V^{-1}&lt;/math&gt;
+
+=== Vorschläge zur zukünftigen Definition ===
+{{Siehe auch|Internationales_Einheitensystem#Zuk.C3.BCnftige_Entwicklungen|titel1=Zukünftige Entwicklungen des SI}}
+[[Datei:Ampere coulomb.svg|miniatur|Die blauen Kreise stellen Elektronen dar, die durch die Querschnittsfläche des Leiters fließen. Ein Ampere entspricht einem [[Coulomb]] (~6,242 · 10&lt;sup&gt;18&lt;/sup&gt; Elementarladungen), das in einer Sekunde durch den Leiterquerschnitt fließt.]]
+Im Oktober 2005 beschloss das [[CIPM|Internationale Komitee für Maß und Gewicht (CIPM)]] die Vorbereitungen für eine Neudefinition der Einheiten Kilogramm, Ampere, Kelvin und Mol zu treffen, basierend auf [[Naturkonstante]]n, um diese auf der nächsten Generalkonferenz im Jahr 2011 beschließen zu können.&lt;ref&gt;{{internetquelle|autor=[[CIPM]]|url=http://www.bipm.org/cc/CIPM/Allowed/94/CIPM-Recom1CI-2005-EN.pdf|format=PDF; 103&amp;nbsp;kB|sprache=englisch|titel= Preparative steps towards new definitions of the kilogram, the ampere, the kelvin and the mole in terms of fundamental constants|datum=7. Oktober 2005|zugriff=2010-02-05}}&lt;/ref&gt;
+Daraufhin wurde im Jahr 2006 ein Vorschlag zur Umsetzung veröffentlicht.&lt;ref&gt;{{Literatur|Autor=Ian M Mills et al.|Titel=Redefinition of the kilogram, ampere, kelvin and mole: a proposed approach to implementing CIPM recommendation 1 (CI-2005)|Sammelwerk=Metrologia|Nummer=43|Jahr=2006|Seiten=227-246|Sprache=englisch|DOI=10.1088/0026-1394/43/3/006}}&lt;/ref&gt; Gemäß diesem Vorschlag wäre das Ampere definiert durch den Fluss einer bestimmten Menge von Partikeln mit der [[Elementarladung]] pro Zeit.
+
+== Einzelnachweise ==
+&lt;references /&gt;
+
+== Weblinks ==
+{{Wiktionary}}
+{{Wikisource|Gesetz, betreffend die elektrischen Maßeinheiten|Gesetz, betreffend die elektrischen Maßeinheiten. Vom 1. Juni 1898 (Deutsches Reich)|x}}
+* [http://www.leifiphysik.de/web_ph07_g8/geschichte/06amperedefn/amperedefn.htm Ampere-Definition] ([[LEIFI]])
+
+{{Navigationsleiste SI-Basiseinheit}}
+
+{{Gesprochene Version
+|datei=de-Ampere-article.ogg
+|länge=04:55 min
+|größe=2,8 MB
+|version=//de.wikipedia.org/w/index.php?title=Ampere&amp;oldid=95098881
+|exzellent=nein
+}}
+
+[[Kategorie:Elektromagnetische Einheit]]
+[[Kategorie:SI-Einheit]]
+[[Kategorie:Wikipedia:Artikel-Feedback/Zusätzliche Artikel]]</text>
+      <sha1>q78389l37xh8qoqoozh87srfr7gfzvb</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
