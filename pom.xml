@@ -43,6 +43,10 @@
               <mainClass>org.wikiclean.WikipediaBz2DumpInputStream</mainClass>
               <name>wikidump</name>
             </program>
+            <program>
+              <mainClass>org.wikiclean.DumpEnWikiToPlainText</mainClass>
+              <name>DumpEnWikiToPlainText</name>
+            </program>
           </programs>
         </configuration>
       </plugin>
