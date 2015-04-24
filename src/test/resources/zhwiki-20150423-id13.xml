@@ -1,0 +1,297 @@
+  <page>
+    <title>数学</title>
+    <ns>0</ns>
+    <id>13</id>
+    <revision>
+      <id>33491796</id>
+      <parentid>33486824</parentid>
+      <timestamp>2014-12-03T04:50:06Z</timestamp>
+      <contributor>
+        <ip>121.217.200.137</ip>
+      </contributor>
+      <comment>/* 参考网址 */</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text xml:space="preserve">{{NoteTA|G1=Science}}
+{{Good article}}
+[[File:Euclid.jpg|right|thumb|200px|[[歐幾里得]]，西元前三世紀的希臘數學家，現在被認為是幾何之父，此畫為[[拉斐爾·聖齊奧|拉斐爾]]的作品《[[雅典學院 (畫作)|雅典學院]]》。]]
+
+'''数学'''（Mathematics）是利用符号语言研究[[數量]]&lt;ref name=&quot;OED&quot;&gt;{{cite web |url=http://oed.com/view/Entry/114974 |title=mathematics, ''n.'' |publisher=Oxford University Press |work=Oxford English Dictionary |year=2012 |accessdate=2012-07-16 |quote=The science of space, number, quantity, and arrangement, whose methods involve logical reasoning and usually the use of symbolic notation, and which includes geometry, arithmetic, algebra, and analysis.}}{{en}}&lt;/ref&gt;、[[数学结构|结构]]&lt;ref name=&quot;Kneebone&quot;&gt;{{cite book |title=Mathematical Logic and the Foundations of Mathematics: An Introductory Survey |publisher=Dover |author=Kneebone, G.T. |year=1963 |pages=[http://books.google.com/books?id=tCXxf4vbXCcC&amp;pg=PA4 4] |isbn=0-486-41712-3 |quote=Mathematics ... is simply the study of abstract structures, or formal patterns of connectedness.}}{{en}}&lt;/ref&gt;、[[变化]]&lt;ref name=&quot;LaTorre&quot;&gt;{{cite book |title=Calculus Concepts: An Informal Approach to the Mathematics of Change |publisher=Cengage Learning |author=LaTorre, Donald R., John W. Kenelly, Iris B. Reed, Laurel R. Carpenter, and Cynthia R Harris |year=2011 |pages=[http://books.google.com/books?id=1Ebu2Tij4QsC&amp;pg=PA2 2] |isbn=1-4390-4957-2 |quote=Calculus is the study of change—how things change, and how quickly they change.}}{{en}}&lt;/ref&gt;&lt;ref name=&quot;Ramana&quot;&gt;{{cite book |title=Applied Mathematics |publisher=Tata McGraw–Hill Education |author=Ramana |year=2007 |page=[http://books.google.com/books?id=XCRC6BeKhIIC&amp;pg=SA2-PA10 2.10] |isbn=0-07-066753-5 |quote=The mathematical study of change, motion, growth or decay is calculus.}}{{en}}&lt;/ref&gt;以及[[空间 (数学)|空间]]&lt;ref name=OED/&gt;等概念的一門[[学科]]，从某种角度看屬於[[形式科學]]的一種。數學透過[[抽象化]]和[[逻辑|邏輯]][[推理]]的使用，由[[計數]]、[[计算|計算]]、[[量度]]和對物體[[形狀]]及[[運動 (物理學)|運動]]的觀察而產生。[[数学家|數學家]]們拓展這些概念，為了公式化新的[[猜想]]以及從選定的[[公理]]及[[定義]]中建立起[[严谨 (数学)|嚴謹]]推導出的定理。&lt;ref&gt;Jourdain&lt;/ref&gt;
+
+基礎數學的知識與運用總是個人與團體生活中不可或缺的一環。對數學基本概念的完善，早在[[古埃及]]、[[美索不达米亚|美索不達米亞]]及[[印度历史|古印度]]內的古代數學文本便可觀見，而在古希臘那裡有更為嚴謹的處理。從那時開始，數學的發展便持續不斷地小幅進展，至[[16世纪|16世紀]]的[[文艺复兴|文藝復興]]時期，因为新的[[科学|科學發現]]和數學革新兩者的交互，致使數學的加速发展，直至今日。&lt;ref&gt;Eves&lt;/ref&gt;数学并成为許多國家及地區的教育範疇中的一部分。
+
+今日，數學使用在不同的領域中，包括[[科学|科學]]、[[工程学|工程]]、[[医学|醫學]]和[[经济学|經濟學]]等。數學對這些領域的應用通常被稱為[[应用数学|應用數學]]，有時亦會激起新的數學發現，並導致全新學科的發展，例如物理学的实质性发展中建立的某些理论激发数学家对于某些问题的不同角度的思考。數學家也研究[[純數學]]，就是數學本身的实质性內容，而不以任何實際應用為目標。雖然許多研究以純數學開始，但其过程中也發現許多應用之处。&lt;ref&gt;Peterson&lt;/ref&gt;
+
+== 詞源 ==
+[[印欧语系|西方语言]]中“數學”（{{lang-en|mathematics}}；{{lang-el|μαθηματικά}}）一詞源自於[[古希臘語]]的{{lang|el|μάθημα}}（{{lang|la|máthēma}}），其有''學習''、''學問''、''[[科學]]''，以及另外還有個較狹義且技術性的意思－「數學研究」，即使在其語源內。其形容詞{{lang|el|μαθηματικός}}（{{lang|la|mathēmatikós}}），意思為''和學習有關的''或''用功的''，亦會被用來指''數學的''。其在[[英语]]中表面上的複數形式，及在[[法语]]中的表面複數形式''{{lang|fr|les mathématiques}}''，可溯至[[拉丁文]]的中性複數''{{lang|la|mathematica}}''，由[[西塞罗]]譯自希臘文複數{{lang|el|τα μαθηματικά}}（{{lang|la|ta mathēmatiká}}），此一希臘語被[[亚里士多德]]拿來指「[[萬物皆數]]」的概念。&lt;ref&gt;''[[牛津英語詞源詞典]]''&lt;/ref&gt;&lt;ref&gt;[[牛津英語詞典]]&lt;/ref&gt;
+
+「數學」一詞的大約产生于[[宋朝|宋]][[元朝|元]]時期。多指象數之學，但有時也含有今天上的數學意義，例如，[[秦九韶]]的《[[數學九章]]》（《[[永樂大典]]》記，即《數書九章》也被宋代周密所著的《癸辛雜識》記爲《數學大略》）、《數學通軌》（明代[[柯尚遷]]著）、《数学钥》（清代[[杜知耕]]著）、《數學拾遺》（清代[[丁取忠]]撰）。直到1939年，經過中國數學名詞審查委員會研究“算學”與“數學”兩詞的使用狀況後，確認以“數學”表示今天意義上的數學含義。&lt;ref&gt;{{cite web
+ | author =郭書春
+ | title =數學與算術、算學
+ | work =中國古代數學
+ | publisher =中國文化研究院
+ | url =http://hk.chiculture.net/0803/html/c01/0803c01.html
+}}&lt;/ref&gt;
+
+== 历史 ==
+{{main|数学史}}
+[[File:Quipu.png|thumb|left|200px|[[奇普]]，[[印加帝國]]時所使用的計數工具。]]
+數學有着久遠的歷史。它被認為起源於[[人|人類]]早期的生產活動；[[中國]]古代的[[六藝|六艺]]之一就有「數」&lt;ref&gt;《周礼·地官司徒·保氏》：「保氏掌谏王恶而养国子以道。乃教之六艺：一曰五礼，二曰六乐，三曰五射，四曰五驭，五曰六书，六曰九数。」东汉的郑玄在他的《周礼注疏·地官司徒·保氏》中引郑司农（郑众）所言：「九数：方田、粟米、差分、少广、商功、均输、方程、赢不足、旁要，今有重差、夕桀、勾股也。」&lt;/ref&gt;，數學一詞在西方有[[希腊]]语[[詞源]]{{lang|el|μαθηματικός}}（mathematikós），意思是“学问的基础”，源于{{lang|el|μάθημα}}（máthema，“[[科学]]，知识，学问”）。
+
+[[史前史|史前]]的人類就已嘗試用自然的法則來衡量物質的多少、時間的長短等抽象的數量關係，比如[[时间单位]]有[[日]]、[[季節]]和[[年]]等。[[算术|算術]]（[[加法|加]][[減法|減]][[乘法|乘]][[除法|除]]）也自然而然地產生了。古代的石碑及泥版亦證實了當時已有[[几何学|幾何]]的知識&lt;ref&gt;{{Cite web 
+ |url= http://web.ptes.tp.edu.tw/big6/civil/babylonian-03.htm
+ |title= 數學
+ |accessdate=2013-10-06
+ |publisher= 台北市立北投國小
+}}&lt;/ref&gt;。
+
+更進一步則需要[[寫作]]或其他可記錄數字的系統，如[[符木]]或於[[印加帝國]]內用來儲存數據的[[奇普]]。歷史上曾有過許多不同的[[記數系統]]&lt;ref&gt;
+{{cite journal zh
+ |author= 胡重光
+&lt;!-- |year= |month= --&gt;
+ |title= 記數法的歷史及其對教學的啟示
+ |journal= 數學傳播
+ |volume= 32
+ |issue= 3
+ |pages= p80-84
+ |url= http://w3.math.sinica.edu.tw/math_media/d323/32310.pdf
+ |accessdate= 2013-10-06
+ |quote= 人類最初的記數法，按使用的符號的性質，可大致分為三類。
+}}&lt;/ref&gt;。
+[[File:maya.svg|thumb|200px|right|[[玛雅文明#数学|玛雅]]数字]]
+
+在最初有歷史記錄的時候，數學內的主要原理是為了做[[稅|稅務]]和[[貿易]]等相關計算，為了解數字間的關係，為了[[土地測量|測量土地]]，以及為了預測[[天文学|天文事件]]而形成的。这些需要可以简单地被概括为数学对數量、结构、[[空间 (数学)|空间]]及[[时间]]方面的研究。
+
+到了16世纪，[[算术]]、[[基本代数|初等代数]]以及[[三角学]]等[[初等数学]]已大体完备&lt;ref&gt;[http://math.ntnu.edu.tw/~horng/letter/vol4no1b.htm 書評：《毛起來說三角》]&lt;/ref&gt;&lt;ref&gt;[http://www.pep.com.cn/czsx/xszx/czsxkwyd/czsxkwydsxgs/201008/t20100824_718183.htm 数学的三个发展时期——初等数学时期]&lt;/ref&gt;。17世纪[[變數|变量]]概念的产生使人们开始研究变化中的量与量的互相关系和[[图形]]间的互相变换，[[微积分学|微积分]]的概念也在此時形成。随着數學轉向形式化，为研究[[数学基础]]而产生的集合论和[[数理逻辑]]等也开始发展。数学的重心从求解实际问题转变到对一般形式上的思考。
+
+從古至今，數學便一直不斷地延展，且與科學有豐富的相互作用，兩者的發展都受惠於彼此。在歷史上有著許多數學發現，並且直至今日都不斷地有新的發現。據Mikhail B. Sevryuk於[[美國數學會通報]]2006年1月的期刊中所說，「存放於[[數學評論]]資料庫中論文和書籍的數量自1940年（數學評論的創刊年份）現已超過了一百九十萬份，而且每年還增加超過七萬五千份。此一學海的絕大部份為新的數學[[定理]]及其[[證明]]。」&lt;ref&gt;Sevryuk&lt;/ref&gt;
+
+== 形成、純數學與應用數學及美學 ==
+[[File:GodfreyKneller-IsaacNewton-1689.jpg|right|thumb|200px|[[艾萨克·牛顿|牛頓]]（1643-1727），[[微积分学|微積分]]的發明者之一。]]
+{{main|數學之美}}
+
+每當有涉及數量、結構、空間及變化等方面的困難問題時，通常就需要用到數學工具去解決問題，而這往往也拓展了數學的研究範疇。一開始，數學的運用可見於[[貿易]]、[[土地測量]]及之後的[[天文学|天文學]]。今日，所有的科學都存在著值得數學家研究的問題，且數學本身亦給出了許多的問題。[[艾萨克·牛顿|牛頓]]和[[戈特弗里德·威廉·莱布尼茨|莱布尼兹]]是[[微积分学|微積分]]的發明者，[[費曼]]發明了[[路徑積分表述|費曼路徑積分]]，這是推理及物理洞察二者的產物，而今日的[[弦理論]]亦引申出新的數學。一些數學只和生成它的領域有關，且用來解答此領域的更多問題。但一般被一領域生成的數學在其他許多領域內也十分有用，且可以成為一般的數學概念。即使是「最純的」數學通常亦有實際的用途，此一非比尋常的事實，被1963年諾貝爾物理獎得主[[尤金·維格納|維格納]]稱為「數學在自然科學中不可想像的有效性」&lt;ref&gt;
+{{cite journal zh
+ |author= 蕭福坤（譯）
+ |year= 1986
+ |month= 5
+ |title= 為什麼數學的用處這麼大？
+ |journal= 科學月刊
+ |volume= 197
+ |url= http://210.60.224.4/ct/content/1986/00050197/0008.htm
+ |accessdate= 2013-10-06
+}}&lt;/ref&gt;。
+
+如同大多數的研究領域，科學知識的爆發導致了數學的專業化。主要的分歧為[[純數學]]和[[应用数学|應用數學]]。在應用數學內，又被分成兩大領域，並且變成了它們自身的學科——[[统计学|統計學]]和[[计算机科学|電腦科學]]。
+
+許多數學家談論數學的''優美''，其內在的[[美学|美學]]及[[美]]。「簡單」和「一般化」即為美的一種。另外亦包括巧妙的證明，如[[歐幾里得]]對存在無限多[[素数|質數]]的證明；又或者是加快計算的數值方法，如[[快速傅立葉變換]]。[[高德菲·哈羅德·哈代]]在《[[一個數學家的自白]]》一书中表明他相信單單是美學上的意義，就已經足夠作為純數學研究的正當理由。
+
+== 符號、語言與精确性 ==
+{{main|數學符號}}
+[[File:Pic79.png|280px|right|thumb|200px|在現代的符號中，簡單的表示式可能描繪出複雜的概念。此一圖像即產生自x=cos ( ''y'' arccos sin〡''x''〡 + ''x'' arcsin cos〡''y''〡)]]
+我們現今所使用的大部分數學符號在[[16世纪|16世紀]]後才被發明出來的。&lt;ref&gt;[http://members.aol.com/jeff570/mathsym.html 不同數學符號的各別最早用途] (包含有更多的參考資料)&lt;/ref&gt;在此之前，數學以文字的形式書寫出來，這種形式會限制了數學的發展。現今的符號使得數學對於專家而言更容易掌握，但初學者卻常對此感到怯步。它被極度的壓縮：少量的符號包含著大量的訊息。如同音樂符號一般，現今的數學符號有明確的語法，並且有效地對訊息作編碼，這是其他書寫方式難以做到的。符号化和形式化使得数学迅速发展，并帮助各个科学领域建立基础支撑理论。
+
+數學語言亦對初學者而言感到困難。如“或”和“只”這些字有著比日常用語更精確的意思。亦困惱著初學者的，如“[[開集|開放]]”和“[[域 (數學)|域]]”等字在數學裡有著特別的意思。[[數學術語]]亦包括如“[[同胚]]”及“[[可積性]]”等專有名詞。但使用這些特別符號和專有術語是有其原因的：數學需要比日常用語更多的精確性。數學家將此對語言及邏輯精確性的要求稱為「嚴謹」。但在现实应用中，舍弃一些严谨性往往会得到更好的结果。
+
+[[严谨 (数学)|嚴謹]]是[[證明|數學證明]]中很重要且基本的一部份。數學家希望他們的定理以系統化的推理依著公理被推論下去。這是為了避免依著不可靠的直觀而推出錯誤的「[[定理]]」，而這情形在歷史上曾出現過許多的例子。&lt;ref&gt;關於在正式的證明中出錯的一些簡單例子，參見[[無效證明]]。在[[四色定理|四色定理的歷史]]中，亦有個曾被其他數學家所接受的錯誤證明。&lt;/ref&gt;在數學中被期許的嚴謹程度因著時間而不同：希臘人期許著仔細的論證，但在[[艾萨克·牛顿|牛頓]]的時代，所使用的方法則較不嚴謹。牛頓為了解決問題所做的定義，到了十九世紀才重新以小心的分析及正式的證明來處理。今日，數學家們則持續地在爭論[[電腦輔助證明]]的嚴謹度。當大量的計算難以被驗證時，其證明亦很難說是足夠地嚴謹。
+
+[[公理]]在傳統的思想中是「不證自明的真理」，但這種想法是有問題的。在形式上，公理只是一串符號，其只對可以由[[公理系統]]導出的公式之內容有意義。[[希爾伯特計劃]]即是想將所有的數學放在堅固的公理基礎上，但依據[[哥德爾不完備定理]]，每一[[一致性 (邏輯)|相容]]且能蘊涵[[皮亞諾公理]]的公理系統必含有一不可決定的公式；因而所有數學的最終[[公理系统|公理化]]是不可能的。儘管如此，數學常常被想像成只是某種公理化的[[集合论|集合論]]，在此意義下，所有數學敘述或證明都可以寫成集合論的公式。
+
+== 數學作為科學 ==
+[[File:Carl Friedrich Gauss.jpg|right|thumb|200px|[[卡爾·弗里德里希·高斯]]]]
+[[卡爾·弗里德里希·高斯]]稱數學為「科學的皇后」。&lt;ref&gt;Waltershausen&lt;/ref&gt;在拉丁原文''{{lang|la|Regina Scientiarum}}''，以及其[[德语|德語]]''{{lang|de|Königin der Wissenschaften}}''中，對應於''科學''的單字的意思皆為知識（領域）。而實際上，science一詞在英語內本來就是這個意思，且無疑問地數學在此意義下確實是一門「科學」。將科學限定在''自然''科學則是在此之後的事。若認為[[科学|科學]]是只指物理的世界時，則數學，或至少是[[純數學]]，不會是一門科學。[[阿尔伯特·爱因斯坦|愛因斯坦]]曾如此描述：「數學定律越和現實有關，它們越不確定；若它們越是確定的話，它們和現實越不會有關。」&lt;ref&gt;愛因斯坦，第28頁。愛因斯坦這段話是在回答以下問題：{{lang|en|&quot;how can it be that mathematics, being after all a product of human thought which is independent of experience, is so admirably appropriate to the objects of reality?&quot;}}他亦關心''[[數學在自然科學中不可想像的有效性]]''。&lt;/ref&gt;
+
+許多哲學家相信數學在經驗上不具[[可否證性]]&lt;ref&gt;{{cite book | title = Out of Their Minds: The Lives and Discoveries of 15 Great Computer Scientists | author = Shasha, Dennis Elliot; Lazere, Cathy A. | publisher = Springer | year = 1998 | page = 228}}&lt;/ref&gt;，且因此不是[[卡爾·波普爾]]所定義的科学。但在1930年代時，在數理邏輯上的重大進展顯示數學不能歸併至邏輯內，且波普爾推斷「大部份的數學定律，如物理及生物學一樣，是假設演繹的：純數學因此變得更接近其假設為猜測的自然科學，比它現在看起來更接近。」&lt;ref&gt;波普爾1995, p. 56&lt;/ref&gt;然而，其他的思想家，如較著名的[[拉卡托斯]]，便提供了一個關於數學本身的可否證性版本。
+
+另一觀點則為某些科學領域（如[[理論物理]]）是其公理為嘗試著符合現實的數學。而事實上，理論物理學家[[齊曼]]即認為科學是一種''公眾知識''且因此亦包含著數學。&lt;ref&gt;Ziman&lt;/ref&gt;在任何的情況下，數學和物理科學的許多領域都有著很多相同的地方，尤其是從假設所得的邏輯推論之探索。[[直觉 (知识论)|直覺]]和[[實驗]]在數學和科學的[[猜想]]建構上皆扮演著重要的角色。[[實驗數學]]在數學中的重要性正持續地在增加，且[[電腦運算|計算]]和模擬在科學及數學中所扮演的角色也越來越加重，減輕了數學不使用[[科学方法|科學方法]]的缺點。在[[史蒂芬·沃爾夫勒姆]]2002年的著作《[[一種新科學]]》中他提出，計算數學應被視為其自身的一科學領域來探索。
+
+數學家對此的態度並不一致。一些研究[[应用数学|應用數學]]的數學家覺得他們是科學家，而那些研究純數學的數學家則時常覺得他們是在一門較接近[[逻辑|邏輯]]的領域內工作，且因此基本上是個[[哲学|哲學家]]。許多數學家認為稱他們的工作是一種科學，是低估了其美學方面的重要性，以及其做為七大[[博雅教育]]之一的歷史；另外亦有人認為若忽略其與科學之間的關聯，是假裝沒看到數學和其在科學與[[工程学|工程]]之間的交互促進了許多在數學上的發展此一事實。這兩種觀點之間的差異在哲學上產生了數學是''被創造''（如藝術）或是''被發現''（如科學）的爭議。[[大学]]院系划分中常见“科学和数学”系，这指出了这两个领域被看作有緊密聯繫而非同一。實際上，數學家通常會在大體上與科學家合作，但在細節上卻會分開。這亦是[[數學哲學]]眾多議題的其中一個。
+
+== 數學的各領域 ==
+[[File:Abacus 6.png|right|thumb|200px|早期的數學完全著重在演算實際運算的需要上，有如反映在中國[[算盤]]上的一般。]]
+如上所述，數學主要的學科最先產生於商業上計算的需要、了解數字間的關係、測量土地及預測[[天文学|天文]]事件。這四種需要大致地與數量、結構、空間及變化（即[[算术|算術]]、[[代数|代數]]、[[几何学|幾何]]及[[数学分析|分析]]）等數學上廣泛的子領域相關連著。除了上述主要的關注之外，亦有用來探索由數學核心至其他領域上之間的連結的子領域：至[[数理逻辑|邏輯]]、至[[集合論]]（[[數學基礎|基礎]]）、至不同科學的經驗上的數學（[[應用數學]]）、及較近代的至[[不确定性原理|不確定性]]的嚴格研究。
+=== 基礎與哲學 ===
+為了闡明[[數學基礎]]，[[数理逻辑|數學邏輯]]和[[集合论|集合論]]等領域被發展了出來。
+
+數學邏輯專注於將數學置在一堅固的[[公理]]架構上，並研究此一架構的結果。就其本身而言，其為[[哥德爾不完備定理|哥德爾第二不完備定理]]所屬的領域，而這或許是邏輯中最廣為流傳的成果－總存在一不能被證明而又為真的定理。現代邏輯被分成[[遞歸論]]、[[模型論]]和[[證明論]]，且和[[理論電腦科學]]有著密切的關連性，[[千禧年大獎難題]]中的[[P/NP問題]]就是理論電腦科學中的著名問題&lt;ref&gt;[http://www.claymath.org/millennium/P_vs_NP/ Clay Mathematics Institute], P=NP, claymath.org&lt;/ref&gt;。
+:{| style=&quot;border:1px solid #ddd; text-align:center; margin: auto;&quot; cellspacing=&quot;15&quot;
+|  &lt;math&gt; P \Rightarrow Q \,&lt;/math&gt;|| [[File:Venn A intersect B.svg|128px]]  || [[File:MorphismComposition-01.png|96px]]  
+|-
+| [[數學邏輯]] || [[集合論]] || [[範疇論]] 
+|}
+
+=== 纯粹数学 ===
+==== 數量 ====
+數量的研究起於[[数|數]]，一開始為熟悉的[[自然数|自然數]]及[[整数|整數]]與被描述在[[算术|算術]]內的自然數及整數的算術運算。整數更深的性質於[[数论|數論]]中有詳細的研究，此一理論包括了如[[费马大定理|費馬最後定理]]等著名的結果。數論還包括兩個被廣為探討的未解問題：[[孿生質數猜想]]及[[哥德巴赫猜想]]&lt;ref&gt;{{cite web 
+ |url=http://www.newasiabooks.com/subject/maths/learn_maths/learn_maths_3a_090203.htm
+ |title=哥德巴赫猜想
+ |publisher=新亞洲出版社
+ |work=輕輕鬆鬆學數學
+ |accessdate=2013-10-05}}&lt;/ref&gt;。
+
+當數系更進一步發展時，整數被視為[[有理数|有理數]]的[[子集]]，而有理數則包含於[[实数|實數]]中，連續的量即是以實數來表示的。實數則可以被進一步廣義化成[[复数 (数学)|複數]]。數的進一步廣義化可以持續至包含[[四元數]]及[[八元數]]。從自然數亦可以推廣到[[超限數]]，它形式化了計數至無限的這一概念。另一個研究的領域為大小，這個導致了[[基数 (数学)|基數]]和之後對無限的另外一種概念：[[阿列夫数]]，它允許無限集合之間的大小可以做有意義的比較。
+:{| style=&quot;border:1px solid #ddd; text-align:center; margin: auto;&quot; cellspacing=&quot;20&quot;
+| &lt;math&gt;1, 2, 3\,\!&lt;/math&gt; || &lt;math&gt;-2, -1, 0, 1, 2\,\!&lt;/math&gt; || &lt;math&gt; -2, \frac{2}{3}, 1.21\,\!&lt;/math&gt; || &lt;math&gt;-e, \sqrt{2}, 3, \pi\,\!&lt;/math&gt; || &lt;math&gt;2, i, -2+3i, 2e^{i\frac{4\pi}{3}}\,\!&lt;/math&gt; 
+|-
+| [[自然数|自然數]]|| [[整数|整數]] || [[有理数|有理數]] || [[实数|實數]] || [[复数 (数学)|複數]] 
+|}
+
+==== 結構 ====
+許多如數及[[函数|函數]]的集合等數學物件都有著內含的結構。這些物件的結構性質被探討於[[群]]、[[环 (代数)|環]]、[[域 (數學)|-{zh-cn:域;zh-tw:體}-]]等抽象系統中，該些物件事實上也就是這樣的系統。此為[[代數]]的領域。在此有一個很重要的概念，即廣義化至[[向量空间|向量空間]]的[[矢量|向量]]，它於[[线性代数|線性代數]]中被研究。向量的研究結合了數學的三個基本領域：數量、結構及空間。[[向量分析]]則將其擴展至第四個基本的領域內，即變化。
+
+创立于二十世纪三十年代的[[法国]]的[[布尔巴基学派]]认为：纯粹数学，是研究[[抽象结构]]的理论。
+结构，就是以初始概念和公理出发的演绎系统。
+[[布尔巴基学派]]认为，有三种基本的抽象结构：[[代数结构]]（[[群]]，[[环 (代数)|环]]，[[域 (數學)|域]]……），[[序理论|序结构]]（[[偏序关系|偏序]]，[[全序关系|全序]]……），[[拓扑结构]]（[[邻域]]，[[极限 (数学)|极限]]，[[连通性]]，[[維度|维数]]……）&lt;ref&gt;[http://w3.math.sinica.edu.tw/math_media/d171/17111.pdf 數學中的公理化方法（上） 吳開朗]&lt;/ref&gt;。
+
+:{| style=&quot;border:1px solid #ddd; text-align:center; margin: auto;&quot; cellspacing=&quot;15&quot;
+| [[File:Elliptic curve simple.png|96px]] || [[File:Rubik's cube.svg|96px]] || [[File:Group diagdram D6.svg|96px]] || [[File:Lattice of the divisibility of 60.svg|96px]]
+|-
+| [[数论|數論]] ||  [[群论|群論]] || [[图论|圖論]] || [[序理論]]
+|}
+
+==== 空間 ====
+空間的研究源自於[[几何学|幾何]]－尤其是[[欧几里得几何]]。[[三角学|三角學]]則結合了空間及數，且包含有著名的[[勾股定理]]。現今對空間的研究更推廣到了更高維的幾何、[[非歐幾里得幾何]]（其在[[廣義相對論]]中扮演著核心的角色）及[[拓扑学|拓撲學]]。數和空間在[[解析几何|解析幾何]]、[[微分幾何]]和[[代数几何|代數幾何]]中都有著很重要的角色。在微分幾何中有著[[纖維叢]]及[[流形]]上的微積分等概念。在代數幾何中有著如[[多項式]]方程的解集等幾何物件的描述，結合了數和空間的概念；亦有著[[拓撲群]]的研究，結合了結構與空間。[[李群]]被用來研究空間、結構及變化。在其許多分支中，拓撲學可能是二十世紀數學中有著最大進展的領域，並包含有存在已久的[[庞加莱猜想|龐加萊猜想]]，以及有爭議的[[四色定理]]。龐加萊猜想已在2006年确认由俄罗斯数学家[[格里戈里·佩雷尔曼]]證明&lt;ref name=&quot;PhysOrg1&quot;&gt;{{cite web |url=http://www.physorg.com/news197209671.html |title=Russian mathematician rejects $1 million prize |publisher=Associated Press on PhysOrg |author=Malcolm Ritter |date=2010-07-01 |accessdate=2011-05-15}}&lt;/ref&gt;，而四色定理已在1976年由[[凱尼斯·阿佩爾]]和[[沃夫岡·哈肯]]用電腦證明&lt;ref&gt;{{cite journal|author=K. Appel, W. Haken|title=Research Announcement : Every planar map is four colorable|journal=Bull. Amer. Math. Soc|year=1976|month=9|volume=82|issue=5|pages=711-712|url=http://projecteuclid.org/DPubS?service=UI&amp;version=1.0&amp;verb=Display&amp;handle=euclid.bams/1183538218|accessdate=2013-03-04}}&lt;/ref&gt;，而從來沒有由人力來驗證過。
+
+:{| style=&quot;border:1px solid #ddd; text-align:center; margin: auto;&quot; cellspacing=&quot;15&quot;
+| [[File:Illustration to Euclid's proof of the Pythagorean theorem.svg|96px]] || [[File:Sine cosine plot.svg|96px]] || [[File:Hyperbolic triangle.svg|96px]] || [[File:Torus.png|96px]] || [[File:Von koch 6 etapes.svg|96px]] || [[File:Measure illustration.png|96px]]
+|-
+|[[几何学|幾何]] || [[三角学|三角學]] || [[微分幾何]] || [[拓扑学|拓撲學]] || [[分形|-{zh-cn:分形;zh-tw:碎形}-]] || [[測度論]]
+|}
+
+==== 變化 ====
+了解及描述變化在[[自然科学|自然科學]]裡是一普遍的議題，而[[微积分学|微積分]]更為研究變化的有利工具。[[函数|函數]]诞生於此，做為描述一變化的量的核心概念。對於實數及實變函數的嚴格研究為[[实分析|實分析]]，而[[複分析]]則為複數的等價領域。[[黎曼猜想]]－數學最基本的未決問題之一－便是以複分析來描述的&lt;ref&gt;[http://goodprimes.eu5.org/FRiemann3.htm 黎曼猜想]&lt;/ref&gt;。[[泛函分析]]注重在函數的（一般為無限維）[[空间 (数学)|空間]]上。泛函分析的眾多應用之一為[[量子力学|量子力學]]。許多的問題很自然地會導出一個量與其變化率之間的關係，而這在[[微分方程]]中被研究。在自然界中的許多現象可以被[[動力系統]]所描述；[[混沌理論]]則是對系統的既不可預測而又是決定的行為作明確的描述。
+{| style=&quot;border:1px solid #ddd; text-align:center; margin: auto;&quot; cellspacing=&quot;20&quot;
+| [[File:Integral_as_region_under_curve.svg|96px]]  || [[File:Vectorfield_jaredwf.png|96px]] ||  [[File:Airflow-Obstructed-Duct.png|96px]] || [[File:Limitcycle.jpg|96px]] || [[File:Lorenz attractor.svg|96px]] || [[File:Princ Argument C1.svg|96px]]
+|-
+| [[微积分学|微積分]] || [[向量分析]]|| [[微分方程]] || [[動力系統]] || [[混沌理論]]|| [[複分析]]
+|}
+
+=== 離散數學 ===
+[[離散數學]]是指對[[理論電腦科學]]最有用處的數學領域之總稱，這包含有[[可计算性理论|可計算理論]]、[[計算複雜性理論]]及[[資訊理論]]。可計算理論檢驗電腦的不同理論模型之極限，這包含現知最有力的模型－[[图灵机|圖靈機]]&lt;ref&gt;[http://www.swarmagents.cn/vm/articles/turing.pdf 图灵机与计算问题]&lt;/ref&gt;。複雜性理論研究可以由電腦做為較易處理的程度；有些問題即使理論是可以以電腦解出來，但卻因為會花費太多的時間或空間而使得其解答仍然不為實際上可行的，儘管電腦硬體的快速進步。最後，資訊理論專注在可以儲存在特定媒介內的資料總量，且因此有[[数据压缩|壓縮]]及[[熵 (信息论)|熵]]等概念。
+
+做為一相對較新的領域，離散數學有許多基本的未解問題。其中最有名的為[[P/NP問題]]－[[千禧年大獎難題]]之一。&lt;ref&gt;[http://www.claymath.org/millennium/P_vs_NP/ 克雷數學研究所]P=NP&lt;/ref&gt;一般相信此問題的解答是否定的。
+&lt;ref&gt;[http://www.math.ohio-state.edu/~friedman/pdf/P=NP10290512pt.pdf#search=%22P%3DNP%22 P=NP的民調]顯示2005年大眾相信它並不相等。(看section 5)&lt;/ref&gt;
+:{| style=&quot;border:1px solid #ddd; text-align:center; margin: auto;&quot; cellspacing=&quot;15&quot;
+| &lt;math&gt;\begin{matrix} (1,2,3) &amp; (1,3,2) \\ (2,1,3) &amp; (2,3,1) \\ (3,1,2) &amp; (3,2,1) \end{matrix}&lt;/math&gt; || [[File:DFAexample.svg|96px]] || [[File:Caesar3.svg|96px]] || [[File:6n-graf.svg|96px]]
+|-
+| [[組合數學]] || [[计算理论|計算理論]] || [[密码学|密碼學]] || [[图论|圖論]]
+|}
+
+=== 應用數學 ===
+應用數學思考將抽象的數學工具運用在解答[[科学|科學]]、[[工商业|工商業]]及其他領域上之現實問題。應用數學中的一重要領域為[[统计学|統計學]]，它利用[[概率论|機率論]]為其工具並允許對含有機會成分的現象進行描述、分析與預測。大部份的實驗、調查及觀察研究需要統計對其資料的分析。（許多的統計學家並不認為他們是數學家，而比較覺得是合作團體的一份子。）[[數值分析]]研究有什麼計算方法，可以有效地解決那些人力所限而算不出的數學問題；它亦包含了對計算中[[捨入誤差]]或其他來源的誤差之研究&lt;ref&gt;[http://libai.math.ncu.edu.tw/bcc16/B/matlab/a2.shtml Matlab教材：數值計算無可避免的誤差]&lt;/ref&gt;。
+
+&lt;center&gt; 
+&lt;gallery&gt; 
+File:Gravitation space source.png | &lt;center&gt;[[数学物理|數學物理]]&lt;/center&gt;
+File:BernoullisLawDerivationDiagram.png | &lt;center&gt;[[流体力学|數學流體力學]]&lt;/center&gt;
+File:Composite trapezoidal rule illustration small.png | &lt;center&gt;[[數值分析]]&lt;/center&gt;
+File:Maximum boxed.png | &lt;center&gt;[[最优化|最佳化]]&lt;/center&gt;
+File:Two red dice 01.svg | &lt;center&gt;[[概率论]]&lt;/center&gt;
+File:Oldfaithful3.png | &lt;center&gt;[[统计学|統計學]]&lt;/center&gt;
+File:Market Data Index NYA on 20050726 202628 UTC.png | &lt;center&gt;[[計量金融]]&lt;/center&gt;
+File:Arbitrary-gametree-solved.png | &lt;center&gt;[[博弈论|-{zh-tw:賽局理論;zh-cn:博弈论}-]]&lt;/center&gt;
+File:Front pareto.svg | &lt;center&gt;[[数理经济学|數理經濟學]]&lt;/center&gt;
+File:Signal transduction pathways (zh-cn).svg | &lt;center&gt;[[生物數學]]&lt;/center&gt;
+File:Linear programming example graph (zh).png | &lt;center&gt;[[運籌學|作業研究]]&lt;/center&gt;
+File:Simple feedback control loop2.svg| &lt;center&gt;[[控制理论|控制論]]&lt;/center&gt;
+&lt;/gallery&gt;
+&lt;/center&gt;
+
+== 数学奖项 ==
+[[File:FieldsMedalFront.jpg|thumb|right|200px|菲尔茲奖牌正面]]
+
+數學獎通常和其他科學的獎項分開。數學上最有名的獎為[[菲尔兹奖|菲爾茲獎]]，&lt;ref&gt;Monastyrsky說：「''菲爾茲獎毫無疑問地是現今數學最有名且最有影響力的獎項。''」&lt;/ref&gt;&lt;ref&gt;Riehm&lt;/ref&gt;創立於1936年，每四年頒獎一次。它通常被認為是數學的[[诺贝尔奖|諾貝爾獎]]。另一個國際上主要的獎項為[[阿貝爾獎]]，創立於2003年。兩者都頒獎於特定的工作主題，包括數學新領域的創新或已成熟領域中未解決問題的解答。著名的23個問題，稱為[[希爾伯特的23個問題]]，於1900年由德國數學家[[大卫·希尔伯特|大衛·希爾伯特]]所提出。這一連串的問題在數學家之間有著極高的名望，且至少有九個問題已經被解答了出來。另一新的七個重要問題，稱為[[千禧年大獎難題]]，發表於2000年。對其每一個問題的解答都有著一百萬美元的獎金，而當中只有一個問題（[[黎曼猜想]]）和希爾伯特的問題重複。
+
+*[[菲尔兹奖]]，由[[国际数学联盟]]的[[国际数学家大会]]颁发的奖项。每四年颁奖一次，颁给有卓越贡献的年轻[[数学家]]，每次最多四人得奖。得奖者须在该年元旦前未满四十岁，是年輕數學家可以獲得的最大獎項&lt;ref&gt;{{cite journal| title = 2006 Fields Medals awarded | journal = [[Notices of the American Mathematical Society]]| volume = 53|issue = 9|publisher= [[American Mathematical Society]]| month = October | year = 2006 | url = http://www.ams.org/notices/200609/comm-prize-fields.pdf| pages= 1037–1044|format=PDF}}&lt;/ref&gt;。它是据[[加拿大]]数学家[[约翰·查尔斯·菲尔兹]]的要求设立的。菲尔兹奖被视为'''数学'''界的[[诺贝尔奖]]。
+*[[沃尔夫奖]]，由[[沃尔夫基金会]]颁发，该基金会于1976年在[[以色列]]创立，1978年开始颁奖&lt;ref&gt;{{Cite web
+ |url= http://202.38.126.65/mathprize/wolf.html
+ |title=沃尔夫奖简介
+ |accessdate=2013-10-06
+ |publisher= 數學訊息資源系統
+}}&lt;/ref&gt;。创始人[[里卡多·沃尔夫]]是[[外交家]]、[[实业家]]和[[慈善家]]。而[[沃尔夫数学奖]]是沃尔夫奖的一个奖项，它和菲尔兹奖被共同誉为数学家的最高[[荣誉]]。
+*[[阿贝尔奖]]，由[[挪威]]王室向杰出数学家颁发的一种奖项，每年颁发一次。2001年，为了纪念2002年挪威著名数学家[[尼尔斯·亨利克·阿贝尔]]二百周年诞辰，挪威政府宣布将开始颁发此种奖金&lt;ref&gt;{{Cite web
+ |url= http://202.38.126.65/mathprize/Abel.html
+ |title=阿贝尔奖
+ |accessdate=2013-10-06
+ |publisher= 數學訊息資源系統
+}}&lt;/ref&gt;。奖金的数额大致同诺贝尔奖相近。设立此奖的一个原因也是因为诺贝尔奖没有数学奖项。2001年挪威政府拨款2亿挪威[[克朗]]作为启动资金。扩大数学的影响，吸引年轻人从事数学研究是设立阿贝尔奖的主要目的。
+
+== 参见 ==
+{{Mathportal}}
+* [[Portal:数学|數學主題首頁]]
+* [[數學哲學]]
+* [[數學遊戲]]
+* [[數學家列表]]
+* [[教育]]
+* [[算經十書]]
+* [[數學競賽]]
+
+== 註記 ==
+{{reflist|2}}
+
+== 参考书目 ==
+&lt;div class=&quot;references-small&quot;&gt;
+* Benson, Donald C., ''The Moment of Proof: Mathematical Epiphanies'', Oxford University Press, USA; New Ed edition (December 14, 2000). ISBN 0-19-513919-4.
+* [[Carl B. Boyer|Boyer, Carl B.]], ''A History of Mathematics'', Wiley; 2 edition (March 6, 1991). ISBN 0-471-54397-7.—A concise history of mathematics from the Concept of Number to contemporary Mathematics.
+* Courant, R. and H. Robbins, ''What Is Mathematics? : An Elementary Approach to Ideas and Methods'', Oxford University Press, USA; 2 edition (July 18, 1996). ISBN 0-19-510519-2.
+* [[Philip J. Davis|Davis, Philip J.]] and [[Reuben Hersh|Hersh, Reuben]], ''[[The Mathematical Experience]]''. Mariner Books; Reprint edition (January 14, 1999). ISBN 0-395-92968-7.—A gentle introduction to the world of mathematics.
+* {{cite journal en
+  | last = 愛因斯坦
+  | first = 阿爾伯特
+  | authorlink = 阿爾伯特·愛因斯坦
+  | title = Sidelights on Relativity (Geometry and Experience) 
+  | publisher = P. Dutton., Co 
+  | date = 1923}}
+* Eves,  Howard, ''An Introduction to the History of Mathematics'', Sixth Edition, Saunders, 1990, ISBN 0-03-029558-0.
+* Gullberg, Jan, ''Mathematics—From the Birth of Numbers''. W. W. Norton &amp; Company; 1st edition (October 1997). ISBN 0-393-04002-X.—An encyclopedic overview of mathematics presented in clear, simple language.
+* Hazewinkel, Michiel (ed.), ''[[数学百科全书|數學百科全書]]''. Kluwer Academic Publishers 2000.—A translated and expanded version of a Soviet mathematics encyclopedia, in ten (expensive) volumes, the most complete and authoritative work available. Also in paperback and on CD-ROM, and online [http://eom.springer.de/default.htm].
+* Jourdain, Philip E. B., ''The Nature of Mathematics'', in ''The World of Mathematics'', James R. Newman, editor, Dover, 2003, ISBN 0-486-43268-8.
+* [[Morris Kline|Kline, Morris]], ''Mathematical Thought from Ancient to Modern Times'', Oxford University Press, USA; Paperback edition (March 1, 1990). ISBN 0-19-506135-7.
+* {{cite paper|url=http://www.fields.utoronto.ca/aboutus/FieldsMedal_Monastyrsky.pdf|date=2001|title=Some Trends in Modern Mathematics and the Fields Medal|author=Monastyrsky, Michael|publisher=Canadian Mathematical Society|accessdate=2006-07-28}}
+* [[牛津英語詞典]], second edition, ed. John Simpson and Edmund Weiner, Clarendon Press, 1989, ISBN 0-19-861186-2.
+* ''[[The Oxford Dictionary of English Etymology]]'', 1983 reprint. ISBN 0-19-861112-9.
+* Pappas, Theoni, ''The Joy Of Mathematics'', Wide World Publishing; Revised edition (June 1989). ISBN 0-933174-65-9.
+* Peterson, Ivars, ''Mathematical Tourist, New and Updated Snapshots of Modern Mathematics'', Owl Books, 2001,  ISBN 0-8050-7159-8.
+* {{cite book en| last = Paulos | first = John Allen | authorlink = John Allen Paulos | year = 1996 | title = A Mathematician Reads the Newspaper | publisher = Anchor | id = ISBN 0-385-48254-X}}
+* {{Cite book | first=卡爾 | last=波普爾| authorlink=卡爾·波普爾| title=In Search of a Better World: Lectures and Essays from Thirty Years | chapter=On knowledge | publisher=Routeledge | year=1995 | id=ISBN 0-415-13548-6}}
+* {{cite journal en
+  | last = Riehm
+  | first = Carl
+  | authorlink =
+  | title = The Early History of the Fields Medal
+  | journal = Notices of the AMS
+  | volume = 49
+  | issue = 7
+  | pages = 778-782
+  | publisher = AMS
+  | year = 2002
+  | month = August
+  | url = http://www.ams.org/notices/200207/comm-riehm.pdf
+  | doi =
+  | id =
+  | accessdate = }}
+* {{cite journal en | last=Sevryuk | first=Mikhail B. | authorlink = Mikhail B. Sevryuk| year = 2006| month = January| title = Book Reviews| journal = [[Bulletin of the American Mathematical Society]]| volume = 43| issue = 1| pages = 101-109| url = http://www.ams.org/bull/2006-43-01/S0273-0979-05-01069-4/S0273-0979-05-01069-4.pdf| format = PDF| accessdate = 2006-06-24}}
+* {{cite book en | last = Waltershausen | first = Wolfgang Sartorius von | authorlink = Wolfgang Sartorius von Waltershausen | title = Gauss zum Gedächtniss | year = 1965 | publisher = Sändig Reprint Verlag H. R. Wohlwend | id = ISBN 3-253-01702-8 | asin = ASIN: B0000BN5SQ | url = http://www.amazon.de/Gauss-Ged%e4chtnis-Wolfgang-Sartorius-Waltershausen/dp/3253017028}}
+* {{cite paper|url=http://info.med.yale.edu/therarad/summers/ziman.htm|date=1968|title=Public Knowledge:An essay concerning the social dimension of science|author= Ziman, J.M., F.R.S.}}
+&lt;/div&gt;
+
+== 参考网址 ==
+{{Science}}
+* Rusin, Dave: [http://www.math-atlas.org/ The Mathematical Atlas]（英文版）现代数学漫游。
+* Weisstein, Eric: [http://www.mathworld.com/ World of Mathematics]，一个在线的数学百科全书。
+* [http://planetmath.org/ Planet Math]，另一个在线的数学百科全书，使用[[GNU自由文档许可证|GFDL]]，允许和维基百科交换条目。
+* [http://www.mathforge.net/ MathForge]，一个包含数学、物理、计算机科学和教育等范畴的新闻网志。
+* [http://episte.math.ntu.edu.tw/ EpisteMath｜数学知识]。
+* 香港科技大学：[http://www.edp.ust.hk/math/ 数学网]，一个以数学史为主的网站。
+* [http://hk.mathphy.googlepages.com/puremath.htm 怎樣研習純數學（或統計學）]：本科與基礎研究課程參考書目。
+* [http://www.global-sci.org/mc/ 数学文化]：主要发表高质量的带有普及性的文章;主要面向大学生，大学老师和研究生，以及中学老师和学生。
+* [http://www.mysanco.com/tiku/index.php?class=index&amp;action=netresource 数学学习资源]：互联网上数学学习资源和教学视频。
+
+{{-}}
+{{数学主要领域}}
+{{GB/T 13745}}
+
+[[Category:数学| ]]</text>
+      <sha1>fyakulvvpbi0cv87n6l6bc4sskffvgj</sha1>
+    </revision>
+  </page>
