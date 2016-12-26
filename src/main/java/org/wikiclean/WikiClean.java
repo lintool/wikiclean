@@ -16,7 +16,7 @@
 
 package org.wikiclean;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.regex.Pattern;
 
@@ -63,7 +63,7 @@ public class WikiClean {
     if (start < 0 || end < 0) {
       return "";
     }
-    return StringEscapeUtils.unescapeHtml(s.substring(start + 7, end));
+    return StringEscapeUtils.unescapeHtml4(s.substring(start + 7, end));
   }
   
   private static final String XML_START_TAG_ID = "<id>";
@@ -118,7 +118,7 @@ public class WikiClean {
     content = TableRemover.remove(content);
 
     // For some reason, some HTML entities are doubly encoded.
-    content = StringEscapeUtils.unescapeHtml(StringEscapeUtils.unescapeHtml(content));
+    content = StringEscapeUtils.unescapeHtml4(StringEscapeUtils.unescapeHtml4(content));
     content = removeHtmlTags(content);
 
     // Finally, fold multiple newlines.
