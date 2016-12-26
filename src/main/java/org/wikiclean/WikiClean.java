@@ -16,9 +16,9 @@
 
 package org.wikiclean;
 
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang.StringEscapeUtils;
+
+import java.util.regex.Pattern;
 
 public class WikiClean {
   public static enum WikiLanguage { EN, DE, ZH };
@@ -203,6 +203,8 @@ public class WikiClean {
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
   private static final Pattern FOOTER_EN4 = Pattern.compile("==\\s*External Links\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_EN5 = Pattern.compile("==\\s*Related pages\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
   private static final Pattern FOOTER_DE1 = Pattern.compile("==\\s*Referenzen\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
@@ -223,6 +225,7 @@ public class WikiClean {
       s = FOOTER_EN2.matcher(s).replaceAll("");
       s = FOOTER_EN3.matcher(s).replaceAll("");
       s = FOOTER_EN4.matcher(s).replaceAll("");
+      s = FOOTER_EN5.matcher(s).replaceAll("");
     } else if (lang.equals(WikiLanguage.DE)) {
       s = FOOTER_DE1.matcher(s).replaceAll("");
       s = FOOTER_DE2.matcher(s).replaceAll("");
