@@ -16,6 +16,9 @@
 
 package org.wikiclean;
 
+import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.process.DocumentPreprocessor;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
@@ -23,8 +26,11 @@ import org.kohsuke.args4j.ParserProperties;
 import org.wikiclean.WikiClean.WikiLanguage;
 
 import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.util.List;
 
-public class DumpEnWikiToPlainText {
+public class DumpEnWikiToParsedSentences {
   private static class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
     String input;
@@ -47,8 +53,8 @@ public class DumpEnWikiToPlainText {
 
     PrintWriter writer = new PrintWriter(args.output, "UTF-8");
     WikiClean cleaner = new WikiCleanBuilder()
-                              .withLanguage(WikiLanguage.EN).withTitle(false)
-                              .withFooter(false).build();
+        .withLanguage(WikiLanguage.EN).withTitle(false)
+        .withFooter(false).build();
 
     WikipediaBz2DumpInputStream stream = new WikipediaBz2DumpInputStream(args.input);
     String page;
@@ -57,12 +63,19 @@ public class DumpEnWikiToPlainText {
         continue;
       }
 
-      String s = cleaner.clean(page).replaceAll("\\n+", " ");
+      String s = cleaner.clean(page);
       if (s.startsWith("#REDIRECT")) {
         continue;
       }
 
-      writer.println(cleaner.getTitle(page).replaceAll("\\n+", " ") + "\t" + s);
+      String title = cleaner.getTitle(page).replaceAll("\\n+", " ");
+      int cnt = 0;
+      Reader reader = new StringReader(s);
+      DocumentPreprocessor dp = new DocumentPreprocessor(reader);
+      for (List<HasWord> sentence : dp) {
+        writer.print(String.format("%s.%04d\t%s\n", title, cnt, Sentence.listToString(sentence)));
+        cnt++;
+      }
     }
     writer.close();
   }
