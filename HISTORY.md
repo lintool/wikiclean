@@ -1,3 +1,10 @@
+Version 0.4
+===========
+January 1, 2017
+
++ Added convenience programs to parse out English Wikipedia.
++ Added Chinese support.
+
 Version 0.3
 ===========
 July 1, 2013
