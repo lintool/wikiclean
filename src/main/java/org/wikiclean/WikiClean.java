@@ -21,7 +21,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import java.util.regex.Pattern;
 
 public class WikiClean {
-  public static enum WikiLanguage {
+  public enum WikiLanguage {
     EN, DE, ZH
   };
 

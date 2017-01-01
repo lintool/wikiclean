@@ -25,7 +25,7 @@ import org.wikiclean.WikiClean.WikiLanguage;
 import java.io.PrintWriter;
 
 public class DumpEnWikiArticleTitles {
-  private static class Args {
+  private static final class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
     String input;
 
@@ -34,7 +34,7 @@ public class DumpEnWikiArticleTitles {
   }
 
   public static void main(String[] argv) throws Exception {
-    Args args = new Args();
+    final Args args = new Args();
     CmdLineParser parser = new CmdLineParser(args, ParserProperties.defaults().withUsageWidth(100));
 
     try {
