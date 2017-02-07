@@ -16,18 +16,19 @@
 
 package org.wikiclean;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+
 import org.apache.tools.bzip2.CBZip2InputStream;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.ParserProperties;
 import org.wikiclean.WikiClean.WikiLanguage;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 
 public class WikipediaBz2DumpInputStream {
   private static final int DEFAULT_STRINGBUFFER_CAPACITY = 1024;
@@ -46,7 +47,8 @@ public class WikipediaBz2DumpInputStream {
     fis = new FileInputStream(file);
     byte[] ignoreBytes = new byte[2];
     fis.read(ignoreBytes); // "B", "Z" bytes from commandline tools
-    br = new BufferedReader(new InputStreamReader(new CBZip2InputStream(fis), "UTF8"));
+    br = new BufferedReader(new InputStreamReader(new CBZip2InputStream(
+            new BufferedInputStream(fis)), "UTF8"));
   }
 
   public String readNext() throws IOException {
