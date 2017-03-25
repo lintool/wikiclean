@@ -1,3 +1,9 @@
+Version 0.5
+===========
+March 25, 2017
+
++ Issue #2: Wrap FileInputStream in a BufferedInputStream for ~10x speed improvement
+
 Version 0.4
 ===========
 January 1, 2017

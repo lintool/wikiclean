@@ -40,7 +40,7 @@ public class WikipediaBz2DumpInputStream {
    * Creates an input stream for reading Wikipedia articles from a bz2-compressed dump file.
    *
    * @param file path to dump file
-   * @throws IOException
+   * @throws IOException if any file-related errors are encountered
    */
   public WikipediaBz2DumpInputStream(String file) throws IOException {
     br = null;
