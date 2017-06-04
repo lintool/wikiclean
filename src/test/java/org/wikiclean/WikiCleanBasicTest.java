@@ -16,16 +16,15 @@
 
 package org.wikiclean;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import junit.framework.JUnit4TestAdapter;
+import org.apache.commons.io.FileUtils;
+import org.junit.Test;
 
 import java.io.File;
 
-import junit.framework.JUnit4TestAdapter;
-
-import org.apache.commons.io.FileUtils;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class WikiCleanBasicTest {
 
@@ -118,7 +117,7 @@ public class WikiCleanBasicTest {
 
   @Test
   public void testBuilderOptions() throws Exception {
-    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"));
+    String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"), "UTF-8");
     WikiClean cleaner;
     String content;
 

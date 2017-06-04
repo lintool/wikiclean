@@ -17,7 +17,7 @@
 package org.wikiclean;
 
 import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.ling.SentenceUtils;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -68,7 +68,7 @@ public class DumpEnWikiToParsedSentences {
           Reader reader = new StringReader(s);
           DocumentPreprocessor dp = new DocumentPreprocessor(reader);
           for (List<HasWord> sentence : dp) {
-            writer.print(String.format("%s.%04d\t%s\n", title, cnt, Sentence.listToString(sentence)));
+            writer.print(String.format("%s.%04d\t%s\n", title, cnt, SentenceUtils.listToString(sentence)));
             cnt++;
           }
         });
