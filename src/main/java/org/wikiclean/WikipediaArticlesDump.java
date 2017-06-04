@@ -41,8 +41,8 @@ import java.util.stream.StreamSupport;
 public class WikipediaArticlesDump implements Iterable<String> {
   private static final int DEFAULT_STRINGBUFFER_CAPACITY = 1024;
 
-  private final BufferedReader br;
-  private final FileInputStream fis;
+  private final BufferedReader reader;
+  private final FileInputStream stream;
 
   /**
    * Creates an object for reading Wikipedia articles from a bz2-compressed dump file.
@@ -51,11 +51,11 @@ public class WikipediaArticlesDump implements Iterable<String> {
    * @throws IOException if any file-related errors are encountered
    */
   public WikipediaArticlesDump(String file) throws IOException {
-    fis = new FileInputStream(file);
+    stream = new FileInputStream(file);
     byte[] ignoreBytes = new byte[2];
-    fis.read(ignoreBytes); // "B", "Z" bytes from commandline tools
-    br = new BufferedReader(new InputStreamReader(new CBZip2InputStream(
-            new BufferedInputStream(fis)), "UTF8"));
+    stream.read(ignoreBytes); // "B", "Z" bytes from commandline tools
+    reader = new BufferedReader(new InputStreamReader(new CBZip2InputStream(
+            new BufferedInputStream(stream)), "UTF8"));
   }
 
   public Iterator<String> iterator() {
@@ -103,20 +103,20 @@ public class WikipediaArticlesDump implements Iterable<String> {
         String s;
         StringBuffer sb = new StringBuffer(DEFAULT_STRINGBUFFER_CAPACITY);
 
-        while ((s = br.readLine()) != null) {
+        while ((s = reader.readLine()) != null) {
           if (s.endsWith("<page>"))
             break;
         }
 
         if (s == null) {
-          fis.close();
-          br.close();
+          stream.close();
+          reader.close();
           return null;
         }
 
         sb.append(s + "\n");
 
-        while ((s = br.readLine()) != null) {
+        while ((s = reader.readLine()) != null) {
           sb.append(s + "\n");
 
           if (s.endsWith("</page>"))
