@@ -33,7 +33,7 @@ public class WikiCleanBasicTest {
   public void testScrewyRefs() {
     String s = "Mutualism has been retrospectively characterised as ideologically situated between individualist and collectivist forms of anarchism.&lt;ref&gt;Avrich, Paul. ''Anarchist Voices: An Oral History of Anarchism in America'', Princeton University Press 1996 ISBN 0-691-04494-5, p.6&lt;br /&gt;''Blackwell Encyclopaedia of Political Thought'', Blackwell Publishing 1991 ISBN 0-631-17944-5, p. 11.&lt;/ref&gt; Proudhon first characterised his goal as a &quot;third form of society, the synthesis of communism and property.&quot;&lt;ref&gt;Pierre-Joseph Proudhon. ''What Is Property?'' Princeton, MA: Benjamin R. Tucker, 1876. p. 281.&lt;/ref&gt;";
 
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     assertEquals("Mutualism has been retrospectively characterised as ideologically situated between individualist and collectivist forms of anarchism. Proudhon first characterised his goal as a &quot;third form of society, the synthesis of communism and property.&quot;",
         cleaner.removeRefs(s));
   }
@@ -123,7 +123,7 @@ public class WikiCleanBasicTest {
     String content;
 
     // Keep the footer.
-    cleaner = new WikiCleanBuilder().withFooter(true).build();
+    cleaner = new WikiClean.Builder().withFooter(true).build();
     content = cleaner.clean(raw);
 
     assertTrue(content.contains("See also"));
@@ -135,7 +135,7 @@ public class WikiCleanBasicTest {
     assertEquals(false, cleaner.getWithTitle());
 
     // Explicitly not keep the footer.
-    cleaner = new WikiCleanBuilder().withFooter(false).build();
+    cleaner = new WikiClean.Builder().withFooter(false).build();
     content = cleaner.clean(raw);
 
     assertFalse(content.contains("See also"));
@@ -147,7 +147,7 @@ public class WikiCleanBasicTest {
     assertEquals(false, cleaner.getWithTitle());
 
     // Print the title.
-    cleaner = new WikiCleanBuilder().withTitle(true).build();
+    cleaner = new WikiClean.Builder().withTitle(true).build();
     content = cleaner.clean(raw);
 
     assertTrue(content.contains("Anarchism\n\nAnarchism is generally"));
@@ -156,7 +156,7 @@ public class WikiCleanBasicTest {
     assertEquals(true, cleaner.getWithTitle());
 
     // Explicitly not print the title.
-    cleaner = new WikiCleanBuilder().withTitle(false).build();
+    cleaner = new WikiClean.Builder().withTitle(false).build();
     content = cleaner.clean(raw);
 
     assertFalse(content.contains("Anarchism\n\nAnarchism is generally"));
@@ -165,7 +165,7 @@ public class WikiCleanBasicTest {
     assertEquals(false, cleaner.getWithTitle());
 
     // Keep the footer and title.
-    cleaner = new WikiCleanBuilder().withTitle(true).withFooter(true).build();
+    cleaner = new WikiClean.Builder().withTitle(true).withFooter(true).build();
     content = cleaner.clean(raw);
 
     assertTrue(content.contains("See also"));
@@ -178,7 +178,7 @@ public class WikiCleanBasicTest {
     assertEquals(true, cleaner.getWithTitle());
 
     // Should be same as the default.
-    cleaner = new WikiCleanBuilder().withTitle(false).withFooter(false).build();
+    cleaner = new WikiClean.Builder().withTitle(false).withFooter(false).build();
     content = cleaner.clean(raw);
 
     assertFalse(content.contains("See also"));

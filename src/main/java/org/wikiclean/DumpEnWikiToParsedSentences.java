@@ -51,32 +51,28 @@ public class DumpEnWikiToParsedSentences {
       System.exit(-1);
     }
 
+    final WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.EN)
+        .withTitle(false).withFooter(false).build();
+
     PrintWriter writer = new PrintWriter(args.output, "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder()
-        .withLanguage(WikiLanguage.EN).withTitle(false)
-        .withFooter(false).build();
+    WikipediaArticlesDump wikipedia = new WikipediaArticlesDump(args.input);
 
-    WikipediaBz2DumpInputStream stream = new WikipediaBz2DumpInputStream(args.input);
-    String page;
-    while ((page = stream.readNext()) != null) {
-      if ( page.contains("<ns>") && !page.contains("<ns>0</ns>")) {
-        continue;
-      }
+    wikipedia.stream()
+        .filter(page -> !page.contains("<ns>") || page.contains("<ns>0</ns>"))
+        .forEach(page -> {
+          String s = cleaner.clean(page);
+          if (s.startsWith("#REDIRECT")) return;
 
-      String s = cleaner.clean(page);
-      if (s.startsWith("#REDIRECT")) {
-        continue;
-      }
+          String title = cleaner.getTitle(page).replaceAll("\\n+", " ");
+          int cnt = 0;
+          Reader reader = new StringReader(s);
+          DocumentPreprocessor dp = new DocumentPreprocessor(reader);
+          for (List<HasWord> sentence : dp) {
+            writer.print(String.format("%s.%04d\t%s\n", title, cnt, Sentence.listToString(sentence)));
+            cnt++;
+          }
+        });
 
-      String title = cleaner.getTitle(page).replaceAll("\\n+", " ");
-      int cnt = 0;
-      Reader reader = new StringReader(s);
-      DocumentPreprocessor dp = new DocumentPreprocessor(reader);
-      for (List<HasWord> sentence : dp) {
-        writer.print(String.format("%s.%04d\t%s\n", title, cnt, Sentence.listToString(sentence)));
-        cnt++;
-      }
-    }
     writer.close();
   }
 }

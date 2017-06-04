@@ -33,7 +33,7 @@ public class WikiCleanDeTest {
   @Test
   public void testId1() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20130602-id1.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().withLanguage(WikiLanguage.DE).build();
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.DE).build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -51,7 +51,7 @@ public class WikiCleanDeTest {
   @Test
   public void testId5() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20130602-id5.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().withLanguage(WikiLanguage.DE).build();
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.DE).build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -68,7 +68,7 @@ public class WikiCleanDeTest {
   @Test
   public void testId81() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20130602-id81.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().withLanguage(WikiLanguage.DE).build();
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.DE).build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -81,7 +81,7 @@ public class WikiCleanDeTest {
   @Test
   public void testId89() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20130602-id89.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().withLanguage(WikiLanguage.DE).build();
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.DE).build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -92,7 +92,7 @@ public class WikiCleanDeTest {
   @Test
   public void testId111() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20130602-id111.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().withLanguage(WikiLanguage.DE).build();
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.DE).build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 

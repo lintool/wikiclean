@@ -30,7 +30,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId6() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/simplewiki-20161220-id6.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
 
     assertFalse(content.contains("Related pages"));
@@ -39,7 +39,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId12() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id12.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -74,7 +74,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId39() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id39.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -97,7 +97,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId290() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id290.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -110,7 +110,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId303() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id303.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -139,7 +139,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId586() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id586.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -157,7 +157,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId655() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id655.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 
@@ -171,7 +171,7 @@ public class WikiCleanEnTest {
   @Test
   public void testId718() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/enwiki-20120104-id1718.xml"), "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder().build();
+    WikiClean cleaner = new WikiClean.Builder().build();
     String content = cleaner.clean(raw);
     //System.out.println(content);
 

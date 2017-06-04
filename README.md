@@ -30,10 +30,11 @@ The builder allows you to specify a few options:
 
 By default, both options are set to false.
 
-Also, use `withLangauge` to set the language. Currently, only two are supported:
+Also, use `withLangauge` to set the language. Currently, three are supported:
 
 * `WikiLanguage.EN`: English (default)
 * `WikiLanguage.DE`: German
+* `WikiLanguage.ZH`: Chinese
 
 Contributions for providing additional language support welcome!
 
@@ -51,7 +52,7 @@ String content = cleaner.clean(raw);
 Sample command-line invocation to read a Wikipedia dump and output plain text:
 
 ```
-mvn exec:java -Dexec.mainClass=org.wikiclean.WikipediaBz2DumpInputStream \
+mvn exec:java -Dexec.mainClass=org.wikiclean.WikipediaArticlesDump \
   -Dexec.args="-input enwiki-20161220-pages-articles.xml.bz2" | less
 ```
 

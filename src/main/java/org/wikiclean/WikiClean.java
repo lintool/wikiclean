@@ -30,8 +30,7 @@ public class WikiClean {
   private WikiLanguage lang;
 
   // Use the builder to construct.
-  protected WikiClean() {
-  }
+  private WikiClean() {}
 
   protected void setWithTitle(boolean flag) {
     this.withTitle = flag;
@@ -498,6 +497,38 @@ public class WikiClean {
       }
 
       return s;
+    }
+  }
+
+  public static class Builder {
+    private boolean withTitle = false;
+    private boolean withFooter = false;
+    private WikiLanguage lang = WikiLanguage.EN;
+
+    public Builder() {}
+
+    public Builder withTitle(boolean flag) {
+      this.withTitle = flag;
+      return this;
+    }
+
+    public Builder withFooter(boolean flag) {
+      this.withFooter = flag;
+      return this;
+    }
+
+    public Builder withLanguage(WikiLanguage lang) {
+      this.lang = lang;
+      return this;
+    }
+
+    public WikiClean build() {
+      WikiClean clean = new WikiClean();
+      clean.setWithTitle(withTitle);
+      clean.setWithFooter(withFooter);
+      clean.setLanguage(lang);
+
+      return clean;
     }
   }
 }
