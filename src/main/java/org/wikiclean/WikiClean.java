@@ -20,9 +20,20 @@ import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.regex.Pattern;
 
+/**
+ * Main WikiClean class for converting Wikipedia articles to plain text.
+ */
 public class WikiClean {
+  /**
+   * Enumeration of supported Wikipedia languages.
+   */
   public enum WikiLanguage {
-    EN, DE, ZH
+    /** English */
+    EN,
+    /** German */
+    DE,
+    /** Chinese */
+    ZH
   };
 
   private boolean withTitle;
@@ -30,36 +41,52 @@ public class WikiClean {
   private WikiLanguage lang;
 
   // Use the builder to construct.
-  protected WikiClean() {
-  }
+  private WikiClean() {}
 
-  protected void setWithTitle(boolean flag) {
+  private void setWithTitle(boolean flag) {
     this.withTitle = flag;
   }
 
-  public boolean getWithTitle() {
+  /**
+   * Asks this cleaner whether or not title is included in the output.
+   * @return whether or not title is included in the output
+   */
+  public boolean withTitle() {
     return withTitle;
   }
 
-  protected void setWithFooter(boolean flag) {
+  private void setWithFooter(boolean flag) {
     this.withFooter = flag;
   }
 
-  public boolean getWithFooter() {
+  /**
+   * Asks this cleaner whether or not footer is included in the output.
+   * @return whether or not footer is included in the output
+   */
+  public boolean withFooter() {
     return withFooter;
   }
 
-  protected void setLanguage(WikiLanguage lang) {
+  private void setLanguage(WikiLanguage lang) {
     this.lang = lang;
   }
 
-  public WikiLanguage getLanguage() {
+  /**
+   * Asks this cleaner what language it is expecting.
+   * @return language expected
+   */
+  public WikiLanguage language() {
     return this.lang;
   }
 
   private static final String XML_START_TAG_TITLE = "<title>";
   private static final String XML_END_TAG_TITLE = "</title>";
 
+  /**
+   * Returns the title of a Wikipedia article
+   * @param s Wikipedia article
+   * @return article title
+   */
   public final String getTitle(String s) {
     int start = s.indexOf(XML_START_TAG_TITLE);
     int end = s.indexOf(XML_END_TAG_TITLE, start);
@@ -72,6 +99,11 @@ public class WikiClean {
   private static final String XML_START_TAG_ID = "<id>";
   private static final String XML_END_TAG_ID = "</id>";
 
+  /**
+   * Returns the id of a Wikipedia article
+   * @param s Wikipedia article
+   * @return article id
+   */
   public final String getId(String s) {
     // parse out the document id
     int start = s.indexOf(XML_START_TAG_ID);
@@ -82,6 +114,11 @@ public class WikiClean {
   private static final String XML_START_TAG_TEXT = "<text xml:space=\"preserve\"";
   private static final String XML_END_TAG_TEXT = "</text>";
 
+  /**
+   * Returns the Wikipedia markup of a Wikipedia article
+   * @param s Wikipedia article
+   * @return Wikipedia markup
+   */
   public String getWikiMarkup(String s) {
     // parse out actual text of article
     int textStart = s.indexOf(XML_START_TAG_TEXT);
@@ -95,6 +132,11 @@ public class WikiClean {
     return s.substring(textStart + 27, textEnd);
   }
 
+  /**
+   * Cleans a Wikipedia article.
+   * @param page Wikipedia article
+   * @return cleaned output
+   */
   public String clean(String page) {
     String content = getWikiMarkup(page);
 
@@ -134,45 +176,45 @@ public class WikiClean {
     return content.trim();
   }
 
-  private static final Pattern UNIT_CONVERSION1 = Pattern
-      .compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\}\\}");
-  private static final Pattern UNIT_CONVERSION2 = Pattern
-      .compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\|[^}]+\\}\\}");
+  private static final Pattern UNIT_CONVERSION1 =
+      Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\}\\}");
+  private static final Pattern UNIT_CONVERSION2 =
+      Pattern.compile("\\{\\{convert\\|(\\d+)\\|([^|]+)\\|[^}]+\\}\\}");
 
-  protected String fixUnitConversion(String s) {
+  private String fixUnitConversion(String s) {
     String t = UNIT_CONVERSION1.matcher(s).replaceAll("$1 $2");
     return UNIT_CONVERSION2.matcher(t).replaceAll("$1 $2");
   }
 
   private static final Pattern HTML_TAGS = Pattern.compile("<[^>]+>");
 
-  protected String removeHtmlTags(String s) {
+  private String removeHtmlTags(String s) {
     return HTML_TAGS.matcher(s).replaceAll("");
   }
 
   private static final Pattern GALLERY = Pattern.compile("&lt;gallery&gt;.*?&lt;/gallery&gt;",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-  protected String removeGallery(String s) {
+  private String removeGallery(String s) {
     return GALLERY.matcher(s).replaceAll("");
   }
 
   private static final Pattern NO_TOC = Pattern.compile("__NOTOC__");
 
-  protected String removeNoToc(String s) {
+  private String removeNoToc(String s) {
     return NO_TOC.matcher(s).replaceAll("");
   }
 
   private static final Pattern INDENTATION = Pattern.compile("[\\n\\r]:\\s*");
 
-  protected String removeIndentation(String s) {
+  private String removeIndentation(String s) {
     return INDENTATION.matcher(s).replaceAll("\n");
   }
 
   private static final Pattern MATH = Pattern.compile("&lt;math&gt;.*?&lt;/math&gt;",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-  protected String removeMath(String s) {
+  private String removeMath(String s) {
     return MATH.matcher(s).replaceAll("");
   }
 
@@ -180,7 +222,7 @@ public class WikiClean {
   private static final Pattern IPA1 = Pattern.compile(" (\\(|\\[)\\{\\{IPA[^\\}]+\\}\\}(\\)|\\])");
   private static final Pattern IPA2 = Pattern.compile(" \\{\\{IPA[^\\}]+\\}\\}");
 
-  protected String removeParentheticals(String s) {
+  private String removeParentheticals(String s) {
     // Take care of things like: id 36
     // '''Albedo''' ({{IPAc-en|icon|æ|l|ˈ|b|iː|d|oʊ}}), or ''reflection coefficient'' ...
     //
@@ -196,7 +238,7 @@ public class WikiClean {
 
   private static final Pattern MULTIPLE_NEWLINES = Pattern.compile("[\\n\\r][\\n\\r]+");
 
-  protected String compressMultipleNewlines(String s) {
+  private String compressMultipleNewlines(String s) {
     return MULTIPLE_NEWLINES.matcher(s).replaceAll("\n\n");
   }
 
@@ -231,7 +273,7 @@ public class WikiClean {
   private static final Pattern FOOTER_ZH3 = Pattern.compile("==\\s*参考网址\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
-  protected String removeFooter(String s) {
+  private String removeFooter(String s) {
     if (lang.equals(WikiLanguage.EN)) {
       s = FOOTER_EN1.matcher(s).replaceAll("");
       s = FOOTER_EN2.matcher(s).replaceAll("");
@@ -259,7 +301,7 @@ public class WikiClean {
   private static final Pattern CATEGORY_LINKS_DE = Pattern
       .compile("\\[\\[Kategorie:([^\\]]+)\\]\\]");
 
-  protected String removeCategoryLinks(String s) {
+  private String removeCategoryLinks(String s) {
     if (lang.equals(WikiLanguage.EN)) {
       return CATEGORY_LINKS_EN.matcher(s).replaceAll("");
     }
@@ -279,27 +321,27 @@ public class WikiClean {
   private static final Pattern LINKS1 = Pattern.compile("\\[\\[[^\\]]+\\|([^\\]]+)\\]\\]");
   private static final Pattern LINKS2 = Pattern.compile("(\\[\\[|\\]\\])");
 
-  protected String removeLinks(String s) {
+  private String removeLinks(String s) {
     return LINKS2.matcher(LINKS1.matcher(s).replaceAll("$1")).replaceAll("");
   }
 
   private static final Pattern HEADINGS = Pattern.compile("=+\\s?(.*?)=+");
 
-  protected String removeHeadings(String s) {
+  private String removeHeadings(String s) {
     // Make sure there's an extra newline after headings.
     return HEADINGS.matcher(s).replaceAll("$1\n");
   }
 
   private static final Pattern EMPHASIS = Pattern.compile("('''|'')");
 
-  protected String removeEmphasis(String s) {
+  private String removeEmphasis(String s) {
     return EMPHASIS.matcher(s).replaceAll("");
   }
 
   private static final Pattern HTML_COMMENT = Pattern.compile(
       "(<|&lt;|&#60;)!--.*?--(>|&gt;|&#62;)", Pattern.DOTALL);
 
-  protected String removeHtmlComments(String s) {
+  private String removeHtmlComments(String s) {
     return HTML_COMMENT.matcher(s).replaceAll("");
   }
 
@@ -307,7 +349,7 @@ public class WikiClean {
   private static final Pattern REF1 = Pattern.compile("&lt;ref[^/]+/&gt;", Pattern.DOTALL);
   private static final Pattern REF2 = Pattern.compile("&lt;ref.*?&lt;/ref&gt;", Pattern.DOTALL);
 
-  protected String removeRefs(String s) {
+  private String removeRefs(String s) {
     s = BR.matcher(s).replaceAll(""); // See test case for why we do this.
     s = REF1.matcher(s).replaceAll("");
     s = REF2.matcher(s).replaceAll("");
@@ -319,16 +361,16 @@ public class WikiClean {
   // inter-wikilinks. The distinguishing characteristic is the lack of pipe (|).
   private static final Pattern INTER_WIKI_LINKS = Pattern.compile("\\[\\[[a-z\\-]+:[^|\\]]+\\]\\]");
 
-  protected String removeInterWikiLinks(String s) {
+  private String removeInterWikiLinks(String s) {
     return INTER_WIKI_LINKS.matcher(s).replaceAll(" ");
   }
 
-  protected static final class ImageCaptionsRemover {
+  private static final class ImageCaptionsRemover {
     private static final int DEFAULT_NO_BRACKET = 0;
     private static final int STATE_1CLOSE_BRACKET = 1;
     private static final int STATE_1OPEN_BRACKET = 2;
 
-    protected static String remove(String s) {
+    private static String remove(String s) {
       String[] labels = { "[[File:", "[[Image:", "[[Datei" // We see this in de wikipedia.
       };
       for (String label : labels) {
@@ -339,7 +381,7 @@ public class WikiClean {
 
     // This method encodes a finite state machine to handle links in caption, which result in
     // nested [[ ... [[foo]] ... ]] constructs.
-    protected static String removeLabel(String s, String label) {
+    private static String removeLabel(String s, String label) {
       int i = s.indexOf(label);
       while (i != -1) {
         int state = DEFAULT_NO_BRACKET;
@@ -389,14 +431,14 @@ public class WikiClean {
     }
   }
 
-  protected static final class DoubleBracesRemover {
+  private static final class DoubleBracesRemover {
     private static final int DEFAULT_NO_BRACE = 0;
     private static final int STATE_1CLOSE_BRACE = 1;
     private static final int STATE_1OPEN_BRACE = 2;
 
     // This method encodes a finite state machine to handle nested double braces (e.g., in
     // infoboxes).
-    protected static String remove(String s) {
+    private static String remove(String s) {
       int i = s.indexOf("{{");
       while (i != -1) {
         int state = DEFAULT_NO_BRACE;
@@ -446,12 +488,12 @@ public class WikiClean {
     }
   }
 
-  protected static final class TableRemover {
+  private static final class TableRemover {
     private static final int DEFAULT = 0;
     private static final int STATE_PIPE = 1;
     private static final int STATE_1OPEN_BRACE = 2;
 
-    protected static String remove(String s) {
+    private static String remove(String s) {
       int i = s.indexOf("{|");
       while (i != -1) {
         int state = DEFAULT;
@@ -498,6 +540,63 @@ public class WikiClean {
       }
 
       return s;
+    }
+  }
+
+  /**
+   * Builder object for {@link WikiClean}.
+   */
+  public static class Builder {
+    private boolean withTitle = false;
+    private boolean withFooter = false;
+    private WikiLanguage lang = WikiLanguage.EN;
+
+    /**
+     * Class constructor.
+     */
+    public Builder() {}
+
+    /**
+     * Sets whether or not to keep the title.
+     * @param flag whether or not to keep the title
+     * @return self for method chaining
+     */
+    public Builder withTitle(boolean flag) {
+      this.withTitle = flag;
+      return this;
+    }
+
+    /**
+     * Sets whether or not to keep the footer.
+     * @param flag whether or not to keep the footer
+     * @return self for method chaining
+     */
+    public Builder withFooter(boolean flag) {
+      this.withFooter = flag;
+      return this;
+    }
+
+    /**
+     * Sets the language.
+     * @param lang language
+     * @return self for method chaining
+     */
+    public Builder withLanguage(WikiLanguage lang) {
+      this.lang = lang;
+      return this;
+    }
+
+    /**
+     * Constructs the {@link WikiClean} instance.
+     * @return the {@link WikiClean} instance
+     */
+    public WikiClean build() {
+      WikiClean clean = new WikiClean();
+      clean.setWithTitle(withTitle);
+      clean.setWithFooter(withFooter);
+      clean.setLanguage(lang);
+
+      return clean;
     }
   }
 }

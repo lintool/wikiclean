@@ -22,12 +22,18 @@ import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.ParserProperties;
 import org.wikiclean.WikiClean.WikiLanguage;
 
+import java.io.File;
 import java.io.PrintWriter;
 
+/**
+ * Simple program for dumping English Wikipedia articles to plain text, one article per line.
+ */
 public class DumpEnWikiToPlainText {
+  private DumpEnWikiToPlainText() {}
+
   private static final class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
-    String input;
+    File input;
 
     @Option(name = "-output", metaVar = "[path]", required = true, usage = "output path")
     String output;
@@ -45,25 +51,21 @@ public class DumpEnWikiToPlainText {
       System.exit(-1);
     }
 
+    final WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.EN)
+        .withTitle(false).withFooter(false).build();
+
     PrintWriter writer = new PrintWriter(args.output, "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder()
-                              .withLanguage(WikiLanguage.EN).withTitle(false)
-                              .withFooter(false).build();
+    WikipediaArticlesDump wikipedia = new WikipediaArticlesDump(args.input);
 
-    WikipediaBz2DumpInputStream stream = new WikipediaBz2DumpInputStream(args.input);
-    String page;
-    while ((page = stream.readNext()) != null) {
-      if ( page.contains("<ns>") && !page.contains("<ns>0</ns>")) {
-        continue;
-      }
+    wikipedia.stream()
+        .filter(page -> !page.contains("<ns>") || page.contains("<ns>0</ns>"))
+        .forEach(page -> {
+          String s = cleaner.clean(page).replaceAll("\\n+", " ");
+          if (s.startsWith("#REDIRECT")) return;
 
-      String s = cleaner.clean(page).replaceAll("\\n+", " ");
-      if (s.startsWith("#REDIRECT")) {
-        continue;
-      }
+          writer.println(cleaner.getTitle(page).replaceAll("\\n+", " ") + "\t" + s);
+        });
 
-      writer.println(cleaner.getTitle(page).replaceAll("\\n+", " ") + "\t" + s);
-    }
     writer.close();
   }
 }

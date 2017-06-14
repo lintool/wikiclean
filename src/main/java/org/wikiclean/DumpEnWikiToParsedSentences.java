@@ -17,7 +17,7 @@
 package org.wikiclean;
 
 import edu.stanford.nlp.ling.HasWord;
-import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.ling.SentenceUtils;
 import edu.stanford.nlp.process.DocumentPreprocessor;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -25,15 +25,21 @@ import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.ParserProperties;
 import org.wikiclean.WikiClean.WikiLanguage;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.List;
 
+/**
+ * Simple program for dumping English Wikipedia articles to plain text, one sentence per line.
+ */
 public class DumpEnWikiToParsedSentences {
+  private DumpEnWikiToParsedSentences() {}
+
   private static final class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
-    String input;
+    File input;
 
     @Option(name = "-output", metaVar = "[path]", required = true, usage = "output path")
     String output;
@@ -51,32 +57,28 @@ public class DumpEnWikiToParsedSentences {
       System.exit(-1);
     }
 
+    final WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.EN)
+        .withTitle(false).withFooter(false).build();
+
     PrintWriter writer = new PrintWriter(args.output, "UTF-8");
-    WikiClean cleaner = new WikiCleanBuilder()
-        .withLanguage(WikiLanguage.EN).withTitle(false)
-        .withFooter(false).build();
+    WikipediaArticlesDump wikipedia = new WikipediaArticlesDump(args.input);
 
-    WikipediaBz2DumpInputStream stream = new WikipediaBz2DumpInputStream(args.input);
-    String page;
-    while ((page = stream.readNext()) != null) {
-      if ( page.contains("<ns>") && !page.contains("<ns>0</ns>")) {
-        continue;
-      }
+    wikipedia.stream()
+        .filter(page -> !page.contains("<ns>") || page.contains("<ns>0</ns>"))
+        .forEach(page -> {
+          String s = cleaner.clean(page);
+          if (s.startsWith("#REDIRECT")) return;
 
-      String s = cleaner.clean(page);
-      if (s.startsWith("#REDIRECT")) {
-        continue;
-      }
+          String title = cleaner.getTitle(page).replaceAll("\\n+", " ");
+          int cnt = 0;
+          Reader reader = new StringReader(s);
+          DocumentPreprocessor dp = new DocumentPreprocessor(reader);
+          for (List<HasWord> sentence : dp) {
+            writer.print(String.format("%s.%04d\t%s\n", title, cnt, SentenceUtils.listToString(sentence)));
+            cnt++;
+          }
+        });
 
-      String title = cleaner.getTitle(page).replaceAll("\\n+", " ");
-      int cnt = 0;
-      Reader reader = new StringReader(s);
-      DocumentPreprocessor dp = new DocumentPreprocessor(reader);
-      for (List<HasWord> sentence : dp) {
-        writer.print(String.format("%s.%04d\t%s\n", title, cnt, Sentence.listToString(sentence)));
-        cnt++;
-      }
-    }
     writer.close();
   }
 }
