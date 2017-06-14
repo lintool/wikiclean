@@ -25,6 +25,7 @@ import org.wikiclean.WikiClean.WikiLanguage;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,12 +46,11 @@ public class WikipediaArticlesDump implements Iterable<String> {
   private final FileInputStream stream;
 
   /**
-   * Creates an object for reading Wikipedia articles from a bz2-compressed dump file.
-   *
+   * Class constructor.
    * @param file path to dump file
    * @throws IOException if any file-related errors are encountered
    */
-  public WikipediaArticlesDump(String file) throws IOException {
+  public WikipediaArticlesDump(File file) throws IOException {
     stream = new FileInputStream(file);
     byte[] ignoreBytes = new byte[2];
     stream.read(ignoreBytes); // "B", "Z" bytes from commandline tools
@@ -58,6 +58,10 @@ public class WikipediaArticlesDump implements Iterable<String> {
             new BufferedInputStream(stream)), "UTF8"));
   }
 
+  /**
+   * Provides an iterator over Wikipedia articles.
+   * @return an iterator over Wikipedia articles
+   */
   public Iterator<String> iterator() {
     return new Iterator<String>() {
       private String nextArticle = null;
@@ -101,7 +105,7 @@ public class WikipediaArticlesDump implements Iterable<String> {
 
       private String readNext() throws IOException {
         String s;
-        StringBuffer sb = new StringBuffer(DEFAULT_STRINGBUFFER_CAPACITY);
+        StringBuilder sb = new StringBuilder(DEFAULT_STRINGBUFFER_CAPACITY);
 
         while ((s = reader.readLine()) != null) {
           if (s.endsWith("<page>"))
@@ -114,10 +118,10 @@ public class WikipediaArticlesDump implements Iterable<String> {
           return null;
         }
 
-        sb.append(s + "\n");
+        sb.append(s).append("\n");
 
         while ((s = reader.readLine()) != null) {
-          sb.append(s + "\n");
+          sb.append(s).append("\n");
 
           if (s.endsWith("</page>"))
             break;
@@ -128,18 +132,27 @@ public class WikipediaArticlesDump implements Iterable<String> {
     };
   }
 
+  /**
+   * Provides a stream of Wikipedia articles.
+   * @return a stream of Wikipedia articles
+   */
   public Stream<String> stream() {
     return StreamSupport.stream(this.spliterator(), false);
   }
 
   private static final class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
-    String input;
+    File input;
 
     @Option(name = "-lang", metaVar = "[lang]", usage = "two-letter language code")
     String lang = "en";
   }
 
+  /**
+   * Simple program prints out all cleaned articles.
+   * @param argv command-line argument
+   * @throws Exception if any errors are encountered
+   */
   public static void main(String[] argv) throws Exception {
     final Args args = new Args();
     CmdLineParser parser = new CmdLineParser(args, ParserProperties.defaults().withUsageWidth(100));

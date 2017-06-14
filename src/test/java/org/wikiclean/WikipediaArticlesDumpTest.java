@@ -18,6 +18,7 @@ package org.wikiclean;
 
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -29,7 +30,8 @@ import static org.junit.Assert.assertTrue;
 public class WikipediaArticlesDumpTest {
   @Test(expected = NoSuchElementException.class)
   public void testReadArticles1() throws IOException {
-    WikipediaArticlesDump wikipedia = new WikipediaArticlesDump("src/test/resources/article-stubs.xml.bz2");
+    WikipediaArticlesDump wikipedia =
+        new WikipediaArticlesDump(new File("src/test/resources/article-stubs.xml.bz2"));
 
     WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiClean.WikiLanguage.EN)
         .withTitle(false).withFooter(false).build();

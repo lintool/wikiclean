@@ -22,12 +22,18 @@ import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.ParserProperties;
 import org.wikiclean.WikiClean.WikiLanguage;
 
+import java.io.File;
 import java.io.PrintWriter;
 
+/**
+ * Simple program for dumping English Wikipedia articles to plain text, one article per line.
+ */
 public class DumpEnWikiToPlainText {
+  private DumpEnWikiToPlainText() {}
+
   private static final class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
-    String input;
+    File input;
 
     @Option(name = "-output", metaVar = "[path]", required = true, usage = "output path")
     String output;

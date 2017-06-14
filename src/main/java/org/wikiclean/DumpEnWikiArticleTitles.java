@@ -22,12 +22,18 @@ import org.kohsuke.args4j.Option;
 import org.kohsuke.args4j.ParserProperties;
 import org.wikiclean.WikiClean.WikiLanguage;
 
+import java.io.File;
 import java.io.PrintWriter;
 
+/**
+ * Simple program for dumping the titles of English Wikipedia articles.
+ */
 public class DumpEnWikiArticleTitles {
+  private DumpEnWikiArticleTitles() {};
+
   private static final class Args {
     @Option(name = "-input", metaVar = "[path]", required = true, usage = "input path")
-    String input;
+    File input;
 
     @Option(name = "-output", metaVar = "[path]", required = true, usage = "output path")
     String output;
