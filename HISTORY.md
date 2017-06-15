@@ -2,10 +2,10 @@ Version 1.0
 ===========
 June 14, 2017
 
-+ Refactored WikipediaBz2DumpInputStream into WikipediaArticlesDump, which provides iterator and stream support
-+ Refactored builder
-+ Changed visibility scope of methods and inner classes of WikiClean, test cases refactored accordingly
-+ Added documentation
++ Refactored WikipediaBz2DumpInputStream into WikipediaArticlesDump, which provides iterator and stream support.
++ Refactored builder.
++ Changed visibility methods and inner classes of WikiClean, test cases refactored accordingly.
++ Added documentation.
 
 Version 0.5
 ===========

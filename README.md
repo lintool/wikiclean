@@ -42,7 +42,7 @@ Putting everything together, the default builder is equivalent to:
 
 ```
 WikiClean cleaner =
-    new WikiCleanBuilder()
+    new WikiClean.Builder()
         .withLanguage(WikiLanguage.EN)
         .withTitle(false)
         .withFooter(false).build();
