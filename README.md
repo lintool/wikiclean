@@ -17,7 +17,7 @@ Usage
 It's simple to use WikiClean:
 
 ```
-WikiClean cleaner = new WikiCleanBuilder().build();
+WikiClean cleaner = new WikiClean.Builder().build();
 String content = cleaner.clean(raw);
 ```
 
