@@ -1,5 +1,8 @@
 WikiClean
 =========
+[![Build Status](https://travis-ci.org/lintool/wikiclean.svg?branch=master)](https://travis-ci.org/lintool/wikiclean)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.wikiclean/wikiclean/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.wikiclean/wikiclean)
+[![LICENSE](https://img.shields.io/badge/license-Apache-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
 
 WikiClean is a Java Wikipedia markup to plain text converter. It takes [Wikipedia XML dumps](http://en.wikipedia.org/wiki/Wikipedia:Database_download) with articles in wikimedia markup and generates clean plain text.
 
