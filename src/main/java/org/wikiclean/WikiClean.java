@@ -131,7 +131,13 @@ public class WikiClean {
       return "";
     }
 
-    return s.substring(textStart + 27, textEnd);
+    String s2 = s.substring(textStart + 27, textEnd);
+    if (s2.startsWith("bytes=")) {
+      textEnd = s2.indexOf(">");
+      s2 = s2.substring(textEnd + 1);
+    }
+
+    return s2;
   }
 
   /**
