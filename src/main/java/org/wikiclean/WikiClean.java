@@ -33,7 +33,9 @@ public class WikiClean {
     /** German */
     DE,
     /** Chinese */
-    ZH
+    ZH,
+    /** Kannada */
+    KN
   };
 
   private boolean withTitle;
@@ -129,7 +131,13 @@ public class WikiClean {
       return "";
     }
 
-    return s.substring(textStart + 27, textEnd);
+    String s2 = s.substring(textStart + 27, textEnd);
+    if (s2.startsWith("bytes=")) {
+      textEnd = s2.indexOf(">");
+      s2 = s2.substring(textEnd + 1);
+    }
+
+    return s2;
   }
 
   /**
@@ -273,6 +281,15 @@ public class WikiClean {
   private static final Pattern FOOTER_ZH3 = Pattern.compile("==\\s*参考网址\\s*==.*",
       Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
+  private static final Pattern FOOTER_KN1 = Pattern.compile("==\\s*ಉಲ್ಲೇಖ(ಗಳು)?+\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_KN2 = Pattern.compile("==\\s*(ಹೊರ(ಗಿನ)?+|ಬಾಹ್ಯ)\\s+(ಕೊಂಡಿ|ಸಂಪರ್ಕ)(ಗಳು)?+\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_KN3 = Pattern.compile("==\\s*ಆಕರಗಳು\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+  private static final Pattern FOOTER_KN4 = Pattern.compile("==\\s*(ಇದನ್ನೂ|ಇವನ್ನೂ|ಕೆಳಗಿನ\\s+ಲೇಖನಗಳನ್ನೂ)?+\\s*ನೋಡಿ\\s*==.*",
+      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
+
   private String removeFooter(String s) {
     if (lang.equals(WikiLanguage.EN)) {
       s = FOOTER_EN1.matcher(s).replaceAll("");
@@ -291,6 +308,11 @@ public class WikiClean {
       s = FOOTER_ZH1.matcher(s).replaceAll("");
       s = FOOTER_ZH2.matcher(s).replaceAll("");
       s = FOOTER_ZH3.matcher(s).replaceAll("");
+    } else if (lang.equals(WikiLanguage.KN)) {
+      s = FOOTER_KN1.matcher(s).replaceAll("");
+      s = FOOTER_KN2.matcher(s).replaceAll("");
+      s = FOOTER_KN3.matcher(s).replaceAll("");
+      s = FOOTER_KN4.matcher(s).replaceAll("");
     }
 
     return s;
@@ -300,6 +322,8 @@ public class WikiClean {
       .compile("\\[\\[Category:([^\\]]+)\\]\\]");
   private static final Pattern CATEGORY_LINKS_DE = Pattern
       .compile("\\[\\[Kategorie:([^\\]]+)\\]\\]");
+  private static final Pattern CATEGORY_LINKS_KN = Pattern
+      .compile("\\[\\[ವರ್ಗ\\s*:([^\\]]+)\\]\\]");
 
   private String removeCategoryLinks(String s) {
     if (lang.equals(WikiLanguage.EN)) {
@@ -310,9 +334,13 @@ public class WikiClean {
       return CATEGORY_LINKS_DE.matcher(s).replaceAll("");
     }
     
-    if(lang.equals(WikiLanguage.ZH)){
+    if (lang.equals(WikiLanguage.ZH)) {
       return CATEGORY_LINKS_EN.matcher(s).replaceAll(""); //ZH use the same category tag as EN
+    }
 
+    if (lang.equals(WikiLanguage.KN)) {
+      s = CATEGORY_LINKS_EN.matcher(s).replaceAll(""); // Some pages of KN use same category tag as EN
+      return CATEGORY_LINKS_KN.matcher(s).replaceAll("");
     }
 
     return s;
