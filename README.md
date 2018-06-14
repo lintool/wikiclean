@@ -33,11 +33,12 @@ The builder allows you to specify a few options:
 
 By default, both options are set to false.
 
-Also, use `withLangauge` to set the language. Currently, three are supported:
+Also, use `withLangauge` to set the language. Currently, four are supported:
 
 * `WikiLanguage.EN`: English (default)
 * `WikiLanguage.DE`: German
 * `WikiLanguage.ZH`: Chinese
+* `WikiLanguage.KN`: Kannada
 
 Contributions for providing additional language support welcome!
 
