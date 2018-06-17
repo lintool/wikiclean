@@ -1,3 +1,9 @@
+Version 1.1
+===========
+June 17, 2018
+
++ Added support for Kannada (contribution by [shivahr](https://github.com/shivahr))
+
 Version 1.0
 ===========
 June 14, 2017
