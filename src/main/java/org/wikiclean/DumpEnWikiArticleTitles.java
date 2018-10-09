@@ -59,7 +59,7 @@ public class DumpEnWikiArticleTitles {
 
     wikipedia.stream()
         .filter(page -> !page.contains("<ns>") || page.contains("<ns>0</ns>"))
-        .filter(page -> !cleaner.clean(page).replaceAll("\\n+", " ").startsWith("#REDIRECT"))
+        //.filter(page -> !cleaner.clean(page).replaceAll("\\n+", " ").startsWith("#REDIRECT"))
         .forEach(page -> {
           writer.println(cleaner.getId(page) + "\t" +
               cleaner.getTitle(page).replaceAll("\\n+", " "));

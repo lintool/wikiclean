@@ -42,8 +42,14 @@ public class WikiClean {
   private boolean withFooter;
   private WikiLanguage lang;
 
+  private boolean keepLinks = false;
+
   // Use the builder to construct.
   private WikiClean() {}
+
+  private void keepLinks() {
+    this.keepLinks = true;
+  }
 
   private void setWithTitle(boolean flag) {
     this.withTitle = flag;
@@ -162,7 +168,11 @@ public class WikiClean {
     content = removeEmphasis(content);
     content = removeHeadings(content);
     content = removeCategoryLinks(content);
-    content = removeLinks(content);
+
+    if (!keepLinks) {
+      content = removeLinks(content);
+    }
+
     content = removeMath(content);
     content = removeGallery(content);
     content = removeNoToc(content);
@@ -577,6 +587,7 @@ public class WikiClean {
   public static class Builder {
     private boolean withTitle = false;
     private boolean withFooter = false;
+    private boolean keepLinks = false;
     private WikiLanguage lang = WikiLanguage.EN;
 
     /**
@@ -614,6 +625,11 @@ public class WikiClean {
       return this;
     }
 
+    public Builder keepLinks() {
+      this.keepLinks = true;
+      return this;
+    }
+
     /**
      * Constructs the {@link WikiClean} instance.
      * @return the {@link WikiClean} instance
@@ -623,6 +639,7 @@ public class WikiClean {
       clean.setWithTitle(withTitle);
       clean.setWithFooter(withFooter);
       clean.setLanguage(lang);
+      if (keepLinks) clean.keepLinks();
 
       return clean;
     }
