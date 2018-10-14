@@ -47,8 +47,16 @@ public class WikiClean {
   // Use the builder to construct.
   private WikiClean() {}
 
-  private void keepLinks() {
-    this.keepLinks = true;
+  private void setKeepLinks(boolean flag) {
+    this.keepLinks = flag;
+  }
+
+  /**
+   * Asks this cleaner whether or not links are cleaned.
+   * @return whether or not links are cleaned
+   */
+  public boolean keepLings() {
+    return keepLinks;
   }
 
   private void setWithTitle(boolean flag) {
@@ -625,6 +633,10 @@ public class WikiClean {
       return this;
     }
 
+    /**
+     * Keeps the links.
+     * @return self for method chaining
+     */
     public Builder keepLinks() {
       this.keepLinks = true;
       return this;
@@ -639,7 +651,7 @@ public class WikiClean {
       clean.setWithTitle(withTitle);
       clean.setWithFooter(withFooter);
       clean.setLanguage(lang);
-      if (keepLinks) clean.keepLinks();
+      clean.setKeepLinks(keepLinks);
 
       return clean;
     }
