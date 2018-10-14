@@ -37,6 +37,9 @@ public class DumpEnWikiArticleTitles {
 
     @Option(name = "-output", metaVar = "[path]", required = true, usage = "output path")
     String output;
+
+    @Option(name = "-keepRedirects", usage = "keep redirects")
+    boolean keepRedirects = false;
   }
 
   public static void main(String[] argv) throws Exception {
@@ -59,7 +62,8 @@ public class DumpEnWikiArticleTitles {
 
     wikipedia.stream()
         .filter(page -> !page.contains("<ns>") || page.contains("<ns>0</ns>"))
-        .filter(page -> !cleaner.clean(page).replaceAll("\\n+", " ").startsWith("#REDIRECT"))
+        .filter(page -> args.keepRedirects ? true :
+            !cleaner.clean(page).replaceAll("\\n+", " ").startsWith("#REDIRECT"))
         .forEach(page -> {
           writer.println(cleaner.getId(page) + "\t" +
               cleaner.getTitle(page).replaceAll("\\n+", " "));
