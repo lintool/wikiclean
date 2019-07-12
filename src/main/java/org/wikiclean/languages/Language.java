@@ -1,5 +1,6 @@
 package org.wikiclean.languages;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -33,10 +34,38 @@ public abstract class Language {
   protected abstract List<Pattern> footerPatterns();
 
   /**
+   * built common patterns out of headlines
+   * @param headings headings to use in patterns
+   * @return patterns for footerPatterns()
+   * */
+  protected List<Pattern> footerPatterns(String... headings)  {
+    List<Pattern> patterns = new LinkedList<>();
+    for (String heading : headings) {
+      patterns.add(Pattern.compile("==\\s*" + heading + "\\s*==.*",
+          Pattern.CASE_INSENSITIVE | Pattern.DOTALL));
+    }
+    return patterns;
+  }
+
+  /**
    * Patterns used in removeCategoryLink's default implementation
    * @return list of patterns to delete
    */
   protected abstract List<Pattern> categoryLinkPatterns();
+
+  /**
+   * built common patterns out of category names
+   * @param headings names to use in patterns
+   * @return patterns for categoryLinkPatterns()
+   * */
+  protected List<Pattern> categoryLinkPatterns(String... names) {
+    List<Pattern> patterns = new LinkedList<>();
+    for (String name : names) {
+      patterns.add(Pattern.compile("\\[\\[" + name + ":([^\\]]+)\\]\\]"));
+
+    }
+    return patterns;
+  }
 
   /**
    * used to clean footers in {@link org.wikiclean.WikiClean}

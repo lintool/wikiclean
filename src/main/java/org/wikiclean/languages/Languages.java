@@ -10,14 +10,13 @@ public final class Languages {
 
   private static final Map<String, Language> langs = new HashMap<>();
 
-  private static boolean setupDone = false;
-
   static {
     // add built-in languages
     addLanguage(new English());
     addLanguage(new German());
     addLanguage(new Chinese());
     addLanguage(new Kannada());
+    addLanguage(new French());
   }
 
   /**

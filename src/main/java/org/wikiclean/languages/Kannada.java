@@ -24,12 +24,11 @@ public class Kannada extends Language {
     return Arrays.asList(FOOTER1, FOOTER2, FOOTER3, FOOTER4);
   }
 
-  private static final Pattern CATEGORY_LINKS1 = Pattern
-          .compile("\\[\\[ವರ್ಗ\\s*:([^\\]]+)\\]\\]");
+  private static final String CATEGORY_LINKS1 = "ವರ್ಗ";
 
   @Override
   protected List<Pattern> categoryLinkPatterns() {
-    return Arrays.asList(English.CATEGORY_LINKS1, CATEGORY_LINKS1); // Some pages of KN use same category tag as
+    return categoryLinkPatterns(English.CATEGORY_LINKS1, CATEGORY_LINKS1); // Some pages of KN use same category tag as
   }
 
 }

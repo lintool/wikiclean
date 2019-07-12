@@ -24,6 +24,6 @@ public class Chinese extends Language {
 
   @Override
   protected List<Pattern> categoryLinkPatterns() {
-    return Arrays.asList(English.CATEGORY_LINKS1); //ZH use the same category tag as EN
+    return categoryLinkPatterns(English.CATEGORY_LINKS1); //ZH use the same category tag as EN
   }
 }

@@ -18,8 +18,7 @@ public class English extends Language {
           Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
 
   // public since it's reused in some languages
-  public static final Pattern CATEGORY_LINKS1 = Pattern
-          .compile("\\[\\[Category:([^\\]]+)\\]\\]");
+  public static final String CATEGORY_LINKS1 = "Category";
 
   public English() {
     super("en");
@@ -28,11 +27,11 @@ public class English extends Language {
 
   @Override
   protected List<Pattern> footerPatterns() {
-    return Arrays.asList(FOOTER1, FOOTER2, FOOTER3,  FOOTER4, FOOTER5);
+    return footerPatterns("See also", "References", "Further reading", "External Links", "Related pages");
   }
 
   @Override
   protected List<Pattern> categoryLinkPatterns() {
-    return Arrays.asList(CATEGORY_LINKS1);
+    return categoryLinkPatterns(CATEGORY_LINKS1);
   }
 }

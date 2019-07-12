@@ -1,0 +1,151 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.8/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.8/ http://www.mediawiki.org/xml/export-0.8.xsd" version="0.8" xml:lang="fr">
+  <siteinfo>
+    <sitename>Wikipédia</sitename>
+    <base>http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal</base>
+    <generator>MediaWiki 1.21wmf5</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Média</namespace>
+      <namespace key="-1" case="first-letter">Spécial</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Discussion</namespace>
+      <namespace key="2" case="first-letter">Utilisateur</namespace>
+      <namespace key="3" case="first-letter">Discussion utilisateur</namespace>
+      <namespace key="4" case="first-letter">Wikipédia</namespace>
+      <namespace key="5" case="first-letter">Discussion Wikipédia</namespace>
+      <namespace key="6" case="first-letter">Fichier</namespace>
+      <namespace key="7" case="first-letter">Discussion fichier</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">Discussion MediaWiki</namespace>
+      <namespace key="10" case="first-letter">Modèle</namespace>
+      <namespace key="11" case="first-letter">Discussion modèle</namespace>
+      <namespace key="12" case="first-letter">Aide</namespace>
+      <namespace key="13" case="first-letter">Discussion aide</namespace>
+      <namespace key="14" case="first-letter">Catégorie</namespace>
+      <namespace key="15" case="first-letter">Discussion catégorie</namespace>
+      <namespace key="100" case="first-letter">Portail</namespace>
+      <namespace key="101" case="first-letter">Discussion Portail</namespace>
+      <namespace key="102" case="first-letter">Projet</namespace>
+      <namespace key="103" case="first-letter">Discussion Projet</namespace>
+      <namespace key="104" case="first-letter">Référence</namespace>
+      <namespace key="105" case="first-letter">Discussion Référence</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Antoine Meillet</title>
+    <ns>0</ns>
+    <id>3</id>
+    <revision>
+      <id>85972862</id>
+      <parentid>84179708</parentid>
+      <timestamp>2012-12-01T04:18:03Z</timestamp>
+      <contributor>
+        <username>Kasirbot</username>
+        <id>999561</id>
+      </contributor>
+      <minor />
+      <comment>r2.7.1) (robot Ajoute : [[ar:أنتوان مييه]]</comment>
+      <text xml:space="preserve">'''Paul Jules Antoine Meillet''', né le {{Date de naissance|11|novembre|1866}} à [[Moulins (Allier)|Moulins]] ([[Allier (département)|Allier]]) et mort le {{Date de décès|21|septembre|1936}} à [[Châteaumeillant]] ([[Cher (département)|Cher]]), est le principal [[Linguistes célèbres|linguiste]] français des premières décennies du {{XXe siècle}}.
+
+== Biographie ==
+
+D'origine bourbonnaise, fils d'un notaire de [[Châteaumeillant]] ([[Cher (département)|Cher]]), il fait ses études secondaires au lycée Théodore-de-Banville de [[Moulins (Allier)|Moulins]].
+
+Étudiant à la [[faculté des lettres de Paris]] à partir de [[1885]], il suit notamment les cours de [[Louis Havet]] à la [[Sorbonne]], de [[Michel Bréal]] au [[Collège de France]] et de [[Ferdinand de Saussure]] à l'[[École pratique des hautes études]]. Il assure à la suite de Saussure le cours de [[grammaire comparée]], qu'il complète à partir de 1894 par une conférence sur l'[[iranien]].
+
+En 1897, il soutient sa thèse pour le [[doctorat]] ès lettres ''(Recherches sur l'emploi du génitif-accusatif en vieux-slave)''.  En 1905, il occupe la chaire de grammaire comparée au [[Collège de France]], où il consacre ses cours à l'histoire et à la structure des [[langues indo-européennes]]. Il succéda au linguiste [[Auguste Carrière]] à la tête de la chaire d'[[arménien]] à l'[[École des langues orientales]]&lt;ref&gt;[http://www.inalco.fr/ina_gabarit_rubrique.php3?ctx=langue&amp;id_rubrique=47&amp;id_departement=8&amp;ina_rubrique_departement=1193&amp;id_langue=8&amp;ina_rubrique_langue=918&amp;ina_rubrique_2=1699 Institut National des Langues et Civilisations Orientales]&lt;/ref&gt;.
+
+Secrétaire de la Société de linguistique de Paris, il est élu à l'[[Académie des inscriptions et belles-lettres]] en 1924.
+
+Il a formé toute une génération de linguistes français, parmi lesquels [[Émile Benveniste]], [[Marcel Cohen]], [[Georges Dumézil]], [[André Martinet]], [[Aurélien Sauvageot]], [[Lucien Tesnière]], [[Joseph Vendryes]], ainsi que le japonisant [[Charles Haguenauer]]. Antoine Meillet devait diriger la thèse de [[Jean Paulhan]] sur la sémantique du proverbe et c'est lui qui découvrit [[Gustave Guillaume]].
+
+Il a influencé aussi un certain nombre de linguistes étrangers. {{refnec|Il est notamment l'inspirateur de la définition de la phrase adoptée par le linguiste américain [[Leonard Bloomfield]]}}. Il a également été le premier à identifier le phénomène de la [[grammaticalisation]].
+
+== Études arméniennes ==
+
+* [[1890]], une mission d'un an dans le [[Caucase]] lui permet d'étudier l'[[arménien]] moderne. 
+* [[1902]], il obtient la chaire d'arménien de l'[[École des langues orientales]]. 
+* [[1903]], il publie son ''Esquisse d'une grammaire comparée de l'arménien classique'', qui demeure une référence en linguistique arménienne et indo-européenne jusqu'à ce jour. L'un de ses étudiants, [[Hratchia Adjarian]], devient le fondateur de la dialectologie arménienne. C'est également sous les encouragements de Meillet qu'Émile Benveniste étudie la langue arménienne.
+* [[1919]], il est co-fondateur de la Société des études arméniennes avec Victor Bérard, Charles Diehl, André-Ferdinand Hérold, H. Lacroix, Frédéric Macler, Gabriel Millet, Gustave Schlumberger.
+* [[1920]], le 19 janvier, il crée la ''Revue des études arméniennes'' avec [[Frédéric Macler]].
+
+== Études homériques ==
+
+À la Sorbonne, Meillet surveille le travail de [[Milman Parry]]. En 1923, un an avant que Parry ne commence son travail avec Meillet, celui-ci écrit (cité dans la première des deux thèses de Milman Parry, à savoir celle qui traite de l'[[épithète homérique]]) :
+
+{{citation bloc|L'épopée homérique est entièrement composée de formules, transmise de poète en poète. Un examen de n'importe quel passage révèlera vite qu'il est fait de vers et de fragments de vers qui sont reproduits mot pour mot dans un ou dans plusieurs autres passages. Et même des vers, dont les parties ne se retrouvent pas dans un autre passage, ont le caractère d'une formule, et c'est sans aucun doute par un pur hasard qu'ils ne sont pas attestés ailleurs.}}
+
+Meillet offre à son étudiant l'opinion, nouvelle à cette époque, que la structure formulaïque de ''[[l'Iliade]]'' serait une conséquence directe de sa transmission orale. Ainsi, il le dirige vers l'étude de l'oralité dans son cadre natif et lui suggère d'observer les mécanismes d'une tradition orale vivante à côté du texte classique (''[[l'Iliade]]'') qu'on a censé résulter de une telle tradition. En conséquence, Meillet présente Parry à [[Matija Murko]], savant originaire de [[Slovénie]] qui avait longuement écrit sur la tradition héroïque épique dans les [[Balkans]], surtout en [[Bosnie-Herzégovine]]&lt;ref&gt;[[Mathias Murko]], ''La poésie populaire épique en Yougoslavie au début du {{s-|XX|e}}'' (Paris: Champion, 1929); Albert Lord, ''The singer of tales'' (Cambridge, Mass.: Harvard University Press, 1960), pp. 11-12; Andrew Dalby, ''Rediscovering Homer'' (New York, London: Norton, 2006. ISBN 0-393-05788-7), pp. 186-187.&lt;/ref&gt;.  À partir de ses recherches éventuelles, dont les résultats sont à présent hébergés par l'université de Harvard, Parry et son élève, [[Albert Lord]], ont profondément renouvelé les études homériques.
+
+== Principaux ouvrages ==
+
+
+{{Autres projets
+| wikisource = Antoine Meillet
+}}
+
+
+* ''Esquisse d'une grammaire comparée de l'arménien classique'', [[1903]].
+* ''Introduction à l'étude comparative des langues indo-européennes'', [[1903]] ({{1re}} éd.), Hachette, Paris, [[1912]] ({{3e}} éd.)&lt;ref&gt;Cet ouvrage, ainsi que l'''Aperçu d'une histoire de la langue grecque'' ont fait l'objet d'une critique par [[Lucien Febvre]], ''Antoine Meillet et l'histoire, La Grèce ancienne à travers l'histoire'', Revue de synthèse historique, 1913, pp.4-93, rééditée dans Lucien Febvre, ''Vivre l'histoire'', coll. Bouquins, Robert Laffont/Armand Colin, Paris, 2009, pp.136-145.&lt;/ref&gt;.
+* ''Les dialectes indo-européens'', [[1908]].
+* ''Aperçu d'une histoire de la langue grecque'', [[1913]].
+* ''Altarmenisches Elementarbuch'', [[1913]]. Heidelberg
+* ''Linguistique historique et linguistique générale'', [[1921]].
+* ''Les origines indo-européennes des mètres grecs'', [[1923]].
+* ''Traité de grammaire comparée des langues classiques'', [[1924]] (avec Joseph Vendryés).
+* ''Esquisse d'une histoire de la langue latine'', [[1928]]. Éd. Klincksieck, ISBN 2-252-01871-2
+* ''La méthode comparative en linguistique historique'', 1928.
+* ''Dictionnaire étymologique de la langue latine'', [[1932]] (en collab. Avec [[Alfred Ernout]] (1879-1973), éd. augmentée, par Jacques André (1910-1994), Paris : Klincksieck, 2001, ISBN 2-252-03359-2 Notice n° : FRBNF37707942)
+
+== Notes ==
+
+&lt;references /&gt;
+
+== Bibliographie ==
+
+{{Autorité | type = personne | VIAF = 27068538 | BNF = 11915465z | SUDOC = 027021688 | WORLDCATID = lccn-n-50-19617 }}
+* {{Article | prénom1 = Anne-Marguerite | nom1 = Fryba | titre = [[Maurice Grammont]], Antoine Meillet et l'institutionnalisation de la linguistique en France | périodique = Revue des langues romanes | numéro = 105 | année = 2001 | pages = 503-517}}
+* {{Chapitre | prénom1 = Charles | nom1 = de Lamberterie | titre = [[Milman Parry]] et Antoine Meillet | titre ouvrage = Hommage à Milman Parry. Le style formulaire de l’épopée homérique et la théorie de l’oralité poétique | auteurs ouvrage = Françoise Létoublon (éd.) | éditeur = Gieben | lieu = Amsterdam | année = 1997}}
+* {{Ouvrage | prénom1 = Gabriel | nom1 = Bergounioux | prénom2 = Charles | nom2 = de Lamberterie | titre = Meillet aujourd'hui | éditeur = Peeters | lieu = Louvain-Paris | année = 2006|isbn=978-9042917439}}
+
+== Voir aussi ==
+
+* [[Franz Bopp]]
+* [[Johann Kaspar Zeuss]]
+
+{{Portail|linguistique|Langues|Arménie}}
+
+{{DEFAULTSORT:Meillet, Antoine}}
+
+[[Catégorie:Académie des inscriptions et belles-lettres]]
+[[Catégorie:Linguiste français]]
+[[Catégorie:Slaviste]]
+[[Catégorie:Naissance en 1866]]
+[[Catégorie:Naissance à Moulins (Allier)]]
+[[Catégorie:Décès en 1936]]
+[[Catégorie:Institut national des langues et civilisations orientales]]
+
+[[ar:أنتوان مييه]]
+[[cu:Антоуанъ Мєѥ]]
+[[de:Antoine Meillet]]
+[[en:Antoine Meillet]]
+[[eo:Antoine Meillet]]
+[[es:Antoine Meillet]]
+[[fa:آنتوان میه]]
+[[fi:Antoine Meillet]]
+[[gl:Antoine Meillet]]
+[[it:Antoine Meillet]]
+[[ja:アントワーヌ・メイエ]]
+[[la:Antonius Meillet]]
+[[no:Antoine Meillet]]
+[[ro:Antoine Meillet]]
+[[ru:Мейе, Антуан]]
+[[tr:Antoine Meillet]]
+[[uk:Антуан Мейє]]
+[[zh:安东尼·梅耶]]</text>
+      <sha1>8ehn6bzygnob2syq7dldh6f428yybqg</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+    </revision>
+  </page>
+</mediawiki>
