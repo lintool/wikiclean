@@ -1,8 +1,10 @@
 Version 1.2
 ===========
-July 12, 2019
+TBD
 
-+ Extracted language-specific cleanup into separate Language class (contribution by [fabrichter](https://github.com/fabrichter))
++ Simplified adding new languages by extracting language-specific cleanup into separate class
+  (contribution by [fabrichter](https://github.com/fabrichter))
++ Added support for French
 
 Version 1.1
 ===========
