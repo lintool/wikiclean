@@ -1,3 +1,9 @@
+Version 1.2
+===========
+July 12, 2019
+
++ Extracted language-specific cleanup into separate Language class (contribution by [fabrichter](https://github.com/fabrichter))
+
 Version 1.1
 ===========
 June 17, 2018
