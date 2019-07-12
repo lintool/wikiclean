@@ -40,6 +40,7 @@ public final class Languages {
   }
 
   /**
+   * @param code code of language to fetch
    * @return language with given code if present, else empty optional
    */
   public static Optional<Language> language(String code) {

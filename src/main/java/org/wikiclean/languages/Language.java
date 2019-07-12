@@ -55,7 +55,7 @@ public abstract class Language {
 
   /**
    * built common patterns out of category names
-   * @param headings names to use in patterns
+   * @param names names to use in patterns
    * @return patterns for categoryLinkPatterns()
    * */
   protected List<Pattern> categoryLinkPatterns(String... names) {
