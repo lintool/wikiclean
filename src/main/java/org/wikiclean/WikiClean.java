@@ -55,8 +55,18 @@ public class WikiClean {
    * Asks this cleaner whether or not links are cleaned.
    * @return whether or not links are cleaned
    */
-  public boolean keepLings() {
+  public boolean keepLinks() {
     return keepLinks;
+  }
+
+  /**
+   * Asks this cleaner whether or not links are cleaned.
+   * @return whether or not links are cleaned
+   * @deprecated typo, use keepLinks
+   */
+  @Deprecated
+  public boolean keepLings() {
+    return keepLinks();
   }
 
   private void setWithTitle(boolean flag) {
