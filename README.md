@@ -33,12 +33,15 @@ The builder allows you to specify a few options:
 
 By default, both options are set to false.
 
-Also, use `withLangauge` to set the language. Currently, four are supported:
+Also, use `withLangauge` to set the language. Currently, five are supported:
 
-* `WikiLanguage.EN`: English (default)
-* `WikiLanguage.DE`: German
-* `WikiLanguage.ZH`: Chinese
-* `WikiLanguage.KN`: Kannada
+* English (default)
+* German
+* Chinese
+* Kannada
+* French
+
+The corresponding classes are in `org.wikiclean.languages`.
 
 Contributions for providing additional language support welcome!
 
@@ -47,7 +50,7 @@ Putting everything together, the default builder is equivalent to:
 ```
 WikiClean cleaner =
     new WikiClean.Builder()
-        .withLanguage(WikiLanguage.EN)
+        .withLanguage(new English())
         .withTitle(false)
         .withFooter(false).build();
 String content = cleaner.clean(raw);

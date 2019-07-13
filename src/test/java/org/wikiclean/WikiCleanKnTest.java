@@ -20,6 +20,7 @@ import junit.framework.JUnit4TestAdapter;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.wikiclean.WikiClean.WikiLanguage;
+import org.wikiclean.languages.Kannada;
 
 import java.io.File;
 
@@ -29,7 +30,7 @@ public class WikiCleanKnTest {
   @Test
   public void testId1() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/knwiki-20180614-id1.xml"), "UTF-8");
-    WikiClean cleaner = new WikiClean.Builder().withLanguage(WikiLanguage.KN).build();
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(new Kannada()).build();
     String content = cleaner.clean(raw);
     // System.out.println(content);
 

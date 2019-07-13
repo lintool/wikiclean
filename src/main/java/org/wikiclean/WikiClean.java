@@ -17,6 +17,9 @@
 package org.wikiclean;
 
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.wikiclean.languages.English;
+import org.wikiclean.languages.Language;
+import org.wikiclean.languages.Languages;
 
 import java.util.regex.Pattern;
 
@@ -26,7 +29,10 @@ import java.util.regex.Pattern;
 public class WikiClean {
   /**
    * Enumeration of supported Wikipedia languages.
+   * Name of enum is assumed to be uppercase version of ISO 639-1 code used in {@code Language.getCode()}
+   * @deprecated use {@link Language} objects
    */
+  @Deprecated
   public enum WikiLanguage {
     /** English */
     EN,
@@ -40,12 +46,13 @@ public class WikiClean {
 
   private boolean withTitle;
   private boolean withFooter;
-  private WikiLanguage lang;
+  private Language lang;
 
   private boolean keepLinks = false;
 
   // Use the builder to construct.
-  private WikiClean() {}
+  private WikiClean() {
+  }
 
   private void setKeepLinks(boolean flag) {
     this.keepLinks = flag;
@@ -55,8 +62,18 @@ public class WikiClean {
    * Asks this cleaner whether or not links are cleaned.
    * @return whether or not links are cleaned
    */
-  public boolean keepLings() {
+  public boolean keepLinks() {
     return keepLinks;
+  }
+
+  /**
+   * Asks this cleaner whether or not links are cleaned.
+   * @return whether or not links are cleaned
+   * @deprecated typo, use keepLinks
+   */
+  @Deprecated
+  public boolean keepLings() {
+    return keepLinks();
   }
 
   private void setWithTitle(boolean flag) {
@@ -83,16 +100,21 @@ public class WikiClean {
     return withFooter;
   }
 
-  private void setLanguage(WikiLanguage lang) {
+  private void setLanguage(Language lang) {
     this.lang = lang;
   }
-
   /**
    * Asks this cleaner what language it is expecting.
    * @return language expected
+   * @deprecated use getLanguage()
    */
+  @Deprecated
   public WikiLanguage language() {
-    return this.lang;
+    return WikiLanguage.valueOf(lang.getCode().toUpperCase());
+  }
+
+  public Language getLanguage() {
+    return lang;
   }
 
   private static final String XML_START_TAG_TITLE = "<title>";
@@ -268,100 +290,12 @@ public class WikiClean {
     return MULTIPLE_NEWLINES.matcher(s).replaceAll("\n\n");
   }
 
-  private static final Pattern FOOTER_EN1 = Pattern.compile("==\\s*See also\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_EN2 = Pattern.compile("==\\s*References\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_EN3 = Pattern.compile("==\\s*Further reading\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_EN4 = Pattern.compile("==\\s*External Links\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_EN5 = Pattern.compile("==\\s*Related pages\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-
-  private static final Pattern FOOTER_DE1 = Pattern.compile("==\\s*Referenzen\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_DE2 = Pattern.compile("==\\s*Weblinks\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_DE3 = Pattern.compile("==\\s*Literatur\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_DE4 = Pattern.compile("==\\s*Einzelnachweise\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_DE5 = Pattern.compile("==\\s*Siehe auch\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_DE6 = Pattern.compile("==\\s*Quellen\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-
-  private static final Pattern FOOTER_ZH1 = Pattern.compile("==\\s*参见\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_ZH2 = Pattern.compile("==\\s*参考书目\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_ZH3 = Pattern.compile("==\\s*参考网址\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-
-  private static final Pattern FOOTER_KN1 = Pattern.compile("==\\s*ಉಲ್ಲೇಖ(ಗಳು)?+\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_KN2 = Pattern.compile("==\\s*(ಹೊರ(ಗಿನ)?+|ಬಾಹ್ಯ)\\s+(ಕೊಂಡಿ|ಸಂಪರ್ಕ)(ಗಳು)?+\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_KN3 = Pattern.compile("==\\s*ಆಕರಗಳು\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-  private static final Pattern FOOTER_KN4 = Pattern.compile("==\\s*(ಇದನ್ನೂ|ಇವನ್ನೂ|ಕೆಳಗಿನ\\s+ಲೇಖನಗಳನ್ನೂ)?+\\s*ನೋಡಿ\\s*==.*",
-      Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
-
   private String removeFooter(String s) {
-    if (lang.equals(WikiLanguage.EN)) {
-      s = FOOTER_EN1.matcher(s).replaceAll("");
-      s = FOOTER_EN2.matcher(s).replaceAll("");
-      s = FOOTER_EN3.matcher(s).replaceAll("");
-      s = FOOTER_EN4.matcher(s).replaceAll("");
-      s = FOOTER_EN5.matcher(s).replaceAll("");
-    } else if (lang.equals(WikiLanguage.DE)) {
-      s = FOOTER_DE1.matcher(s).replaceAll("");
-      s = FOOTER_DE2.matcher(s).replaceAll("");
-      s = FOOTER_DE3.matcher(s).replaceAll("");
-      s = FOOTER_DE4.matcher(s).replaceAll("");
-      s = FOOTER_DE5.matcher(s).replaceAll("");
-      s = FOOTER_DE6.matcher(s).replaceAll("");
-    } else if (lang.equals(WikiLanguage.ZH)) {
-      s = FOOTER_ZH1.matcher(s).replaceAll("");
-      s = FOOTER_ZH2.matcher(s).replaceAll("");
-      s = FOOTER_ZH3.matcher(s).replaceAll("");
-    } else if (lang.equals(WikiLanguage.KN)) {
-      s = FOOTER_KN1.matcher(s).replaceAll("");
-      s = FOOTER_KN2.matcher(s).replaceAll("");
-      s = FOOTER_KN3.matcher(s).replaceAll("");
-      s = FOOTER_KN4.matcher(s).replaceAll("");
-    }
-
-    return s;
+    return lang.removeFooter(s);
   }
 
-  private static final Pattern CATEGORY_LINKS_EN = Pattern
-      .compile("\\[\\[Category:([^\\]]+)\\]\\]");
-  private static final Pattern CATEGORY_LINKS_DE = Pattern
-      .compile("\\[\\[Kategorie:([^\\]]+)\\]\\]");
-  private static final Pattern CATEGORY_LINKS_KN = Pattern
-      .compile("\\[\\[ವರ್ಗ\\s*:([^\\]]+)\\]\\]");
-
   private String removeCategoryLinks(String s) {
-    if (lang.equals(WikiLanguage.EN)) {
-      return CATEGORY_LINKS_EN.matcher(s).replaceAll("");
-    }
-
-    if (lang.equals(WikiLanguage.DE)) {
-      return CATEGORY_LINKS_DE.matcher(s).replaceAll("");
-    }
-    
-    if (lang.equals(WikiLanguage.ZH)) {
-      return CATEGORY_LINKS_EN.matcher(s).replaceAll(""); //ZH use the same category tag as EN
-    }
-
-    if (lang.equals(WikiLanguage.KN)) {
-      s = CATEGORY_LINKS_EN.matcher(s).replaceAll(""); // Some pages of KN use same category tag as EN
-      return CATEGORY_LINKS_KN.matcher(s).replaceAll("");
-    }
-
-    return s;
+    return lang.removeCategoryLinks(s);
   }
 
   private static final Pattern LINKS1 = Pattern.compile("\\[\\[[^\\]]+\\|([^\\]]+)\\]\\]");
@@ -596,7 +530,7 @@ public class WikiClean {
     private boolean withTitle = false;
     private boolean withFooter = false;
     private boolean keepLinks = false;
-    private WikiLanguage lang = WikiLanguage.EN;
+    private Language lang = new English();
 
     /**
      * Class constructor.
@@ -627,8 +561,20 @@ public class WikiClean {
      * Sets the language.
      * @param lang language
      * @return self for method chaining
+     * @deprecated use method acepting a {@link Language}
      */
+    @Deprecated
     public Builder withLanguage(WikiLanguage lang) {
+      this.lang = Languages.language(lang.name().toLowerCase()).get();
+      return this;
+    }
+
+    /**
+     * Sets the language.
+     * @param lang language, e.g. from {@link Languages}
+     * @return self for method chaining
+     */
+    public Builder withLanguage(Language lang) {
       this.lang = lang;
       return this;
     }
