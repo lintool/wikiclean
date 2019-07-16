@@ -33,13 +33,25 @@ The builder allows you to specify a few options:
 
 By default, both options are set to false.
 
-Also, use `withLangauge` to set the language. Currently, five are supported:
+Also, use `withLanguage` to set the language. Currently, 17 are supported:
 
 * English (default)
 * German
 * Chinese
 * Kannada
 * French
+* Breton
+* Catalan
+* Greek
+* Esperanto
+* Spanish
+* Galician
+* Italian
+* Dutch
+* Polish
+* Portuguese
+* Russian
+* Ukrainian
 
 The corresponding classes are in `org.wikiclean.languages`.
 
