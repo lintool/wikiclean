@@ -6,7 +6,8 @@ import java.util.*;
  * Manages available languages for WikiClean
  */
 public final class Languages {
-  private Languages() {}
+  private Languages() {
+  }
 
   private static final Map<String, Language> langs = new HashMap<>();
 
@@ -28,6 +29,7 @@ public final class Languages {
 
   /**
    * Add a language to the list
+   *
    * @param lang language to add
    * @return true if language was added, false if language with given code already existed
    */
@@ -48,3 +50,4 @@ public final class Languages {
     return Optional.ofNullable(lang);
   }
 }
+
