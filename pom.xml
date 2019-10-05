@@ -3,7 +3,7 @@
   <groupId>org.wikiclean</groupId>
   <artifactId>wikiclean</artifactId>
   <packaging>jar</packaging>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
   <name>wikiclean</name>
   <description>Wikipedia markup to plain text converter</description>
   <url>http://wikiclean.org</url>
@@ -79,9 +79,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.4</version>
+        <version>3.1.1</version>
         <configuration>
-            <additionalJOption>-html5</additionalJOption>
+            <source>8</source>  <!-- see https://bugs.openjdk.java.net/browse/JDK-8212233 -->
         </configuration>
         <executions>
           <execution>
