@@ -12,7 +12,7 @@ Why?
 For text processing applications, we often need access to plain text, unadulterated by wikimedia markup. This is surprisingly non-trivial, as Wikipedia articles are full of complexities such as references, image captions, tables, infoboxes, etc., which are not useful for many applications.
 
 Before setting out to write this package, I explored many of the Java alternatives for parsing Wikipedia pages described
-[here](http://www.mediawiki.org/wiki/Alternative_parsers) and found none of them to be adequate (in generating clean plain text). The primarily challenge is that many of these packages aspire to be complete Wikipedia parsers and renders, whereas WikiClean was designed with a much simpler goal.
+[here](http://www.mediawiki.org/wiki/Alternative_parsers) and found none of them to be adequate for generating clean plain text. The primarily challenge is that most of these packages aspire to be complete Wikipedia parsers (e.g., for rendering), whereas WikiClean was designed with a much simpler goal &mdash; wiki markup to plain text conversion (nothing more, nothing less).
 
 Usage
 -----
@@ -35,25 +35,25 @@ By default, both options are set to false.
 
 Also, use `withLanguage` to set the language. Currently, 17 are supported:
 
-* English (default)
-* German
-* Chinese
-* Kannada
-* French
-* Breton
-* Catalan
-* Greek
-* Esperanto
-* Spanish
-* Galician
-* Italian
-* Dutch
-* Polish
-* Portuguese
-* Russian
-* Ukrainian
+* [English](https://en.wikipedia.org/wiki/) (default)
+* [Breton](https://br.wikipedia.org/wiki/) (Brezhoneg - br)
+* [Catalan](https://ca.wikipedia.org/wiki/) (Català - ca)
+* [Chinese](https://zh.wikipedia.org/) (中文 - zh)
+* [Dutch](https://nl.wikipedia.org/wiki/) (Nederlands - nl)
+* [Esperanto](https://eo.wikipedia.org/wiki/) (Esperanto - eo)
+* [French](https://fr.wikipedia.org/wiki/) (Français - fr)
+* [Galician](https://gl.wikipedia.org/wiki/) (Galego - gl)
+* [German](https://de.wikipedia.org/wiki/) (Deutsch - de)
+* [Greek](https://el.wikipedia.org/wiki/) (Ελληνικά - el)
+* [Italian](https://it.wikipedia.org/wiki/) (Italiano - it)
+* [Kannada](https://kn.wikipedia.org/wiki/) (ಕನ್ನಡ - kn)
+* [Polish](https://pl.wikipedia.org/wiki/) (Polski - pl)
+* [Portuguese](https://pt.wikipedia.org/wiki/) (Português - pt)
+* [Russian](https://ru.wikipedia.org/wiki/) (Русский - ru)
+* [Spanish](https://es.wikipedia.org/wiki/) (Español - es)
+* [Ukrainian](https://uk.wikipedia.org/wiki/) (Українська - uk)
 
-The corresponding classes are in `org.wikiclean.languages`.
+The corresponding classes are in [`org.wikiclean.languages`](src/main/java/org/wikiclean/languages).
 
 Contributions for providing additional language support welcome!
 
