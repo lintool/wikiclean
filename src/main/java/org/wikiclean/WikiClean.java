@@ -178,12 +178,27 @@ public class WikiClean {
 
   /**
    * Cleans a Wikipedia article.
-   * @param page Wikipedia article
+   * @param page Wikipedia article contained in XML such as <page>....</page>
    * @return cleaned output
    */
   public String clean(String page) {
     String content = getWikiMarkup(page);
 
+    String cleaned = cleanContent(content);
+
+    if (withTitle) {
+      return getTitle(page) + "\n\n" + cleaned.trim();
+    }
+
+    return cleaned.trim();
+  }
+
+  /**
+   * Cleans a Wikipedia article.
+   * @param content Wikipedia article content (the Wikitext markup)
+   * @return cleaned output
+   */
+  public String cleanContent(String content) {
     if (!withFooter) {
       content = removeFooter(content);
     }
@@ -216,10 +231,6 @@ public class WikiClean {
 
     // Finally, fold multiple newlines.
     content = compressMultipleNewlines(content);
-
-    if (withTitle) {
-      return getTitle(page) + "\n\n" + content.trim();
-    }
 
     return content.trim();
   }
