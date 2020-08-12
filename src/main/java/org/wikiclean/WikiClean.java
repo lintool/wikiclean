@@ -161,7 +161,7 @@ public class WikiClean {
     // parse out actual text of article
     int textStart = s.indexOf(XML_START_TAG_TEXT);
     if (textStart >= 0) {
-      textStart = findClosingBracket(s, textStart);
+      textStart = s.indexOf('>', textStart) + 1;
     }
     int textEnd = s.indexOf(XML_END_TAG_TEXT, textStart);
 
@@ -170,24 +170,7 @@ public class WikiClean {
       return "";
     }
 
-    String s2 = s.substring(textStart, textEnd);
-    if (s2.startsWith("bytes=")) {
-      textEnd = s2.indexOf(">");
-      s2 = s2.substring(textEnd + 1);
-    }
-
-    return s2;
-  }
-
-  // finds the next > in s, start searching at 'start'
-  private int findClosingBracket(String s, int start)
-  {
-	for (int i = start; i < s.length(); i++) {
-		if (s.charAt(i) == '>') {
-			return i + 1;
-		}
-	}
-	return -1;
+    return s.substring(textStart, textEnd);
   }
 
 /**
