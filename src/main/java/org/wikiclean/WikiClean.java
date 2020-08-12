@@ -149,7 +149,7 @@ public class WikiClean {
     return (start == -1 || end == -1 || start > end) ? "0" : s.substring(start + 4, end);
   }
 
-  private static final String XML_START_TAG_TEXT = "<text xml:space=\"preserve\"";
+  private static final String XML_START_TAG_TEXT = "<text";
   private static final String XML_END_TAG_TEXT = "</text>";
 
   /**
@@ -160,23 +160,20 @@ public class WikiClean {
   public String getWikiMarkup(String s) {
     // parse out actual text of article
     int textStart = s.indexOf(XML_START_TAG_TEXT);
+    if (textStart >= 0) {
+      textStart = s.indexOf('>', textStart) + 1;
+    }
     int textEnd = s.indexOf(XML_END_TAG_TEXT, textStart);
 
-    if (textStart == -1 || textStart + 27 > textEnd) {
+    if (textStart == -1 || textStart > textEnd) {
       // Returning empty string is preferable to returning null to prevent NPE.
       return "";
     }
 
-    String s2 = s.substring(textStart + 27, textEnd);
-    if (s2.startsWith("bytes=")) {
-      textEnd = s2.indexOf(">");
-      s2 = s2.substring(textEnd + 1);
-    }
-
-    return s2;
+    return s.substring(textStart, textEnd);
   }
 
-  /**
+/**
    * Cleans a Wikipedia article.
    * @param page Wikipedia article
    * @return cleaned output

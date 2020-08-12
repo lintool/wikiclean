@@ -50,6 +50,25 @@ public class WikiCleanDeTest {
   }
 
   @Test
+  public void testId1_2020() throws Exception {
+    String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20200801-id1.xml"), "UTF-8");
+    WikiClean cleaner = new WikiClean.Builder().withLanguage(new German()).build();
+    String content = cleaner.clean(raw);
+    //System.out.println(content);
+
+    // Make sure categories are removed properly.
+    assertFalse(content.contains("Kategorie:Pseudonym"));
+
+    // Make sure footer is removed properly.
+    assertFalse(content.contains("Referenzen"));
+    assertFalse(content.contains("Weblinks"));
+    assertFalse(content.contains("Literatur"));
+
+    assertEquals(4521, content.length());
+  }
+
+
+  @Test
   public void testId5() throws Exception {
     String raw = FileUtils.readFileToString(new File("src/test/resources/dewiki-20130602-id5.xml"), "UTF-8");
     WikiClean cleaner = new WikiClean.Builder().withLanguage(new German()).build();
