@@ -123,7 +123,7 @@
     <dependency> <!-- for org.apache.tools.bzip2.CBZip2InputStream -->
       <groupId>org.apache.ant</groupId>
       <artifactId>ant</artifactId>
-      <version>1.10.1</version>
+      <version>1.10.8</version>
     </dependency>
 
     <dependency>
